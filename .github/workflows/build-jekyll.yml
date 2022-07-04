@@ -31,3 +31,9 @@ jobs:
           jekyll_baseurl: "/jekyll-theme-yat" # Default is empty
           cname: "" # Default is to not use a cname
           actor: "" # Default is the GITHUB_ACTOR
+
+      # Set TimeZone
+      - name: Setup timezone
+        uses: zcong1993/setup-timezone@master
+        with:
+          timezone: Asia/Seoul

@@ -1,7 +1,0 @@
-I"�<p>안녕하세요 <code class="language-plaintext highlighter-rouge">테스트</code> 글입니다.</p>
-
-<h2 id="section-1">section 1</h2>
-
-<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nf">println</span><span class="p">(</span><span class="s">"테스트입니다."</span><span class="p">)</span>
-</code></pre></div></div>
-:ET

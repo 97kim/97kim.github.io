@@ -176,23 +176,26 @@ night_mode: "on/off"
 #   heading_style: null     # Custom heading style (e.g. "font-weight: bold; text-decoration: underline")
 #   subheading_style: null  # Custom subheading style (e.g. color: gold)
 
+# timezone setting
+timezone: "Asia/Seoul"
+
 # Excerpt size setting
 # excerpt_size: 350
 
 # Pagination setting
-# paginate: 5
+paginate: 10
 
 # Disqus comments
 # disqus:
 #   shortname: "Your Disqus username"
 
 # Gitment comments
-# gitment:
-#   username: "Your GitHub username"
-#   repo: "The repo to store comments"
-#   client_id: "Your client ID"
-#   client_secret: "Your client secret"
-#   redirect_uri: "Your redirect url"   # If you use a custom domain name
+gitment:
+  username: "97kim"
+  repo: "97kim.github.io"
+  client_id: ${{ secrets.CLIENT_ID }}
+  client_secret: ${{ secrets.CLIENT_SECRET }}
+  redirect_uri: "https://97kim.github.io" # If you use a custom domain name
 
 # Utterances comments
 # See https://utteranc.es/

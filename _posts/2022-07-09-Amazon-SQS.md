@@ -310,7 +310,7 @@ Lambda 함수를 만들고 들어가보면 아래와 같은 창이 보인다.
 
 샘플 코드는 아래와 같다.
 
-```jsx
+```javascript
 console.log('Loading function');
 
 exports.handler = async (event) => {

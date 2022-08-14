@@ -20,7 +20,7 @@ tags: MapStruct
 sidebar: []
 ---
 
-MapStructx는 자바에서 서로 다른 객체 간 매핑에 대한 코드를 간편하게 자동으로 생성해주는 라이브러리다. Annotaion Processor를 사용해 컴파일 시 구현체를 생성한다.
+MapStruct는 자바에서 서로 다른 객체 간 매핑에 대한 코드를 간편하게 자동으로 생성해주는 라이브러리다. Annotaion Processor를 사용해 컴파일 시 구현체를 생성한다.
 
 객체 간 매핑에 대한 라이브러리로 ModelMapper도 있지만 MapStruct는 컴파일 시 매핑 코드를 생성하기 때문에 아래와 같은 장점이 있다.
 

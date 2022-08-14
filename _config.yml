@@ -217,6 +217,3 @@ plugins:
   - jekyll-sitemap
   - jekyll-paginate
   - jekyll-spaceship
-
-# url prettier - date, pretty, ordinal, none
-permalink: pretty

@@ -763,3 +763,5 @@ public interface PersonMapperJava extends EntityMapper<PersonDTO, Person> {
 ---
 
 MapStruct의 모든 기능들을 다룬 것은 아니다. 하지만 이 정도만 알아도 우리가 개발하는 데 있어서 충분히 이점을 가져갈 수 있을 것이라고 생각한다. 앞으로 MapStruct를 잘 활용해서 편하게 개발해보자!
+
+> 위에서 설명한 코드 예제는 [Github](https://github.com/97kim/mapstruct_example)에 있습니다.

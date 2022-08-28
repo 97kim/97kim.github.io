@@ -33,10 +33,10 @@ MapStruct는 자바에서 서로 다른 객체 간 매핑에 대한 코드를 �
 
 ### 개발 환경
 - Kotlin / Spring Boot
-- Gradle
+- Gradle (Kotlin dsl)
 
 ### build.gradle.kts 설정
-```
+``` kotlin_dsl
 ...
 
 plugins {

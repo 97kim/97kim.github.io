@@ -180,11 +180,19 @@ This theme is licensed under the [MIT license](https://opensource.org/licenses/m
 ---
 
 테마 받고
-```sudo bundler install```
+```
+sudo bundler install
+```
 or
-```bundle```
+```
+bundle
+```
 
 로컬 서버 실행
-```sudo bundle exec jekyll serve```
+```
+sudo bundle exec jekyll serve
+```
 or
-```jekyll serve```
+```
+jekyll serve
+```

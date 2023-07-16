@@ -176,3 +176,15 @@ This theme is licensed under the [MIT license](https://opensource.org/licenses/m
 [jekyll-sitemap]: https://github.com/jekyll/jekyll-sitemap
 [jekyll-feed]: https://github.com/jekyll/jekyll-feed
 [highlight-js]: https://github.com/highlightjs/highlight.js
+
+---
+
+테마 받고
+```sudo bundler install```
+or
+```bundle```
+
+로컬 서버 실행
+```sudo bundle exec jekyll serve```
+or
+```jekyll serve```

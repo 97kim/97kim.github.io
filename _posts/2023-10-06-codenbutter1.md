@@ -16,9 +16,9 @@ banner:
   min_height: "38vh"
   heading_style: "font-size: 2.5em; font-weight: bold;"
   subheading_style: "color: gold"
-tags: 노코드솔루션 후기 코드앤버터
+tags: 후기 노코드솔루션 코드앤버터
 sidebar: []
-permalink: /posts/codenbutter
+permalink: /posts/review/codenbutter
 ---
 
 ## 개발을 하지 않아도 5분만에 팝업을 넣을 수 있다? ##

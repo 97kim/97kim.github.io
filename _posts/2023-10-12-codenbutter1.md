@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 개발을 하지 않아도 5분만에 팝업을 넣을 수 있다?
+title: 개발을 하지 않아도 노코드솔루션으로 5분만에 팝업을 넣을 수 있다?
 subtitle: 노코드솔루션
 author: 97kim
 categories: 후기
@@ -14,14 +14,14 @@ banner:
   background: "#000"
   height: "50vh"
   min_height: "38vh"
-  heading_style: "font-size: 2.5em; font-weight: bold;"
+  heading_style: "font-size: 2em; font-weight: bold;"
   subheading_style: "color: gold"
 tags: 후기 노코드솔루션 코드앤버터
 sidebar: []
 permalink: /posts/review/codenbutter
 ---
 
-## 개발을 하지 않아도 5분만에 팝업을 넣을 수 있다? ##
+### 개발을 하지 않아도 노코드솔루션으로 5분만에 팝업을 넣을 수 있다? ###
 
 ![codenbutter1](/assets/images/codenbutter/codenbutter1.png)
 
@@ -32,7 +32,7 @@ permalink: /posts/review/codenbutter
 
 ![codenbutter3](/assets/images/codenbutter/codenbutter3.png){: width="370px"}
 
-이런 고민을 하고 계신 분이 많을 것 같습니다. 이럴 때 우리에겐 개발 없이 팝업을 설치하는 **노코드솔루션**이 있습니다. 오늘 소개드릴 노코드솔루션은 바로 **코드앤버터(CODE N BUTTER)**입니다!
+이런 고민을 하고 계신 분이 많을 것 같습니다. 이럴 때 우리에겐 개발 없이 팝업을 설치하는 **노코드솔루션**이 있습니다. 오늘 소개드릴 노코드솔루션은 바로 **[코드앤버터(CODE N BUTTER)](https://www.codenbutter.com/?utm_source=site&utm_medium=blog&utm_campaign=1&utm_term=nocode)**입니다!
 
 ![codenbutter4](/assets/images/codenbutter/codenbutter4.png)
 

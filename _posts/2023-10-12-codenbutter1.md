@@ -32,7 +32,9 @@ permalink: /posts/review/codenbutter
 
 ![codenbutter3](/assets/images/codenbutter/codenbutter3.png){: width="370px"}
 
-이런 고민을 하고 계신 분이 많을 것 같습니다. 이럴 때 우리에겐 개발 없이 팝업을 설치하는 **노코드솔루션**이 있습니다. 오늘 소개드릴 노코드솔루션은 바로 **[코드앤버터(CODE N BUTTER)](https://www.codenbutter.com/?utm_source=site&utm_medium=blog&utm_campaign=1&utm_term=nocode)**입니다!
+이런 고민을 하고 계신 분이 많을 것 같습니다. 이럴 때 우리에겐 개발 없이 팝업을 설치하는 **노코드솔루션**이 있습니다. 오늘 소개드릴 노코드솔루션은 바로 **코드앤버터(CODE N BUTTER)**입니다!
+
+> [코드앤버터 구경하기 (클릭)](https://www.codenbutter.com/?utm_source=site&utm_medium=blog&utm_campaign=1&utm_term=nocode)
 
 ![codenbutter4](/assets/images/codenbutter/codenbutter4.png)
 

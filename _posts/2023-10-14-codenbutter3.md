@@ -12,11 +12,11 @@ banner:
   image: .
   opacity: 0.618
   background: "#000"
-  height: "50vh"
-  min_height: "38vh"
-  heading_style: "font-size: 2.5em; font-weight: bold;"
+  height: "70vh"
+  min_height: "50vh"
+  heading_style: "font-size: 2em; font-weight: bold;"
   subheading_style: "color: gold"
-tags: 후기 노코드솔루션 코드앤버터 자동메시지
+tags: 노코드솔루션 코드앤버터 자동메시지
 sidebar: []
 permalink: /posts/review/codenbutter-auto-message
 ---

@@ -18,7 +18,7 @@ banner:
   subheading_style: "color: gold"
 tags: 후기 노코드솔루션 코드앤버터 자동메시지
 sidebar: []
-permalink: /posts/review/codenbutter/auto-message
+permalink: /posts/review/codenbutter-auto-message
 ---
 
 ### 쇼핑몰 매출이 올라가는 자동메시지 팝업 ###

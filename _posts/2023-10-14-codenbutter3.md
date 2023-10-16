@@ -9,13 +9,13 @@ banner:
   loop:
   volume:
   start_at:
-  image: .
+  image: /assets/images/codenbutter/codenbutter-bg.webp
   opacity: 0.618
   background: "#000"
   height: "70vh"
   min_height: "50vh"
-  heading_style: "font-size: 2em; font-weight: bold;"
-  subheading_style: "color: gold"
+  heading_style: "font-size: 2em; font-weight: bold; text-shadow:2px 2px 5px #000;"
+  subheading_style: "color: gold; text-shadow:2px 2px 5px #000;"
 tags: 노코드솔루션 코드앤버터 자동메시지
 sidebar: []
 permalink: /posts/review/codenbutter-auto-message

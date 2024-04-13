@@ -1,0 +1,2031 @@
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ko"><generator uri="https://jekyllrb.com/" version="4.3.3">Jekyll</generator><link href="https://97kim.github.io/jekyll-theme-yat/feed.xml" rel="self" type="application/atom+xml" /><link href="https://97kim.github.io/jekyll-theme-yat/" rel="alternate" type="text/html" hreflang="ko" /><updated>2024-04-13T23:28:34+09:00</updated><id>https://97kim.github.io/jekyll-theme-yat/feed.xml</id><title type="html">Jung.log</title><subtitle>Tech Blog</subtitle><author><name>97kim</name></author><entry><title type="html">쇼핑몰 매출이 올라가는 자동메시지 팝업</title><link href="https://97kim.github.io/jekyll-theme-yat/posts/review/codenbutter-auto-message" rel="alternate" type="text/html" title="쇼핑몰 매출이 올라가는 자동메시지 팝업" /><published>2023-10-14T00:00:00+09:00</published><updated>2023-10-14T00:00:00+09:00</updated><id>https://97kim.github.io/jekyll-theme-yat/posts/review/codenbutter3</id><content type="html" xml:base="https://97kim.github.io/jekyll-theme-yat/posts/review/codenbutter-auto-message"><![CDATA[<h3 id="쇼핑몰-매출이-올라가는-자동메시지-팝업">쇼핑몰 매출이 올라가는 자동메시지 팝업</h3>
+
+<p>쇼핑몰을 운영 중이라면 눈여겨 봐야 할 중요한 요소 중 하나는 자동메시지입니다. 특정 상황에 카카오톡, 문자, 이메일을 고객들에게 보내는 것이 중요한 것처럼 자동메시지 팝업도 중요합니다. 팝업은 어떤 내용을 담고 있는지도 중요하지만 위치와 어떤 타이밍에 나타나는지도 아주 중요합니다. 상단 바 배너에 회원 가입 유도를 할 수도 있고, 뒤로 가기를 누른 고객들에게 리마인드 팝업을 노출시킬 수도 있고, 모바일 웹에서 접속 시 앱 설치 팝업도 노출시킬 수 있습니다. 이렇게 상황에 따라 사용자의 행동과 의도에 적합한 팝업을 이용하면 훨씬 짜임새 있는 온사이트 마케팅 전략을 세울 수 있겠죠? 이렇게 팝업의 위치와 팝업이 뜨는 타이밍에 대해 디테일하게 세팅할 수 있는 코드앤버터를 소개하려고 합니다.</p>
+
+<blockquote>
+  <p><a href="https://www.codenbutter.com/?utm_source=site&amp;utm_medium=blog&amp;utm_campaign=1&amp;utm_term=automessage">코드앤버터 구경하기 (클릭)</a></p>
+</blockquote>
+
+<h4 id="1-로그인-페이지-상단-바-배너에-팝업-노출">1. 로그인 페이지 상단 바 배너에 팝업 노출</h4>
+<p>나의 쇼핑몰의 도메인 주소가 myshop.com 이라고 가정해볼게요. myshop.com/login 이라는 로그인 페이지에서 상단 바 배너에 회원가입 유도 팝업이 나오도록 세팅하는 방법을 알아보겠습니다.</p>
+
+<p>코드앤버터에서는 모바일, 데스크탑 환경별 팝업 형태를 설정할 수 있습니다.</p>
+
+<p>모바일
+<img src="/assets/images/codenbutter/codenbutter34.png" alt="codenbutter34" /></p>
+
+<p>데스크탑
+<img src="/assets/images/codenbutter/codenbutter35.png" alt="codenbutter35" /></p>
+
+<p>우리는 로그인 페이지에서 상단 바에 팝업을 띄우도록 하기로 했기 때문에 상단 띠 스타일 A 또는 B를 선택하면 되겠죠.</p>
+
+<p><img src="/assets/images/codenbutter/codenbutter36.png" alt="codenbutter36" /></p>
+
+<p>이런 식으로 내용을 입력해준 다음 노출 대상이라는 메뉴를 클릭합니다.</p>
+
+<p><img src="/assets/images/codenbutter/codenbutter37.png" alt="codenbutter37" /></p>
+
+<p>노출 대상 메뉴를 들어가면 여러가지 항목을 확인할 수 있습니다.</p>
+
+<p><img src="/assets/images/codenbutter/codenbutter38.png" alt="codenbutter38" /></p>
+
+<p>로그인 페이지에서 상단 바에 팝업을 띄우도록 하기 위해선 도메인에는 myshop.com을 입력하면 되고 페이지에는 /login을 입력하면 됩니다. 로그인 페이지에 접속한 모든 고객들에게 팝업이 보여야 하니 브라우저 식별 정보는 따로 세팅하지 않아도 되겠죠? 나머지 항목들도 마찬가지로 특정 조건이 필요하다면 추가하면 됩니다. 저장하고 팝업을 공개시키면 끝입니다! 자동메시지 팝업 만들기 간단하죠?</p>
+
+<h4 id="2-뒤로가기--닫기-클릭-시-팝업-노출">2. 뒤로가기 / 닫기 클릭 시 팝업 노출</h4>
+<p>고객이 쇼핑몰에서 쇼핑하다가 뒤로가기 또는 닫기를 클릭했을 때 팝업이 뜨도록 할 수도 있는데요.</p>
+
+<p><img src="/assets/images/codenbutter/codenbutter39.png" alt="codenbutter39" /></p>
+
+<p>트리거 메뉴로 들어갑니다.</p>
+
+<p><img src="/assets/images/codenbutter/codenbutter40.png" alt="codenbutter40" width="700px" /></p>
+
+<p>트리거 메뉴에서 이탈 감지 항목을 켜면 됩니다. 저장하고 공개시키면 끝이에요. 간단하죠?
+이탈 감지 이외에도 공개 지연은 사용자가 페이지 진입 후 몇 초 뒤에 팝업이 뜨게 할 것인가 설정할 수도 있고, 스크롤을 몇 퍼센트 했냐에 따라서도 팝업이 노출되게 할 수도 있어요.</p>
+
+<h4 id="3-특정-기간에-프로모션-팝업-노출">3. 특정 기간에 프로모션 팝업 노출</h4>
+<p>특정 기간에 상품들을 할인해서 파는 프로모션이 있다면 고객들에게 프로모션 관련해서 팝업을 노출시키면 좋을 것 같은데요.</p>
+
+<p><img src="/assets/images/codenbutter/codenbutter41.png" alt="codenbutter41" /></p>
+
+<p><img src="/assets/images/codenbutter/codenbutter42.png" alt="codenbutter42" /></p>
+
+<p>스케줄 설정 메뉴에서 예약 공개를 클릭 해 예약기간을 세팅해주면 됩니다. 스케줄 설정도 간단합니다!</p>
+
+<p>코드앤버터를 통해 자동메시지 팝업을 추가하는 방법을 알아보았는데요. 이용해보시면 어려움 없이 설정하실 수 있을 것이라고 생각합니다. 자동메시지 팝업으로 업무 효율을 높이고 매출까지 올리면 더욱 좋을 것 같습니다.</p>
+
+<p>본 포스팅은 소정의 원고료를 지원받아 작성된 후기입니다.</p>]]></content><author><name>97kim</name></author><category term="후기" /><category term="노코드솔루션" /><category term="코드앤버터" /><category term="자동메시지" /><summary type="html"><![CDATA[쇼핑몰 매출이 올라가는 자동메시지 팝업]]></summary></entry><entry><title type="html">B2B 마케팅에도 필수! 코딩 없이 웹 사이트를 만들 수 있는 툴 4가지 소개</title><link href="https://97kim.github.io/jekyll-theme-yat/posts/review/web-builder" rel="alternate" type="text/html" title="B2B 마케팅에도 필수! 코딩 없이 웹 사이트를 만들 수 있는 툴 4가지 소개" /><published>2023-10-13T00:00:00+09:00</published><updated>2023-10-13T00:00:00+09:00</updated><id>https://97kim.github.io/jekyll-theme-yat/posts/review/codenbutter2</id><content type="html" xml:base="https://97kim.github.io/jekyll-theme-yat/posts/review/web-builder"><![CDATA[<h3 id="b2b-마케팅에도-필수-코딩-없이-웹-사이트를-만들-수-있는-툴-4가지-소개">B2B 마케팅에도 필수! 코딩 없이 웹 사이트를 만들 수 있는 툴 4가지 소개</h3>
+
+<p>우선 B2B 라는 용어를 알아야 하는데요. B2B(Business-to-Business)는 기업과 기업 사이의 거래를 기반으로 한 비즈니스 모델을 의미합니다. B2B와 반대되는 개념으로는 하나의 기업이 고객을 상대하는 B2C(Business-to-Customer)가 있습니다. 우리가 일반적으로 사용하게 되는 온라인 쇼핑몰은 B2C이며 고객 한 명, 한 명이 매출에 직결되기 때문에 마케팅에 큰 노력을 기울입니다.</p>
+
+<p>그렇다면, B2B에도 마케팅이 필요할까요?</p>
+
+<p>물론이에요! B2C 못지 않게 B2B에도 마케팅이 필요합니다. B2B 마케팅은 기업 또는 조직을 대상으로 하는 마케팅 전략 또는 콘텐츠 전략을 뜻합니다. B2B 영역에서 마케팅의 목적은 타 기업 사이에서 기업의 브랜드 네임, 제품/서비스의 가치가 친숙해지도록 만들고 그들을 고객으로 전환하는 것을 의미합니다.</p>
+
+<blockquote>
+  <p><strong>B2B 마케팅 관련 참고</strong><br /><a href="https://www.grownbetter.com/article/156">https://www.grownbetter.com/article/156</a></p>
+</blockquote>
+
+<p>B2B 마케팅 전략을 수립할 때 실행해야 할 단계 중 하나는 바로 ‘활용할 수 있는 마케팅 채널 탐색’입니다.
+웹 사이트 없이는 B2B 마케팅이 제대로 작동할 수 없습니다. 구매자의 80% 이상이 구매하기 전에 웹 사이트를 방문합니다. 그만큼 웹 사이트의 존재 유무가 중요하다는 뜻이겠죠.</p>
+
+<p>그래서 웹 사이트를 만들 수 있는 툴인 웹 빌더 4가지를 소개하려고 합니다.</p>
+
+<h4 id="1-우피oopy">1. 우피(OOPY)</h4>
+<p><img src="/assets/images/codenbutter/codenbutter19.png" alt="codenbutter19" width="600px" /></p>
+
+<p>노션은 많은 사람들이 사용해보았을텐데요. 노션으로 위키, 프로젝트, 블로그, 이력서 등 다양하게 이용할 수 있는 차세대 문서 작성 툴입니다. 저도 노션을 자주 사용하는데요. 편리하기도 하고, 쉽게 문서를 작성할 수 있어 사용자에게 접근성이 좋다는 생각이 들었어요. 하지만 작성한 노션 페이지가 공유되는 링크가 예쁘지 않아 아쉬웠습니다 ㅠㅠ. 그 때 혜성처럼 등장한 OOPY! 우피를 이용하면 자신의 도메인 주소에 노션을 연동할 수 있습니다.</p>
+
+<p>우피를 이용해 회사 브랜딩 사이트, 개인 브랜딩 사이트, 랜딩 페이지, 고객 가이드 사이트를 작성한 활용 사례들이 있습니다.</p>
+
+<p><img src="/assets/images/codenbutter/codenbutter20.png" alt="codenbutter20" width="600px" />
+<img src="/assets/images/codenbutter/codenbutter21.png" alt="codenbutter21" width="600px" /></p>
+
+<p>가격은 어떨까요? Oopy 서비스는 매월 사용하고 계신 호스트네임 개수에 따른 비용을 아래와 같이 청구합니다.  우선 2가지 플랜이 있는데요. 베이직 플랜, 프로 플랜을 제공하고 있습니다. 베이직 플랜은 5,900원, 프로 플랜은 9,900원입니다. 이 두 가지 플랜의 차이는 <a href="https://www.oopy.io/ko/pricing">https://www.oopy.io/ko/pricing</a> 에서 자세하게 확인할 수 있습니다. 두 가지 플랜을 비교해 내게 적절한 플랜을 찾으면 될 것 같습니다!</p>
+
+<h4 id="2-식스샵">2. 식스샵</h4>
+<p><img src="/assets/images/codenbutter/codenbutter22.png" alt="codenbutter22" /></p>
+
+<p>두 번째로 소개드릴 툴은 식스샵입니다. 
+식스샵을 이용해서 홈페이지, 쇼핑몰을 만들 수 있는데요. 식스샵은 다양한 템플릿을 제공하고 있습니다. 원하는 템플릿을 선택해 우리의 웹 사이트를 쉽게 만들 수 있습니다.</p>
+
+<p><img src="/assets/images/codenbutter/codenbutter23.png" alt="codenbutter23" /></p>
+
+<p>지금 식스샵에서는 18,000개의 브랜드가 5,393,000명의 고객에게 22,490,000건의 판매를 이뤄내고 1,098,700,000,000원의 매출을 거두고 있습니다. 1조원의 누적 매출을 발생시킨 식스샵의 가격 정책을 한번 볼까요?</p>
+
+<p><img src="/assets/images/codenbutter/codenbutter24.png" alt="codenbutter24" /></p>
+
+<p>쇼핑몰(1년 이용권 결제 기준 월 21,800원)
+다양한 상점 템플릿 제공, 다양한 결제 수단 제공, 소셜 미디어 마케팅 툴 제공, 카카오톡과 연동한 쇼핑 경험 등 다양한 부가 기능을 제공합니다.</p>
+
+<p>홈페이지(1년 이용권 결제 기준 월 12,300원)
+상점 판매 불가, 한국어/영어 지원, 다양한 홈페이지 템플릿 제공 등 홈페이지라는 목적에 맞는 다양한 부가 기능을 제공합니다.</p>
+
+<p>상점 판매 기능이 필요 없다면 홈페이지 가격 정책을 이용하면 될 것 같네요! 자세한 건 <a href="https://www.sixshop.com/pricing">https://www.sixshop.com/pricing</a> 에서 확인하실 수 있습니다.</p>
+
+<p>그리고 마케팅 기능도 제공하는데요.</p>
+
+<p><img src="/assets/images/codenbutter/codenbutter25.png" alt="codenbutter25" /></p>
+
+<p>위 사진과 같이 다양한 기능을 제공하고 있습니다. B2B 마케팅으로 웹 사이트를 만들기 적절해 보입니다.</p>
+
+<h4 id="3-카페24">3. 카페24</h4>
+
+<p><img src="/assets/images/codenbutter/codenbutter26.png" alt="codenbutter26" width="850px" /></p>
+
+<p>카페24는 많이 들어보셨을 것 같은데요. 카페24도 식스샵과 같이 쇼핑몰을 만들 수 있는 웹 빌더입니다. 카페24는 식스샵과는 다르게 웹호스팅도 제공하는데요. 기본적으로 웹 사이트를 이용하려면 서버가 존재해야 하는데, 서버의 하드웨어 및 소프트웨어적인 관리를 카페24에서 대행하고 사용자는 카페24에서 제공하는 웹 호스팅만 이용하면 됩니다. 이로써 사용자는 서버 관리나 기술적인 측면에 대한 걱정을 덜 수 있습니다.</p>
+
+<p>카페24는 27만 개의 쇼핑몰 디자인 템플릿을 소유하고 있고 자유로운 편집이 가능해 쇼핑몰 디자인을 완성할 수 있다고 합니다. 또한 카페24 에디봇 배너로 팝업을 만들 수 있는데 인공지능을 활용해 수많은 사용자들의 템플릿 편집 내용을 분석하고, 그 결과를 인공지능이 자동으로 템플릿을 고도화한다고 합니다.</p>
+
+<p>카페24도 마케팅을 위한 서비스를 제공하는데요. 키워드 광고, 쇼핑 광고, SNS 광고, 디스플레이 광고, 모바일 광고를 제공하고 있습니다. 자세한 건 <a href="https://www.cafe24.com/marketing/domestic-marketing">https://www.cafe24.com/marketing/domestic-marketing</a> 에서 확인할 수 있습니다.</p>
+
+<p>카페24의 가격 정책을 확인해보면 기본적으로 무료라고 합니다.</p>
+
+<p><img src="/assets/images/codenbutter/codenbutter27.png" alt="codenbutter27" /></p>
+
+<p>기본적으로 무료이고, 쇼핑몰 운영에 필요한 결제수단, 도메인, 마케팅 서비스 등은 유료로 제공하고 있으니 참고하면 좋을 것 같습니다. 식스샵과는 다르게 카페24를 통해 도메인 주소를 구매할 수 있습니다.</p>
+
+<p><img src="/assets/images/codenbutter/codenbutter28.png" alt="codenbutter28" width="850px" /></p>
+
+<h4 id="4-코드앤버터">4. 코드앤버터</h4>
+<p><img src="/assets/images/codenbutter/codenbutter29.png" alt="codenbutter29" /></p>
+
+<p>코드앤버터는 웹 사이트를 만들어주는 웹 빌더는 아닙니다. 이미 운영 중인 웹 사이트에 팝업을 넣고 싶을 때 쉽게 만들 수 있고, 쉽게 붙일 수 있는 기능을 제공하는 툴입니다.</p>
+
+<p><img src="/assets/images/codenbutter/codenbutter30.png" alt="codenbutter30" /></p>
+
+<p>우피, 식스샵, 카페24, 아임웹 등 여러 서비스와 연동해서 사용할 수 있는 것이 인상적이네요. 기존에 존재하는 웹 사이트 빌더에는 팝업 기능을 제공하고 있지만 디테일하게 설정하지 못 하는 것이 단점입니다. 이러한 단점을 해결할 수 있는 툴이 바로 코드앤버터라고 생각합니다.</p>
+
+<p><img src="/assets/images/codenbutter/codenbutter31.png" alt="codenbutter31" width="600px" /> <br />
+<img src="/assets/images/codenbutter/codenbutter32.png" alt="codenbutter32" width="600px" /></p>
+
+<p>코드앤버터를 통해 디테일한 팝업 디자인 세팅도 할 수 있는데, 팝업 추가만으로도 방문자 통계를 낼 수 있어 통계 확인에 있어서 B2B 마케팅에도 도움이 될 것 같습니다. 코드앤버터의 가격 플랜을 확인해보면 현재 3가지 플랜이 존재합니다.</p>
+
+<p><img src="/assets/images/codenbutter/codenbutter33.png" alt="codenbutter33" /></p>
+
+<p>현재는 베타테스트 기간이라 월 500,000 페이지뷰 이하의 사이트에서는 <strong>2023년까지 무료</strong>로 이용할 수 있습니다. 월 500,000 페이지뷰 이상인 사이트에서는 엔터프라이즈 플랜을 이용해야 하는데 문의를 통해 이용할 수 있습니다. 2023년까지 무료기 때문에 사용해보고 싶은 분은 얼른 사용해보셔야 할 것 같습니다.
+자세한 내용은 코드앤버터에서 확인하실 수 있습니다.</p>
+
+<blockquote>
+  <p><a href="https://www.codenbutter.com/?utm_source=site&amp;utm_medium=blog&amp;utm_campaign=1&amp;utm_term=b2b">코드앤버터 구경하기 (클릭)</a></p>
+</blockquote>
+
+<p>이렇게 B2B 마케팅의 필수인 웹 사이트를 만드는 데 도움이 되는 4가지 툴을 살펴보았는데요. 그렇다면 이런 툴들은 과연 B2B 환경에서만 적합할까요? B2B에 적용할 수 있다면, B2C에도 물론 적용할 수 있어요! 고객군을 세분화 해 실험적이고 적극적으로 전략을 기획하고 펼칠 수 있답니다. 오늘의 포스팅이 많은 도움이 되었길 바랍니다.</p>
+
+<p>본 포스팅은 소정의 원고료를 지원받아 작성된 후기입니다.</p>]]></content><author><name>97kim</name></author><category term="후기" /><category term="노코드솔루션" /><category term="코드앤버터" /><category term="B2B마케팅" /><summary type="html"><![CDATA[B2B 마케팅에도 필수! 코딩 없이 웹 사이트를 만들 수 있는 툴 4가지 소개]]></summary></entry><entry><title type="html">개발을 하지 않아도 노코드솔루션으로 5분만에 팝업을 넣을 수 있다?</title><link href="https://97kim.github.io/jekyll-theme-yat/posts/review/codenbutter" rel="alternate" type="text/html" title="개발을 하지 않아도 노코드솔루션으로 5분만에 팝업을 넣을 수 있다?" /><published>2023-10-12T00:00:00+09:00</published><updated>2023-10-12T00:00:00+09:00</updated><id>https://97kim.github.io/jekyll-theme-yat/posts/review/codenbutter1</id><content type="html" xml:base="https://97kim.github.io/jekyll-theme-yat/posts/review/codenbutter"><![CDATA[<h3 id="개발을-하지-않아도-노코드솔루션으로-5분만에-팝업을-넣을-수-있다">개발을 하지 않아도 노코드솔루션으로 5분만에 팝업을 넣을 수 있다?</h3>
+
+<p><img src="/assets/images/codenbutter/codenbutter1.png" alt="codenbutter1" /></p>
+
+<p><br /></p>
+
+<p><img src="/assets/images/codenbutter/codenbutter2.png" alt="codenbutter2" width="370px" />
+요즘 대부분의 웹 사이트를 보면 사이트 진입 시 팝업이 존재합니다. 공지사항이나 이벤트가 있을 때 고객들에게 해당 정보를 제공하기 위해 노출시키곤 합니다. 예시로 가져온 사진을 보면 코오롱몰이나 쿠팡의 메인 페이지에서도 팝업을 확인할 수 있습니다. 이런 팝업을 직접 개발하고 적용해서 관리하려면 신경쓸 부분도 많고 상당히 번거로울 거 같은데요..</p>
+
+<p><img src="/assets/images/codenbutter/codenbutter3.png" alt="codenbutter3" width="370px" /></p>
+
+<p>이런 고민을 하고 계신 분이 많을 것 같습니다. 이럴 때 우리에겐 개발 없이 팝업을 설치하는 <strong>노코드솔루션</strong>이 있습니다. 오늘 소개드릴 노코드솔루션은 바로 <strong>코드앤버터(CODE N BUTTER)</strong>입니다!</p>
+
+<blockquote>
+  <p><a href="https://www.codenbutter.com/?utm_source=site&amp;utm_medium=blog&amp;utm_campaign=1&amp;utm_term=nocode">코드앤버터 구경하기 (클릭)</a></p>
+</blockquote>
+
+<p><img src="/assets/images/codenbutter/codenbutter4.png" alt="codenbutter4" /></p>
+
+<p>팝업을 만드는 솔루션인만큼 풍성한 한가위가 되라는 기분 좋은 팝업이 코드앤버터 메인 페이지에 떠 있네요. 이런 팝업을 코드 없이 만들 수 있다고? 한번 저도 팝업을 만들어보도록 하겠습니다.</p>
+
+<p>로그인을 하고 웹사이트 추가하기 버튼을 클릭합니다.</p>
+
+<p><img src="/assets/images/codenbutter/codenbutter5.png" alt="codenbutter5" /></p>
+
+<p>웹사이트 주소를 입력하고 다음으로 넘어가면</p>
+
+<p><img src="/assets/images/codenbutter/codenbutter6.png" alt="codenbutter6" width="600px" /></p>
+
+<p>팝업을 설치하려는 웹사이트의 대표 아이콘(favicon)과 사이트의 title을 읽어서 보여주는 것 같네요.
+그대로 둬도 되고 수정해도 됩니다. 다 입력했다면 만들기 버튼을 클릭합니다.</p>
+
+<p><img src="/assets/images/codenbutter/codenbutter7.png" alt="codenbutter7" /></p>
+
+<p>서비스 추가 버튼을 클릭합니다.</p>
+
+<p><img src="/assets/images/codenbutter/codenbutter8.png" alt="codenbutter8" /></p>
+
+<p>팝업, 인스타그램 피드, 페이지 효과, 게시판 4개의 서비스가 있지만 현재 제공하고 있는 서비스는 팝업과 인스타그램 피드가 있네요. 저는 그 중 팝업을 만들어보겠습니다.</p>
+
+<p><img src="/assets/images/codenbutter/codenbutter9.png" alt="codenbutter9" width="620px" /></p>
+
+<p>팝업 이름과 설명을 입력하고 만들기 버튼을 클릭합니다.</p>
+
+<p><img src="/assets/images/codenbutter/codenbutter10.png" alt="codenbutter10" /></p>
+
+<p>모바일과 데스크탑 모두 팝업 스타일을 지정할 수 있어 엄청 편리해보입니다.</p>
+
+<p><img src="/assets/images/codenbutter/codenbutter11.png" alt="codenbutter11" /></p>
+
+<p>저처럼? 디자인에 소질이 없는 사람들을 위해 다양한 디자인 템플릿을 제공하고 있습니다. 코드앤버터는 예쁜 템플릿을 많이 제공하고 있네요.</p>
+
+<p><img src="/assets/images/codenbutter/codenbutter12.png" alt="codenbutter12" /></p>
+
+<p>템플릿 하나를 선택하면 팝업 수정 화면으로 이동합니다. 팝업 내부에 보여질 기본 프레임(배경 이미지)을 넣을 수 있고, 팝업 클릭 시 이동되는 링크, 텍스트 메시지를 수정할 수 있도록 입력창이 있습니다. 또한 4가지의 디테일한 팝업 조절 기능도 이용할 수 있습니다. 배경 항목은 팝업 이외의 영역에 대한 명암, 투명도 조절 기능에 대한 항목이고, 크기 항목은 팝업의 크기 조절 기능에 대한 항목입니다. 위치 항목은 팝업의 위치 조절 기능에 대한 항목이고, 애니메이션 항목은 팝업에 대한 애니메이션 조절 기능에 대한 항목입니다. 위 템플릿에서 더 수정하고 싶은 디자인 영역이 있다면 디자인 수정 버튼을 클릭해 에디터 화면으로 이동할 수 있습니다.</p>
+
+<p><img src="/assets/images/codenbutter/codenbutter13.png" alt="codenbutter13" /></p>
+
+<p>왼쪽 영역에 레이어 구조로 표시되어 확인하기 쉽고, 가운데는 우리가 만드는 팝업 미리보기 영역이고, 오른쪽 영역에는 세부 디자인 요소들이 있습니다.
+이 화면만 봐도 팝업을 엄청 디테일하게 만들 수 있다는 것을 알 수 있습니다.</p>
+
+<p>다 만들었으면 저장을 하고 공개 설정 버튼을 클릭합니다.</p>
+
+<p><img src="/assets/images/codenbutter/codenbutter14.png" alt="codenbutter14" width="380px" /></p>
+
+<p>스케줄 설정에서 바로 공개시킬 것인지 특정 기간에 공개시킬 것인지 세팅할 수 있습니다. 노출 대상을 클릭해 팝업이 보이거나 보이지 않는 조건을 디테일하게 세팅할 수도 있습니다.
+트리거 설정에서는 사용자가 페이지 진입 후 일정 시간만큼 기다린 후 팝업을 공개시킬 수도 있고, 사용자가 페이지를 이탈하려는 움직임을 감지하면 팝업을 공개시킬 수도 있습니다. 또한 스크롤을 일정 범위 만큼 내리면 팝업이 나오도록 세팅할 수도 있습니다. 팝업을 다 만들었으면 어떻게 내가 원하는 사이트에 추가할 수 있을까요? 그냥 스크립트 한 줄만 넣으면 됩니다!</p>
+
+<p>방금 만든 팝업에 대한 웹 사이트 설정을 클릭합니다.</p>
+
+<p><img src="/assets/images/codenbutter/codenbutter15.png" alt="codenbutter15" width="370px" /></p>
+
+<p>스크립트 설치 메뉴를 클릭하여 우리가 추가해야 하는 script문을 확인할 수 있습니다.</p>
+
+<div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">&lt;script </span><span class="na">src=</span><span class="s">"https://buttr.dev/butter.js"</span> <span class="na">data-site-id=</span><span class="s">"사이트id"</span> <span class="na">async</span><span class="nt">&gt;&lt;/script&gt;</span>
+</code></pre></div></div>
+
+<p><img src="/assets/images/codenbutter/codenbutter16.png" alt="codenbutter16" width="650px" /></p>
+
+<p>코드앤버터에서 설명하는대로 따라하면 성공!</p>
+
+<p><img src="/assets/images/codenbutter/codenbutter17.png" alt="codenbutter17" width="500px" /></p>
+
+<p>이렇게 노코드솔루션 코드앤버터를 이용하면 개발 없이 팝업을 사이트에 추가할 수 있습니다.</p>
+
+<p>추가로 카페24, 우피, 식스샵, Shopify, 아임웹 등 다양한 서비스와도 연동이 가능해 아주 편리합니다.</p>
+
+<p><img src="/assets/images/codenbutter/codenbutter18.png" alt="codenbutter18" /></p>
+
+<p>본 포스팅은 소정의 원고료를 지원받아 작성된 후기입니다.</p>]]></content><author><name>97kim</name></author><category term="후기" /><category term="노코드솔루션" /><category term="코드앤버터" /><summary type="html"><![CDATA[개발을 하지 않아도 노코드솔루션으로 5분만에 팝업을 넣을 수 있다?]]></summary></entry><entry><title type="html">SSH 터널링</title><link href="https://97kim.github.io/jekyll-theme-yat/dev/2023/01/14/SSH-%ED%84%B0%EB%84%90%EB%A7%81.html" rel="alternate" type="text/html" title="SSH 터널링" /><published>2023-01-14T00:00:00+09:00</published><updated>2023-01-14T00:00:00+09:00</updated><id>https://97kim.github.io/jekyll-theme-yat/dev/2023/01/14/SSH%20%ED%84%B0%EB%84%90%EB%A7%81</id><content type="html" xml:base="https://97kim.github.io/jekyll-theme-yat/dev/2023/01/14/SSH-%ED%84%B0%EB%84%90%EB%A7%81.html"><![CDATA[<h3 id="ssh-터널링">SSH 터널링</h3>
+<p>SSH 터널링이란 SSH 클라이언트와 SSH 서버 사이에 마치 터널이 뚫린 것처럼 연결이 되어 데이터를 주고 받을 수 있는 것이다. 여기에 포트 포워딩이란 기술이 더해진다. SSH의 TCP/22번 포트가 방화벽에 의해 막히지만 않는다면 방화벽을 우회할 수 있다. <br /><br />
+SSH 터널링 방식은 아래와 같다.</p>
+<ol>
+  <li>SSH Local Port Forwarding</li>
+  <li>SSH Remote Port Forwarding</li>
+  <li>SSH Dynamic Port Forwarding</li>
+</ol>
+
+<p>우선 Local / Remote Port Forwarding을 알아보도록 하자.</p>
+
+<h4 id="ssh-local-port-forwarding">SSH Local Port Forwarding</h4>
+<p><img src="/assets/images/ssh/ssh_tunneling.jpg" alt="ssh_tunneling" />
+위 그림을 예시로 설명하자면</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ssh <span class="nt">-L</span> 111:127.0.0.1:222 10.10.0.1
+</code></pre></div></div>
+
+<p>위 명령어를 Host A에 입력한다.</p>
+<blockquote>
+  <p>SSH Client - Host A, SSH Server - Host B</p>
+</blockquote>
+
+<ol>
+  <li>SSH Client는 111 포트를 listen 하고 있는다.</li>
+  <li>111 포트로 데이터가 왔으면 SSH Server로 전송한다.</li>
+  <li>SSH Server는 127.0.0.1:222로 전송한다.</li>
+</ol>
+
+<p>222 포트가 방화벽에 의해 막혀 있어도 TCP/22번 포트(SSH)만 열려 있다면 접근이 가능하다.</p>
+
+<p><br /></p>
+
+<p><strong>잘 설명되어 있는 이미지</strong>
+<img src="https://i.stack.imgur.com/a28N8.png" alt="https://unix.stackexchange.com/questions/115897/whats-ssh-port-forwarding-and-whats-the-difference-between-ssh-local-and-remot" />
+이미지 출처: <a href="https://unix.stackexchange.com/questions/115897/whats-ssh-port-forwarding-and-whats-the-difference-between-ssh-local-and-remot">https://unix.stackexchange.com/questions/115897/whats-ssh-port-forwarding-and-whats-the-difference-between-ssh-local-and-remot</a></p>
+
+<hr />
+
+<h4 id="ssh-remote-port-forwarding">SSH Remote Port Forwarding</h4>
+<p><img src="/assets/images/ssh/ssh_tunneling2.png" alt="ssh_tunneling" />
+위 그림을 예시로 설명하자면</p>
+
+<div class="language-shell highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ssh <span class="nt">-R</span> 111:127.0.0.1:222 10.10.0.0
+</code></pre></div></div>
+
+<p>위 명령어를 Host B에 입력한다.</p>
+<blockquote>
+  <p>SSH Client - Host B, SSH Server - Host A</p>
+</blockquote>
+
+<ol>
+  <li>SSH Server는 111 포트를 listen 하고 있는다.</li>
+  <li>111 포트로 데이터가 왔으면 SSH Client로 전송한다.</li>
+  <li>SSH Client는 127.0.0.1:222로 전송한다.</li>
+</ol>
+
+<p><strong>잘 설명되어 있는 이미지</strong>
+<img src="https://i.stack.imgur.com/4iK3b.png" alt="https://unix.stackexchange.com/questions/115897/whats-ssh-port-forwarding-and-whats-the-difference-between-ssh-local-and-remot" />
+이미지 출처: <a href="https://unix.stackexchange.com/questions/115897/whats-ssh-port-forwarding-and-whats-the-difference-between-ssh-local-and-remot">https://unix.stackexchange.com/questions/115897/whats-ssh-port-forwarding-and-whats-the-difference-between-ssh-local-and-remot</a></p>
+
+<hr />
+
+<blockquote>
+  <p><strong>참고</strong> <br />
+https://www.ssh.com/academy/ssh/tunneling-example <br />
+https://hbase.tistory.com/328 <br />
+https://ithub.tistory.com/328 <br />
+https://m.blog.naver.com/PostView.naver?isHttpsRedirect=true&amp;blogId=alice_k106&amp;logNo=221364560794</p>
+</blockquote>]]></content><author><name>97kim</name></author><category term="dev" /><category term="CS" /><category term="SSH" /><category term="Tunneling" /><summary type="html"><![CDATA[SSH 터널링 SSH 터널링이란 SSH 클라이언트와 SSH 서버 사이에 마치 터널이 뚫린 것처럼 연결이 되어 데이터를 주고 받을 수 있는 것이다. 여기에 포트 포워딩이란 기술이 더해진다. SSH의 TCP/22번 포트가 방화벽에 의해 막히지만 않는다면 방화벽을 우회할 수 있다. SSH 터널링 방식은 아래와 같다. SSH Local Port Forwarding SSH Remote Port Forwarding SSH Dynamic Port Forwarding]]></summary></entry><entry><title type="html">SSH</title><link href="https://97kim.github.io/jekyll-theme-yat/dev/2023/01/08/SSH.html" rel="alternate" type="text/html" title="SSH" /><published>2023-01-08T00:00:00+09:00</published><updated>2023-01-08T00:00:00+09:00</updated><id>https://97kim.github.io/jekyll-theme-yat/dev/2023/01/08/SSH</id><content type="html" xml:base="https://97kim.github.io/jekyll-theme-yat/dev/2023/01/08/SSH.html"><![CDATA[<h3 id="ssh">SSH</h3>
+<p><img src="https://www.ssh.com/hs-fs/hubfs/SSH_Client_Server.png?width=1112&amp;name=SSH_Client_Server.png" alt="https://www.ssh.com/academy/ssh/protocol#how-does-the-ssh-protocol-work" />
+이미지 출처: <a href="https://www.ssh.com/academy/ssh/protocol#how-does-the-ssh-protocol-work">https://www.ssh.com/academy/ssh/protocol#how-does-the-ssh-protocol-work</a></p>
+
+<hr />
+
+<p>SSH는 Secure Shell의 줄임말로, 원격 호스트에 접속하기 위해 사용되는 보안 프로토콜이다.
+<br />
+기존 원격 접속은 <code class="language-plaintext highlighter-rouge">텔넷(Telnet)</code>이라는 방식을 사용했는데, 암호화를 제공하지 않기 때문에 보안상 취약하다. 실제로 <code class="language-plaintext highlighter-rouge">WireShark</code> 같은 패킷 분석 프로그램을 이용하면 누구나 쉽게 원격 접속 과정에서 옮겨지는 비밀번호나 파일 내용 등의 데이터를 탈취할 수 있다. 때문에 이를 암호화하는 SSH가 등장했고, 현재 원격 접속 보안을 위한 필수적인 요소로 자리잡고 있다. 그리고 클라우드 서비스에서 제공하는 서버는 기본적으로 원격 접속을 해서 접근하고 사용한다. 그래서 AWS 같은 CSP(Cloud Service Provider)에서 서버 생성시 필수적으로 SSH 보안 과정을 거친다.
+<br />
+SSH 방식을 알기 전 암호화에 대해서 간단하게 알아보자. 암호화에는 단방향 암호화, 양방향 암호화가 있다.</p>
+<ul>
+  <li>단방향 암호화: 암호화 후 복호화 할 수 없다.</li>
+  <li>양방향 암호화: 암호화, 복호화 둘 다 가능하다.
+    <ul>
+      <li>대칭키 암호화(비밀키 암호화): 암호화 할 때 사용하는 키와 복호화 할 때 사용하는 키가 같다.</li>
+      <li>비대칭키 암호화(공개키 암호화): 암호화 할 때 사용하는 키와 복호화 할 때 사용하는 키가 다르다. 비밀키로 암호화 하면 공개키로 복호화 할 수 있고, 공개키로 암호화 하면 비밀키로 복호화 할 수 있다.
+<br /></li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="ssh-공개키-인증-과정">SSH 공개키 인증 과정</h3>
+<p>SSH 통신에는 대칭키 암호화, 비대칭키 암호화 방식이 모두 사용된다. <br /></p>
+<ol>
+  <li>클라이언트는 서버가 올바른 서버인지 검증한다.</li>
+  <li>클라이언트와 서버는 세션 키(대칭키)를 구한다.</li>
+  <li>서버는 클라이언트가 올바른 클라이언트인지 검증한다.</li>
+  <li>세션 키로 데이터들을 암호화, 복호화를 통해 통신한다.</li>
+  <li>SSH 통신이 종료되면 세션 키는 만료되어 사용할 수 없다.</li>
+</ol>
+
+<p>클라이언트가 서버에 접속할 수 있는 세팅은 다 되어 있다고 가정하자. 예를 들어 보안 설정이라든지 서버의 <code class="language-plaintext highlighter-rouge">~/.ssh/authorized_keys</code>에 클라이언트의 개인키에 매칭되는 공개키가 저장되어 있다든지.. 그리고 서버는 sshd라는 데몬 프로세스를 실행한다. sshd을 구동했을 때 기본적으로 포트 번호가 22/TCP로, 클라이언트의 접속을 기다리게 된다.</p>
+
+<h4 id="1-서버-검증-클라이언트-관점">1. 서버 검증 (클라이언트 관점)</h4>
+<p>서버는 클라이언트에게 서버의 <code class="language-plaintext highlighter-rouge">/etc/ssh</code>에 있는 서버의 공개키를 전송한다. <br />
+클라이언트가 해당 서버에 최초 접속을 할 때 “Are you sure you want to continue connecting (yes/no/[fingerprint])?” 이라는 문구를 볼 수 있다.
+여기서 yes를 입력한다면 서버의 공개키가 클라이언트의 <code class="language-plaintext highlighter-rouge">~/.ssh/known_hosts</code> 파일에 등록된다. <br />
+클라이언트의 <code class="language-plaintext highlighter-rouge">~/.ssh/known_hosts</code> 파일에 등록되어 있는 해당 서버의 공개키를 사용해 아래 과정을 거친다.</p>
+
+<ol>
+  <li>클라이언트에서 난수를 생성하고, 난수를 Hashing으로 해시값을 생성하고 저장한다.</li>
+  <li>클라이언트는 서버의 공개키로 난수를 암호화하고, 이것을 서버에 전송한다.</li>
+  <li>서버는 서버의 개인키로 데이터를 복호화해서 난수를 추출한다.</li>
+  <li>서버에서 추출한 난수를 Hashing으로 해시값을 생성하고, 이것을 클라이언트에게 전송한다.</li>
+  <li>클라이언트에 저장되어 있는 난수 해시값과 서버로부터 받은 난수 해시값을 비교한다.</li>
+  <li>난수 해시값이 서로 동일하면 해당 서버는 인증되었다.</li>
+</ol>
+
+<h4 id="2-세션-키대칭키-교환">2. 세션 키(대칭키) 교환</h4>
+<p>SSH에서 사용하는 대표적인 키교환 알고리즘인 Diffie-Hellman 알고리즘은 상대방의 공개키와 나의 개인키를 통해 비밀키(대칭키)를 얻는 방법이다. <br /></p>
+
+<blockquote>
+  <p><strong>참고</strong> <br />
+<u>대칭키 교환에 사용되는 키 페어는 임시적이며, 서버와 클라이언트 인증에 사용되는 SSH 키 페어와 다르다.</u> 키 교환 중에 탈취 당했다고 해도 키 교환 중에만 사용하고 폐기되기 때문에 위험 부담이 덜하다. 이러한 속성을 순방향 비밀성이라고 한다.</p>
+</blockquote>
+
+<p>Diffie-Hellman 알고리즘에서 사용할 Generator를 생성한다. 설명하기 편하게 연산을 G로 표현하겠다. <br /></p>
+<ol>
+  <li>클라이언트는 개인키 <code class="language-plaintext highlighter-rouge">a</code>를 생성하고, Generator를 통해 공개키 A(<code class="language-plaintext highlighter-rouge">A = G(a)</code>)를 생성한다.</li>
+  <li>서버는 개인키 <code class="language-plaintext highlighter-rouge">b</code>를 생성하여 공개키 B(<code class="language-plaintext highlighter-rouge">B = G(b)</code>)를 생성한다.</li>
+  <li>클라이언트와 서버는 서로 공개키 <code class="language-plaintext highlighter-rouge">A</code>, <code class="language-plaintext highlighter-rouge">B</code>를 공유한다.</li>
+  <li>클라이언트와 서버는 각자 자신의 개인키와 서로의 공개키를 가지고 있다.
+    <ul>
+      <li>클라이언트: 클라이언트의 개인키 a, 서버의 공개키 B</li>
+      <li>서버: 서버의 개인키 b, 클라이언트의 공개키 A</li>
+    </ul>
+  </li>
+  <li>이것을 가지고 클라이언트는 비밀키 S(<code class="language-plaintext highlighter-rouge">S = B(a)</code>), 서버는 비밀키 S(<code class="language-plaintext highlighter-rouge">S = A(b)</code>)를 구할 수 있다.</li>
+</ol>
+
+<p>Diffie-Hellman 알고리즘을 이용하면 B(a)와 A(b)는 같다. 따라서 클라이언트와 서버는 같은 비밀키(대칭키)를 구할 수 있다. 이를 세션 키라고 한다.</p>
+
+<blockquote>
+  <p><strong>참고</strong> <br />
+<a href="https://blog.seulgi.kim/2018/02/diffie-hellman-key-exchange.html">https://blog.seulgi.kim/2018/02/diffie-hellman-key-exchange.html</a> <br />
+<a href="https://www.crocus.co.kr/1233">https://www.crocus.co.kr/1233</a></p>
+</blockquote>
+
+<h4 id="3-클라이언트-검증-서버-관점">3. 클라이언트 검증 (서버 관점)</h4>
+<p>비밀번호 인증 방식과 공개키 인증 방식이 있다. <br />
+간단하게 비밀번호를 이용해 인증할 수 있다. 사용자가 입력한 비밀번호를 세션 키로 암호화하여 서버에게 보내고, 서버가 이를 검증하면 끝이기 때문이다. 하지만 전송되는 비밀번호가 암호화가 된다고 해도 이 방식은 권장되지 않는다. 왜냐하면 자동화된 스크립트를 이용하면 적절한 길이의 비밀번호는 쉽게 구할 수 있기 때문이다. <br /></p>
+
+<p>권장되는 방법은 SSH 공개키 인증 방식을 사용하는 것이다. <br />
+공개키(비대칭키) 인증 방식을 사용하기 위해서는 클라이언트에서 키 페어(공개키와 개인키)를 생성한 후, 해당 공개키를 서버의 <code class="language-plaintext highlighter-rouge">~/.ssh/authorized_keys</code> 파일 안에 등록해야 한다. AWS EC2를 이용한다면 이 과정은 알아서 AWS가 해준다.</p>
+
+<ol>
+  <li>클라이언트는 서버에 접속하기 위해 사용할 클라이언트의 개인키에 매칭 되는 공개키가 <code class="language-plaintext highlighter-rouge">~/.ssh/authorized_keys</code> 파일 안에 등록되어 있는지 확인한다.</li>
+  <li>서버에 클라이언트의 공개키가 등록되어 있다면 서버에서 난수를 생성한다.</li>
+  <li>클라이언트의 공개키로 난수를 암호화하고, 이것을 클라이언트에 전송한다.</li>
+  <li>클라이언트에서 클라이언트의 개인키로 데이터를 복호화해서 난수를 추출한다.</li>
+  <li>클라이언트에서 추출한 난수와 세션 키를 결합하여 Hashing으로 해시값을 생성하고, 이것을 서버에게 전송한다.</li>
+  <li>서버에 저장되어 있는 난수와 세션 키를 결합하여 Hashing으로 해시값을 구해 클라이언트로부터 받은 해시값과 비교한다.</li>
+  <li>해시값이 서로 동일하면 해당 클라이언트는 인증되었다.</li>
+</ol>
+
+<h4 id="3-세션-키로-주고-받을-데이터를-암호화-복호화">3. 세션 키로 주고 받을 데이터를 암호화, 복호화</h4>
+<p>클라이언트와 서버는 세션 키(대칭키)로 주고 받을 데이터들을 암호화, 복호화하여 통신을 할 수 있다.</p>
+
+<h4 id="4-ssh-통신-종료">4. SSH 통신 종료</h4>
+<p>SSH 통신이 종료되면 세션 키는 만료되어 사용할 수 없게 된다.</p>
+
+<blockquote>
+  <p><strong>참고</strong> <br />
+<a href="https://limvo.tistory.com/21">https://limvo.tistory.com/21</a> <br />
+<a href="https://it-eldorado.tistory.com/157">https://it-eldorado.tistory.com/157</a> <br />
+<a href="https://medium.com/@labcloud/ssh-%EC%95%94%ED%98%B8%ED%99%94-%EC%9B%90%EB%A6%AC-%EB%B0%8F-aws-ssh-%EC%A0%91%EC%86%8D-%EC%8B%A4%EC%8A%B5-33a08fa76596">https://medium.com/@labcloud/ssh-%EC%95%94%ED%98%B8%ED%99%94-%EC%9B%90%EB%A6%AC-%EB%B0%8F-aws-ssh-%EC%A0%91%EC%86%8D-%EC%8B%A4%EC%8A%B5-33a08fa76596</a> <br />
+<a href="https://www.digitalocean.com/community/tutorials/understanding-the-ssh-encryption-and-connection-process">https://www.digitalocean.com/community/tutorials/understanding-the-ssh-encryption-and-connection-process</a></p>
+</blockquote>]]></content><author><name>97kim</name></author><category term="dev" /><category term="CS" /><category term="SSH" /><summary type="html"><![CDATA[SSH 이미지 출처: https://www.ssh.com/academy/ssh/protocol#how-does-the-ssh-protocol-work]]></summary></entry><entry><title type="html">VPC</title><link href="https://97kim.github.io/jekyll-theme-yat/dev/2022/12/24/VPC.html" rel="alternate" type="text/html" title="VPC" /><published>2022-12-24T00:00:00+09:00</published><updated>2022-12-24T00:00:00+09:00</updated><id>https://97kim.github.io/jekyll-theme-yat/dev/2022/12/24/VPC</id><content type="html" xml:base="https://97kim.github.io/jekyll-theme-yat/dev/2022/12/24/VPC.html"><![CDATA[<p>AWS를 사용하면서 알아야 할 VPC에 대해 적어보려고 한다.</p>
+
+<h2 id="vpc-virtual-private-cloud"><span style="color: #f77;">VPC (Virtual Private Cloud)</span></h2>
+<p>VPC는 사용자가 정의하는 가상의 네트워크다. VPC를 통해 인스턴스가 속하는 네트워크를 구분하여 각 네트워크에 맞는 설정을 부여할 수 있다. AWS에서 VPC에 대한 설정을 따로 하지 않아도 기본 VPC로 설정 되지만, 예를 들어 VPC 없이 인스턴스를 생성한다면 아래와 같이 인스턴스끼리 구분 없이 복잡하게 연결되어 있어 시스템의 복잡도를 높이고 하나의 인스턴스만 추가 되어도 모든 인스턴스를 수정해야 할 것이다.</p>
+
+<p><br /></p>
+
+<p><strong>VPC가 없는 구조</strong></p>
+
+<p><img src="https://images.velog.io/images/rudwnd33/post/fe69feb5-378c-466c-baf6-7885121d4a4d/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA%202021-10-31%20%E1%84%8B%E1%85%A9%E1%84%8C%E1%85%A5%E1%86%AB%202.41.08.png" alt="" /></p>
+
+<p><strong>VPC를 적용한 구조</strong>
+<img src="https://images.velog.io/images/rudwnd33/post/d5411f30-36dd-4749-b2d4-dbbf38591c09/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA%202021-10-31%20%E1%84%8B%E1%85%A9%E1%84%8C%E1%85%A5%E1%86%AB%202.53.32.png" alt="" /></p>
+
+<h3 id="vpc의-핵심-개념"><span style="color: #f77;">VPC의 핵심 개념</span></h3>
+
+<p><strong>Virtual Private Cloud(VPC)</strong> — 사용자의 AWS 계정 전용 가상 네트워크</p>
+
+<p><strong>서브넷</strong> — VPC의 IP 주소 범위</p>
+
+<p><strong>라우팅 테이블</strong> — 네트워크 트래픽을 전달할 위치를 결정하는 데 사용하는 라우팅이라는 이름의 규칙 집합</p>
+
+<p><strong>인터넷 게이트웨이</strong> — VPC의 리소스와 인터넷 간의 통신을 활성화하기 위해 VPC에 연결하는 게이트웨이</p>
+
+<p><strong>VPC 엔드포인트</strong> - 인터넷 게이트웨이, NAT 디바이스, VPN 연결 또는 AWS Direct Connect 연결을 필요로 하지 않고 <a href="https://docs.aws.amazon.com/ko_kr/vpc/latest/userguide/endpoint-services-overview.html">AWS PrivateLink 및 VPC 엔드포인트 서비스</a>에 VPC를 비공개로 연결할 수 있다. VPC의 인스턴스는 서비스의 리소스와 통신하는 데 퍼블릭 IP 주소를 필요로 하지 않는다. VPC와 기타 서비스 간의 트래픽은 Amazon 네트워크를 벗어나지 않는다.</p>
+
+<p><strong>CIDR 블록</strong> — 클래스 없는 도메인 간 라우팅이다. 인터넷 프로토콜 주소 할당 및 라우팅 집계 방법이다. 자세한 내용은 <a href="https://ko.wikipedia.org/wiki/%EC%82%AC%EC%9D%B4%EB%8D%94_(%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%82%B9)">이곳에서</a> 확인하기.</p>
+
+<p><br />
+VPC는 사용자의 AWS 계정 전용 가상 네트워크다. VPC는 AWS 클라우드에서 다른 가상 네트워크와 논리적으로 분리되어 있다. EC2 인스턴스 같은 AWS 리소스를 VPC에서 실행할 수 있다. IP 주소 범위와 VPC 범위를 설정하고 서브넷을 추가하고 보안 그룹을 연결한 다음 라우팅 테이블을 구성한다.</p>
+
+<p>서브넷은 VPC의 IP 주소 범위다. 지정된 서브넷으로 AWS 리소스를 시작할 수 있다. 인터넷에 연결되어야 하는 리소스에는 퍼블릭 서브넷을 사용하고, 인터넷에 연결되지 않는 리소스에는 프라이빗 서브넷을 사용하는 것이 좋다.</p>
+
+<p>각 서브넷에서 AWS 리소스를 보호하기 위해 보안 그룹 및 네트워크 액세스 제어 목록(ACL, Access Control List)을 포함한 다중 보안 계층을 사용할 수 있다.</p>
+
+<p>VPC를 구축하기 위해서는 VPC의 IP 범위를 RFC1918이라는 사설 IP 대역에 맞추어 구축해야 한다. <a href="http://www.codns.com/b/B05-104">사설 IP</a>는 인터넷에서 공인된 IP 주소를 사용하지 않고, 사적인 용도로 임의 사용하는 IP 주소다.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>VPC에서 사용하는 사설 IP 대역</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>10.0.0.0 - 10.255.255.255 (10/8 prefix)</td>
+    </tr>
+    <tr>
+      <td>172.16.0.0 - 172.31.255.255 (172.16/12 prefix)</td>
+    </tr>
+    <tr>
+      <td>192.168.0.0 - 192.168.255.255 (192.168/16 prefix)</td>
+    </tr>
+  </tbody>
+</table>
+
+<blockquote>
+  <p><strong>참고</strong> <br />
+<a href="https://docs.aws.amazon.com/ko_kr/vpc/latest/userguide/how-it-works.html">Amazon VPC 작동 방식 - Amazon Virtual Private Cloud</a> <br />
+<a href="https://medium.com/harrythegreat/aws-%EA%B0%80%EC%9E%A5%EC%89%BD%EA%B2%8C-vpc-%EA%B0%9C%EB%85%90%EC%9E%A1%EA%B8%B0-71eef95a7098">Great, Harry The. “[AWS] 가장쉽게 VPC 개념잡기.” Medium, 해리의 유목코딩, 14 Feb. 2020</a></p>
+</blockquote>
+
+<p><br /></p>
+
+<h3 id="서브넷-subnet"><span style="color: #f77;">서브넷 (Subnet)</span></h3>
+<p>서브넷이란 하나의 IP 네트워크 주소를 지역적으로 나누어 여러 개의 서로 연결된 지역 네트워크로 사용할 수 있도록 하는 방법이다. (네트워크의 논리적인 분할)</p>
+
+<h4 id="a-class">A Class</h4>
+<p>A클래스의 첫번째 옥텟의 비트가 0으로 고정된다.</p>
+
+<p><span style="color: #f77;">0</span>xxx xxxx. xxxx xxxx. xxxx xxxx. xxxx xxxx</p>
+
+<p>그렇기 때문에 표현할 수 있는 범위는 아래와 같다.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>0000 0000.0000 0000.0000 0000.0000 0000 ~ 0111 1110.1111 1111.1111 1111.1111 1111
+</code></pre></div></div>
+
+<p>그래서 십진수로 표현하면 0.0.0.0 ~ 127.255.255.255이다.
+이 IP 클래스는 <strong>대규모 네트워크</strong>에 적합하다.
+<strong>네트워크 주소</strong>는 처음 8비트까지이고, 나머지 24비트는 <strong>호스트 주소</strong>를 의미한다.</p>
+
+<h4 id="b-class">B Class</h4>
+<p>B클래스는 첫번째 옥텟의 두번째 비트까지 10으로 고정된다.</p>
+
+<p><span style="color: #f77;">10</span>xx xxxx. xxxx xxxx. xxxx xxxx. xxxx xxxx</p>
+
+<p>그래서 표현할 수 있는 범위는 아래와 같다.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1000 0000. 0000 0000. 0000 0000. 0000 0000 ~ 1011 1111. 1111 1111. 1111 1111
+</code></pre></div></div>
+
+<p>그래서 십진수로 표현하면 128.0.0.0 ~ 191.255.255.255이다.
+<strong>네트워크 주소</strong>는 처음 16비트까지이고, 나머지 16비트는 <strong>호스트 주소</strong>를 의미한다.</p>
+
+<h4 id="c-class">C Class</h4>
+<p>C클래스는 첫번째 옥텟의 세번째 비트까지 110으로 고정된다.</p>
+
+<p><span style="color: #f77;">110</span>x xxxx. xxxx xxxx. xxxx xxxx. xxxx xxxx</p>
+
+<p>그래서 표현할 수 있는 범위는 아래와 같다.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1100 0000. 0000 0000. 0000 0000. 0000 0000 ~ 1101 1111. 1111 1111. 1111 1111. 1111 1111
+</code></pre></div></div>
+
+<p>그래서 십진수로 표현하면 192.0.0.0 ~ 223.255.255.255이다.
+<strong>네트워크 주소</strong>는 처음 24비트까지이고, 나머지 8비트는 <strong>호스트 주소</strong>를 의미한다.</p>
+
+<h4 id="d-class">D Class</h4>
+<p>D클래스는 첫번째 옥텟의 네번째 비트가 1110으로 고정된다.</p>
+
+<p><span style="color: #f77;">1110</span> xxxx. xxxx xxxx. xxxx xxxx. xxxx xxxx</p>
+
+<p>그래서 표현할 수 있는 범위는 아래와 같다.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1110 0000. 0000 0000. 0000 0000. 0000 0000 ~ 1110 1111. 1111 1111. 1111 1111. 1111 1111
+</code></pre></div></div>
+
+<p>그래서 십진수로 표현하면 224.0.0.0 ~ 239.255.255.255이다.
+<strong>멀티캐스트용 대역</strong>으로 IP주소에 할당되지 않는다.</p>
+
+<h4 id="e-class">E Class</h4>
+
+<p>E클래스는 첫번째 옥텟의 네번째 비트까지 1111으로 고정된다.</p>
+
+<p><span style="color: #f77;">1111</span> xxxx. xxxx xxxx. xxxx xxxx. xxxx xxxx</p>
+
+<p>그래서 표현할 수 있는 범위는 아래와 같다.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1111 0000. 0000 0000. 0000 0000. 0000 0000 ~ 1111 1111. 1111 1111. 1111 1111. 1111 1111
+</code></pre></div></div>
+
+<p>그래서 십진수로 표현하면 240.0.0.0 ~ 255.255.255.255이다.
+<strong>예약된 주소 대역</strong>으로 IP주소에 할당되지 않는다.</p>
+
+<p><span style="text-decoration: underline;">D클래스와 E클래스는 특정 용도로 사용하기 때문에 실제 IP주소에 할당되지 않는다.</span></p>
+
+<p>클래스 등급이 낮아지면서 호스트 주소 부분이 점점 줄어들고 있는것을 알 수 있다.</p>
+
+<p><strong>이 중 특정 주소 대역은 사설 IP로 사용된다.</strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>VPC에서 사용하는 사설 IP 대역</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>10.0.0.0 - 10.255.255.255 (10/8 prefix)</td>
+    </tr>
+    <tr>
+      <td>172.16.0.0 - 172.31.255.255 (172.16/12 prefix)</td>
+    </tr>
+    <tr>
+      <td>192.168.0.0 - 192.168.255.255 (192.168/16 prefix)</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>(아까 위에서 설명한 사설 IP 대역이랑 같다.)</p>
+
+<blockquote>
+  <p>각 클래스로 나눠진 네트워크를 운영중인 서비스의 규모에 맞게 분할하여 사용하기 위한 기술이다. 따라서 이런 기술을 통해서 A Class 네트워크와 같은 매우 큰 네트워크를 작게 나눠서 사용하면서, <strong>낭비되는 IP주소 자원을 최소화</strong>하려는 것이 주된 목적이다.</p>
+</blockquote>
+
+<blockquote>
+  <p><strong>참고</strong> <br />
+<a href="https://hyoje420.tistory.com/32">Heyhyo. “[Network]서브넷(Subnet).” Hyo Note, TISTORY, 31 Aug. 2018,</a> <br />
+<a href="https://yoonix.tistory.com/11">heyoon2j. “Subnet 이란?” { BLog: “heyoon2j” }, TISTORY, 7 Dec. 2019</a> <br />
+<a href="https://reakwon.tistory.com/69">Reakwon. “[네트워크] IP 클래스와 서브넷마스크, 서브넷마스크 계산방법.” REAKWON, TISTORY, 19 May 2020</a></p>
+</blockquote>
+
+<p><br /></p>
+
+<h3 id="서브넷-마스크-subnet-mask"><span style="color: #f77;">서브넷 마스크 (Subnet Mask)</span></h3>
+<p>네트워크 범위를 제한하거나 네트워크 범위를 알기 위한 마스크다. IP 주소에 대한 네트워크 아이디와 호스트 아이디를 구분하기 위해서 사용된다.</p>
+
+<p>C클래스 대역을 사용해서 호스트를 255개를 수용할 수 있는 것도 너무 많이 남을 때가 있다. 또는 B클래스 대역을 C클래스 대역으로 쓰고 싶을 때가 있다. 네트워크 주소를 조금 더 효율적으로 할당하고자 나온 것이 서브넷 마스크다. 서브넷 마스크로 만들어진 네트워크를 서브넷이라고 한다.</p>
+
+<p>128.255.11.11는 B클래스 주소다. 128.255까지가 네트워크 주소이고 나머지 2옥텟이 호스트 주소다.</p>
+
+<blockquote>
+  <p>💡 128.255.11.11을 255.255.255.0이라는 서브넷 마스크를 씌우면 어떻게 될까 🤔</p>
+</blockquote>
+
+<p>서브넷 마스크는 비트로 보는 것이 편하다.</p>
+
+<p>255.255.255.0 ➡️ <span style="color: #f77;">1111 1111.1111 1111.1111 1111.</span><span style="color: #7ae;">0000 0000</span></p>
+
+<p>여기서 서브넷 마스크 비트가 1인 것은 전부 <span style="color: #f77;">네트워크 주소</span>가 되고, 반대로 서브넷마스크 비트가 0인 것은 <span style="color: #7ae;">호스트 주소</span>가 된다.</p>
+
+<p>⏬ 서브넷 마스크 적용 ⏬</p>
+
+<p>128.255.11.11 ➡️ <span style="color: #f77;">1000 0000.1111 1111.0000 1011.</span><span style="color: #7ae;">0000 1011</span></p>
+
+<p>따라서 255.255.255.0이라는 서브넷 마스크를 씌우면 128.255.11이 <span style="color: #f77;">네트워크 주소</span>가 되고 나머지 11이 <span style="color: #7ae;">호스트 주소</span>가 된다. 네트워크 주소: 128.255.11.0, 호스트 주소: 0.0.0.11</p>
+
+<blockquote>
+  <p>서브넷마스크의 표기방식은 주소/서브넷마스크 주소 또는 주소/비트수로 표현할 수 있다. 128.255.11.11/255.255.255.0 또는 128.255.11.11/24로 표현이 가능하다.</p>
+</blockquote>
+
+<hr />
+
+<blockquote>
+  <p>💡 128.255.11.11을 255.255.255.224의 서브넷마스크를 적용하면 어떻게 될까 🤔</p>
+</blockquote>
+
+<p>비트로 풀어보면</p>
+
+<p>255.255.255.224 ➡️ <span style="color: #f77;">1111 1111.1111 1111.1111 1111.111</span><span style="color: #7ae;">0 0000</span></p>
+
+<p>⏬ 서브넷 마스크 적용 ⏬</p>
+
+<p>128.255.11.11 ➡️ <span style="color: #f77;">1000 0000.1111 1111.0000 1011.000</span><span style="color: #7ae;">0 1011</span></p>
+
+<p>하위 5비트 <span style="color: #7ae;">0 0000</span>을 호스트 주소로 적용시킬 수 있으니까(서브넷마스크 비트가 <span style="color: #7ae;">0</span>인 것이 <span style="color: #7ae;">호스트 주소</span>) 128.255.11.0 ~ 128.255.11.31 까지가 같은 네트워크고, 128.255.11.11은 이 네트워크에 속하는 것을 알 수 있다. 128.255.11.0은 네트워크 주소, 128.255.11.31은 브로드캐스트 주소기 때문에 실제 사용 가능한 호스트 개수는 2^5-2 = 30개다.</p>
+
+<blockquote>
+  <ul>
+    <li><strong>네트워크 주소</strong>: 해당 네트워크의 첫번째 IP주소로, 하나의 네트워크를 통칭한다. IP주소와 서브넷마스크의 AND 연산을 통해 구할 수 있다.</li>
+    <li><strong>호스트 주소</strong>: 특정한 하나의 네트워크 내에서 서로를 구분하기 위한 주소다.</li>
+    <li><strong>브로드캐스트 주소</strong>: 해당 네트워크에 속하는 모든 IP 주소 가운데 맨 마지막 IP주소로, 네트워크에 있는 모든 클라이언트들에게 데이터를 보내기 위함이다.</li>
+  </ul>
+</blockquote>
+
+<p>사실 A, B, C클래스 대역은 각각 255.0.0.0, 255.255.0.0, 255.255.255.0의 서브넷마스크가 적용되었다.
+이것을 <strong>default subnet mask</strong>라고 한다.</p>
+
+<blockquote>
+  <p><strong>참고</strong> <br />
+<a href="https://reakwon.tistory.com/69">Reakwon. “[네트워크] IP 클래스와 서브넷마스크, 서브넷마스크 계산방법.” REAKWON, TISTORY, 19 May 2020</a></p>
+</blockquote>
+
+<p><br /></p>
+
+<h3 id="라우팅-테이블"><span style="color: #f77;">라우팅 테이블</span></h3>
+
+<blockquote>
+  <p><strong>라우팅 테이블(Routing Table)</strong>은 컴퓨터 네트워크에서 목적지 주소를 목적지에 도달하기 위한 네트워크 노선으로 변환시키는 목적으로 사용된다. 각 라우터의 라우팅 테이블은 모든 목적지 정보에 대해 해당 목적지에 도달하기 위해서 거쳐야 할 다음 라우터의 정보를 가지고 있다.</p>
+</blockquote>
+
+<p>VPC 내에는 서브넷이 있으며 각 서브넷은 각각 다른 네트워크 대역을 가지고 있다. 각각의 서브넷은 서로 다른 네트워크 영역이기 때문에 하나의 서브넷이 다른 서브넷으로 가기 위해서는 라우팅(Routing)이 필요하다.</p>
+
+<p><img src="https://images.velog.io/images/rudwnd33/post/c2037775-0e35-471f-8f86-8a23367e7bc3/case-3.png" alt="" /></p>
+
+<blockquote>
+  <p><strong>이미지 출처</strong> <br />
+<a href="https://docs.aws.amazon.com/ko_kr/vpc/latest/userguide/VPC_Route_Tables.html">VPC의 라우팅 테이블 - Amazon Virtual Private Cloud</a></p>
+</blockquote>
+
+<blockquote>
+  <p>모든 라우팅 테이블에는 VPC 내부 통신을 위한 로컬 라우팅이 포함되어 있다. 이 라우팅은 기본적으로 모든 라우팅 테이블에 추가된다. VPC에 하나 이상의 IPv4 CIDR블록이 연결되어 있는 경우, 라우팅 테이블에 각 IPv4 CIDR 블록의 로컬 경로가 포함된다. IPv6 CIDR 블록을 VPC와 연결한 경우, 라우팅 테이블에 IPv6 CIDR 블록의 로컬 경로가 포함된다. 서브넷 라우팅 테이블이나 기본 라우팅 테이블에서 이러한 라우팅을 수정하거나 삭제할 수 없다.</p>
+</blockquote>
+
+<p>VPC 내부(모든 서브넷)에 대해서는 라우팅이 자동으로 생성된다. 별도의 설정 없이 하나의 서브넷에서 다른 서브넷으로 통신이 가능하다는 말이다. 이는 사용자가 따로 설정할 필요가 없고, 보이지 않는 암시적 라우터인 VPC Router를 통해 가능하다. 서브넷 내의 모든 리소스는 자신이 소속된 서브넷이 아닌 다른 서브넷으로 향하고자 할 때 VPC Router를 거쳐야 한다.</p>
+
+<blockquote>
+  <p>VPC에는 암시적 라우터가 있으며 라우팅 테이블을 사용하여 네트워크 트래픽이 전달되는 위치를 제어한다. VPC의 각 서브넷을 라우팅 테이블에 연결해야 한다. 테이블에서는 서브넷에 대한 라우팅을 제어한다 (서브넷 라우팅 테이블). 서브넷을 특정 라우팅 테이블과 명시적으로 연결할 수 있다. 그렇지 않으면 서브넷이 기본 라우팅 테이블과 암시적으로 연결된다. 서브넷은 한 번에 하나의 라우팅 테이블에만 연결할 수 있지만 여러 서브넷을 동일한 서브넷 라우팅 테이블에 연결할 수도 있다.</p>
+</blockquote>
+
+<p><img src="https://images.velog.io/images/rudwnd33/post/1dd3b445-5af0-4917-b0b2-0353c8d02298/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA%202021-10-31%20%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE%204.06.56.png" alt="" /></p>
+
+<p><img src="https://images.velog.io/images/rudwnd33/post/c2b4593c-2a63-4ba5-a263-21bbf29c15a8/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA%202021-10-31%20%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE%204.07.11.png" alt="" /></p>
+
+<p>위 사진에서 서브넷의 라우팅을 보여주고 있다. 해당 서브넷에 로컬 라우팅이 지정되어 있는 것을 확인할 수 있다. 나머지 서브넷에도 사진과 같은 라우팅 테이블을 보유하고 있기 때문에 VPC 내 서브넷에 할당된 리소스라면 어느 서브넷이든 다른 서브넷의 리소스와 자유롭게 통신이 가능하다.</p>
+
+<p>또한 라우팅 테이블은 로컬 라우팅 뿐만 아니라 서브넷에 소속된 리소스(EC2, RDS 등)가 외부 인터넷망으로 나갈 수 있는 라우팅을 가질 수 있다. 이를 <strong>인터넷 게이트웨이(Internet Gateway)</strong>라고 한다. 그림에서 igw-***으로 나와있는 것이 바로 인터넷 게이트웨이다.</p>
+
+<blockquote>
+  <p><strong>참고</strong> <br />
+<a href="https://docs.aws.amazon.com/ko_kr/vpc/latest/userguide/VPC_Route_Tables.html">VPC의 라우팅 테이블 - Amazon Virtual Private Cloud.</a> <br />
+<a href="https://aws-hyoh.tistory.com/53">환영 도움되는 네트워크 엔지니어. “VPC와 Network 쉽게 이해하기 #2.” 네트워크 엔지니어 환영의 AWS 기술블로그, TISTORY, 1 Sept. 2021</a></p>
+</blockquote>
+
+<p><br /></p>
+
+<h3 id="인터넷-게이트웨이"><span style="color: #f77;">인터넷 게이트웨이</span></h3>
+<blockquote>
+  <p>인터넷 게이트웨이는 수평 확장되고 가용성이 높은 중복 VPC 구성 요소로, VPC와 인터넷 간에 통신할 수 있게 해준다. 인터넷 게이트웨이에는 인터넷 라우팅 가능 트래픽에 대한 VPC 라우팅 테이블에 대상을 제공하고, 퍼블릭 IPv4 주소가 할당된 인스턴스에 대해 NAT(네트워크 주소 변환)를 수행하는 두 가지 목적이 있다.</p>
+</blockquote>
+
+<p>이름에서 알 수 있듯 서브넷 내 리소스(EC2, RDS 등)가 인터넷과 통신하고자 할 때 반드시 거쳐야 하는 관문이 인터넷 게이트웨이다. 인터넷 게이트웨이 없이는 외부 인터넷으로 들어갈 방법은 없다!
+인터넷 게이트웨이만 생성하면 외부 인터넷과 통신할 수 있는 것은 아니고 VPC에서 리소스가 외부 인터넷과 통신하고자 할 경우 갖춰야 할 조건은 아래와 같다.</p>
+
+<blockquote>
+  <ol>
+    <li>인터넷과 통신하고자 하는 리소스가 공인 IP를 보유할 것</li>
+    <li>리소스가 소속된 서브넷의 라우팅 테이블에 0.0.0.0/0 목적지로 갖는 인터넷 게이트웨이가 있을 것</li>
+    <li>네트워크 ACL과 보안 그룹 규칙에서 허용할 것</li>
+  </ol>
+</blockquote>
+
+<p><img src="https://images.velog.io/images/rudwnd33/post/33f0fc6e-6c4b-4288-8308-d94126fdfebe/vpc-share-internet-gateway-example.png" alt="" /></p>
+
+<blockquote>
+  <p><strong>이미지 출처</strong> <br />
+<a href="https://docs.aws.amazon.com/ko_kr/vpc/latest/userguide/example-vpc-share.html">Amazon Virtual Private Cloud - Docs.aws.amazon.com</a></p>
+</blockquote>
+
+<p>AWS에서는 공인 인터넷과 통신 가능한 서브넷을 <strong>Public Subnet</strong>, 공인 인터넷이 차단된 사설 IP만 할당된 서브넷은 <strong>Private Subnet</strong>이라고 한다.</p>
+
+<p><img src="https://images.velog.io/images/rudwnd33/post/b430a039-bc45-4374-9b5d-68b02c494fc0/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA%202021-10-31%20%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE%204.37.29.png" alt="" /></p>
+
+<p>Name이 -인 3개의 서브넷을 가진 라우팅 테이블의 라우팅 설정은 아래와 같다.</p>
+
+<p><img src="https://images.velog.io/images/rudwnd33/post/0b5322b3-4fe4-48dc-87a4-33c773b18575/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA%202021-10-31%20%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE%204.37.41.png" alt="" /></p>
+
+<p>인터넷 게이트웨이가 설정되어 있으므로 이 라우팅 테이블은 Public 서브넷에 관한 라우팅 테이블이다.</p>
+
+<p>Name이 my-route01인 하나의 서브넷을 가진 라우팅 테이블의 라우팅 설정은 아래와 같다.</p>
+
+<p><img src="https://images.velog.io/images/rudwnd33/post/71fbbe41-2581-451d-b8fb-4e45b8560977/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA%202021-10-31%20%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE%204.46.24.png" alt="" /></p>
+
+<p>여기서는 인터넷 게이트웨이 대신 NAT 게이트를 설정했다.</p>
+
+<p>NAT 게이트웨이가 설정되어 있으므로 이 라우팅 테이블은 Private 서브넷에 관한 라우팅 테이블이다</p>
+
+<blockquote>
+  <p><strong>참고</strong> <br />
+<a href="https://aws-hyoh.tistory.com/53">환영 도움되는 네트워크 엔지니어. “VPC와 Network 쉽게 이해하기 #2.” 네트워크 엔지니어 환영의 AWS 기술블로그, TISTORY, 1 Sept. 2021</a></p>
+</blockquote>
+
+<p><br /></p>
+
+<h3 id="nat-게이트웨이"><span style="color: #f77;">NAT 게이트웨이</span></h3>
+<blockquote>
+  <p><strong>NAT 게이트웨이</strong>는 NAT(네트워크 주소 변환) 서비스다.
+프라이빗 서브넷의 인스턴스가 VPC 외부의 서비스에 연결할 수 있지만 외부 서비스에서 이러한 인스턴스와의 연결을 시작할 수 없도록 NAT 게이트웨이를 사용할 수 있다.</p>
+</blockquote>
+
+<p>NAT(Network Address Translation): 비공인 네트워크(사설 IP 네트워크)에 속한 여러 개의 호스트가 하나의 공인 IP 주소를 사용하여 인터넷에 접속하는 방법</p>
+
+<p>NAT 게이트웨이를 만들 때 다음 연결 유형 중 하나를 지정한다.</p>
+
+<ul>
+  <li>
+    <p><strong>퍼블릭</strong> - (기본값) 프라이빗 서브넷의 인스턴스는 퍼블릭 NAT 게이트웨이를 통해 인터넷에 연결할 수 있지만 인터넷에서 원치 않는 인바운드 연결을 수신할 수 없다. 퍼블릭 서브넷에서 퍼블릭 NAT 게이트웨이를 생성하고 생성 시 탄력적 IP 주소를 NAT 게이트웨이와 연결해야 한다. 트래픽을 NAT 게이트웨이에서 VPC용 인터넷 게이트웨이로 라우팅한다. 또는 퍼블릭 NAT 게이트웨이를 사용하여 다른 VPC 또는 온프레미스 네트워크에 연결할 수 있다. 이 경우 NAT 게이트웨이에서 Transit Gateway 또는 가상 프라이빗 게이트웨이를 통해 트래픽을 라우팅한다.</p>
+  </li>
+  <li>
+    <p><strong>프라이빗</strong> - 프라이빗 서브넷의 인스턴스는 프라이빗 NAT 게이트웨이를 통해 다른 VPC 또는 온프레미스 네트워크에 연결할 수 있다. 트래픽을 NAT 게이트웨이에서 Transit Gateway 또는 가상 프라이빗 게이트웨이를 통해 트래픽을 라우팅할 수 있다. 탄력적 IP 주소를 프라이빗 NAT 게이트웨이에 연결할 수 없다. 프라이빗 NAT 게이트웨이를 사용하여 VPC에 인터넷 게이트웨이를 연결할 수 있지만 프라이빗 NAT 게이트웨이에서 인터넷 게이트웨이로 트래픽을 라우팅하는 경우 인터넷 게이트웨이가 트래픽을 삭제한다.</p>
+  </li>
+</ul>
+
+<p>NAT 게이트웨이는 인스턴스의 소스 IP 주소를 NAT 게이트웨이의 IP 주소로 바꾼다. 퍼블릭 NAT 게이트웨이의 경우 이것은 NAT 게이트웨이의 탄력적 IP 주소다. 프라이빗 NAT 게이트웨이의 경우 이것은 NAT 게이트웨이의 프라이빗 IP 주소다. 인스턴스에 응답 트래픽을 전송할 때 NAT 디바이스는 주소를 원래 소스 IPv4 주소로 다시 변환한다.</p>
+
+<p>나는 서브넷 c를 Private 서브넷으로 설정하고 서브넷 c의 라우팅 설정에서 NAT 게이트웨이를 지정했다. 이 NAT 게이트웨이는 퍼블릭 유형이고 생성할 때 탄력적 IP 주소도 할당했다. 그리고 VPC에서 Private 서브넷 c가 아닌 나머지 3개의 Public 서브넷에서 서브넷 a를 선택해 NAT 게이트웨이를 생성했다.</p>
+
+<blockquote>
+  <p><strong>참고</strong> <br />
+<a href="https://docs.aws.amazon.com/ko_kr/vpc/latest/userguide/vpc-nat-gateway.html">Nat 게이트웨이 - Amazon Virtual Private Cloud</a></p>
+</blockquote>
+
+<p><br /></p>
+
+<h3 id="보안그룹"><span style="color: #f77;">보안그룹</span></h3>
+<p>보안 그룹은 연결된 리소스에 도달하고 나갈 수 있는 트래픽을 제어한다. 예를 들어 보안 그룹을 EC2 인스턴스와 연결하면 인스턴스에 대한 인바운드 및 아웃바운드 트래픽을 제어한다.
+VPC를 생성할 경우 VPC는 기본 보안 그룹과 함께 제공된다. 각 VPC 대해 추가 보안 그룹을 생성할 수 있다. 보안 그룹은 해당 보안 그룹이 생성된 VPC의 리소스에만 연결할 수 있다. 각 보안 그룹에 대해 프로토콜 및 포트 번호를 기반으로 트래픽을 제어하는 규칙을 추가한다. 인바운드 트래픽과 아웃바운드 트래픽에 대한 규칙 집합은 별개다. 인바운드 규칙으로 외부에서 우리의 인스턴스로 들어오는 요청을 제한할 수 있고, 아웃바운드 규칙으로 우리의 인스턴스에서 외부로 나가는 요청을 제한할 수 있다.</p>
+
+<p>아래 사진은 예전에 AWS로 프로젝트를 할 때 사용했던 보안 그룹 설정 캡쳐 내용이다. <del>다 가려져 있긴 하지만..</del></p>
+
+<p><img src="https://images.velog.io/images/rudwnd33/post/da4075ae-5e75-49be-ba49-8ae85ea26805/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA%202021-12-22%20%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE%2010.33.09.png" alt="" /></p>
+
+<h4 id="보안-그룹-규칙">보안 그룹 규칙</h4>
+<ul>
+  <li>
+    <p>프로토콜: 허용할 프로토콜이다. 가장 일반적인 프로토콜은 6(TCP), 17(UDP) 및 1(ICMP).</p>
+  </li>
+  <li>
+    <p>포트 범위: TCP, UDP 또는 사용자 지정 프로토콜의 경우 허용할 포트의 범위다. 단일 포트 번호(예: 22) 또는 포트 번호의 범위(예: 7000-8000)를 지정할 수 있다.</p>
+  </li>
+  <li>
+    <p>ICMP 유형 및 코드: ICMP 프로토콜의 경우, 설정할 ICMP 유형과 코드다. 예시: ICMP 에코 요청에 대해 유형 8을 사용하고, ICMPv6 에코 요청에 대해 유형 128을 설정한다.</p>
+  </li>
+  <li>
+    <p>소스 또는 대상: 허용할 트래픽에 대한 소스(인바운드 규칙) 또는 대상(아웃바운드 규칙)이다.</p>
+
+    <ul>
+      <li>
+        <p>단일 IPv4 주소. /32 접두사 길이를 사용해야 한다. 예: 203.0.113.1/32.</p>
+      </li>
+      <li>
+        <p>단일 IPv6 주소. /128 접두사 길이를 사용해야 한다. 예: 2001:db8:1234:1a00::123/128.</p>
+      </li>
+      <li>
+        <p>CIDR 블록 표기법으로 표시된 IPv4 주소의 범위다. 예: 203.0.113.0/24.</p>
+      </li>
+      <li>
+        <p>CIDR 블록 표기법으로 표시된 IPv6 주소의 범위다. 예: 2001:db8:1234:1a00::/64.</p>
+      </li>
+      <li>
+        <p>접두사 목록의 ID. 예: pl-1234abc1234abc123. 자세한 정보는 관리형 접두사 목록을 사용하여 CIDR 블록 그룹화을 참조하십시오.</p>
+      </li>
+      <li>
+        <p>보안 그룹의 ID다(여기에서는 지정된 보안 그룹이라고 함). 예를 들어, 현재 보안 그룹, 동일한 VPC의 보안 그룹 또는 피어링된 VPC에 대한 보안 그룹이 해당됩니다. 이렇게 하면 지정된 보안 그룹과 연결된 리소스의 프라이빗 IP 주소를 기반으로 하는 트래픽이 허용됩니다. 이 작업은 지정된 보안 그룹의 규칙을 현재 보안 그룹에 추가하지 않는다.</p>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>(선택 사항) 설명: 나중에 쉽게 식별할 수 있도록 규칙에 대한 설명을 입력하는 곳이다. 설명 길이는 최대 255자다. 허용되는 문자는 <code class="language-plaintext highlighter-rouge">a-z, A-Z, 0-9, 공백 및 ._-:/()#,@[]+=;{}!$*</code>.</p>
+  </li>
+</ul>
+
+<p><br /></p>
+
+<h3 id="pem"><span style="color: #f77;">PEM</span></h3>
+<p>PEM(Privacy Enhanced Mail)은 Base64로 인코딩된 ASCII 텍스트 파일이다.
+원래는 Secure Email에 사용되는 인코딩 포맷이었는데 Email 쪽에서는 잘 쓰이지 않고 인증서 또는 키 값을 저장하는 데 많이 사용된다.
+바이너리 파일을 전송할 때 손상될 수 있으므로 텍스트 파일로 변환한 것이고, 어떤 바이너리 파일을 PEM으로 변환했는지 구분하기 위해 파일의 맨 앞에 대시(-) 를 5 개 넣고 BEGIN 파일 유형을 넣고 다시 대시(-)를 5개 뒤에 END 파일 유형 구문을 사용한다. (<code class="language-plaintext highlighter-rouge">-----BEGIN ???-----</code>, <code class="language-plaintext highlighter-rouge">-----END ???-----</code>) 담고 있는 내용이 무엇인지에 따라 <code class="language-plaintext highlighter-rouge">???</code> 위치에 <code class="language-plaintext highlighter-rouge">CERTIFICATE</code>, <code class="language-plaintext highlighter-rouge">RSA PRIVATE KEY 등</code>의 키워드가 들어있다.</p>
+
+<blockquote>
+  <p><strong>참고</strong> <br />
+<a href="https://www.letmecompile.com/certificate-file-format-extensions-comparison">https://www.letmecompile.com/certificate-file-format-extensions-comparison</a></p>
+</blockquote>
+
+<p><br /></p>
+
+<h3 id="ssh"><span style="color: #f77;">SSH</span></h3>
+<p>SSH는 Secure Shell의 줄임말로, 원격 호스트에 접속하기 위해 사용되는 보안 프로토콜이다.
+<br />
+기존 원격 접속은 <code class="language-plaintext highlighter-rouge">텔넷(Telnet)</code>이라는 방식을 사용했는데, 암호화를 제공하지 않기 때문에 보안상 취약하다. 실제로 <code class="language-plaintext highlighter-rouge">WireShark</code> 같은 패킷 분석 프로그램을 이용하면 누구나 쉽게 원격 접속 과정에서 옮겨지는 비밀번호나 파일 내용 등의 데이터를 탈취할 수 있다. 때문에 이를 암호화하는 SSH가 등장했고, 현재 원격 접속 보안을 위한 필수적인 요소로 자리잡고 있다. 그리고 클라우드 서비스에서 제공하는 서버는 기본적으로 원격 접속을 해서 접근하고 사용한다. 그래서 AWS 같은 CSP(Cloud Service Provider)에서 서버 생성시 필수적으로 SSH 보안 과정을 거친다.
+<br />
+터미널에서 AWS EC2로 접속할 때 사용하는 SSH 방식을 알기 전 암호화에 대해서 간단하게 알아보자.
+암호화에는 단방향 암호화, 양방향 암호화가 있다.</p>
+<ul>
+  <li>단방향 암호화: 암호화 후 복호화 할 수 없다.</li>
+  <li>양방향 암호화: 암호화, 복호화 둘 다 가능하다.
+    <ul>
+      <li>대칭키 암호화(비밀키 암호화): 암호화 할 때 사용하는 키와 복호화 할 때 사용하는 키가 같다.</li>
+      <li>비대칭키 암호화(공개키 암호화): 암호화 할 때 사용하는 키와 복호화 할 때 사용하는 키가 다르다. 비밀키로 암호화 하면 공개키로 복호화 할 수 있고, 공개키로 암호화 하면 비밀키로 복호화 할 수 있다.</li>
+    </ul>
+  </li>
+</ul>
+
+<p>EC2를 생성할 때 키페어를 등록하라고 한다. 키페어를 생성했을 때 우리의 컴퓨터에 다운로드 되는 PEM 파일이 바로 개인키다. 그렇다면 공개키는 어디에 있을까? 공개키는 EC2 인스턴스 안에서 확인할 수 있다. EC2 인스턴스의 <code class="language-plaintext highlighter-rouge">~/.ssh/authorized_keys</code> 파일에 공개키 목록이 있는데 해당 파일에 우리가 받은 PEM 파일(개인키)와 매칭되는 공개키가 포함되어 있다. 그래서 우리는 이 PEM 파일로 ssh 명령어를 통해 EC2 인스턴스에 접속할 수 있다. <br /><br /> 참고로 우리가 EC2로 SSH를 통해 해당 서버에 접속을 하면 내 컴퓨터의 <code class="language-plaintext highlighter-rouge">~/.ssh/known_hosts</code> 파일에는 해당 서버의 공개키가 자동으로 등록이 된다.
+<br />
+SSH 공개키 인증 방식은 크게 위와 같지만 SSH 통신에 대한 자세한 내용은 다음 글에서 확인할 수 있다.</p>
+
+<blockquote>
+  <p><strong>참고</strong> <br />
+<a href="https://library.gabia.com/contents/infrahosting/9002">https://library.gabia.com/contents/infrahosting/9002</a></p>
+</blockquote>
+
+<p><br /></p>
+
+<h3 id="ec2-터미널로-연결">EC2 터미널로 연결</h3>
+<p>EC2를 생성할 때 키 페어를 생성하는 화면이 나오는데 해당 파일은 유출되어서는 안 된다. 특별히 보안에 신경쓰도록 노력하자.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>chmod 400 [파일경로/파일명].pem(.cer)
+</code></pre></div></div>
+<p>나에게만 읽기 권한이 있게 한다.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ssh -i [파일경로/파일명].pem(.cer) [계정명]@[퍼블릭 IPv4 또는 DNS주소]
+</code></pre></div></div>
+
+<p><strong>계정명</strong>:</p>
+<ul>
+  <li>Amazon Linux2 또는 Amazon Linux AMI ➡️ ec2-user</li>
+  <li>Ubuntu AMI ➡️ ubuntu</li>
+  <li>CentOS AMI ➡️ centos</li>
+  <li>Debian AMI ➡️ admin</li>
+  <li>Fedora AMI ➡️ ec2-user 또는 fedora</li>
+  <li>RHEL AMI ➡️ ec2-user 또는 root</li>
+  <li>SUSE AMI ➡️ ec2-user 또는 root</li>
+</ul>
+
+<p><br /></p>
+
+<h3 id="aws-rds-proxy"><span style="color: #f77;">AWS RDS Proxy</span></h3>
+<p>RDS Proxy를 사용하여 Amazon RDS DB 인스턴스와 Amazon Aurora DB 클러스터에 대한 연결 관리를 간소화할 수 있다.</p>
+
+<p>RDS Proxy는 클라이언트 애플리케이션과 데이터베이스 사이의 네트워크 트래픽을 처리한다. 데이터베이스 프로토콜을 이해하여 능동적으로 수행한다. 그런 다음 애플리케이션의 SQL 작업과 데이터베이스의 결과 집합을 기반으로 동작을 조정한다.</p>
+
+<p>RDS Proxy는 데이터베이스의 커넥션 관리를 위한 메모리 및 CPU 오버헤드를 줄인다. 애플리케이션이 많은 연결을 동시에 열 때 데이터베이스에 필요한 메모리 및 CPU 리소스가 더 적다. 또한 오랫동안 유휴 상태를 유지하는 커넥션을 닫았다가 다시 여는 데 애플리케이션의 로직이 필요하지 않다. 마찬가지로, 데이터베이스 문제의 경우 커넥션을 다시 설정하는 데 더 적은 애플리케이션 로직이 필요하다.</p>
+
+<p>Amazon RDS Proxy를 사용하면 애플리케이션이 데이터베이스 커넥션을 풀링하고 공유하도록 허용하여 확장 기능을 향상시킬 수 있다. RDS Proxy는 애플리케이션 커넥션을 유지하면서 예비 DB 인스턴스에 자동으로 연결하여 데이터베이스 장애에 대한 애플리케이션의 복원력을 높인다. RDS Proxy를 사용하면 데이터베이스에 대해 AWS Identity and Access Management(IAM) 인증을 사용하고 AWS Secrets Manager에 자격 증명을 안전하게 저장한다.</p>
+
+<p>RDS Proxy를 사용하면 발생할 수 있는 예기치 않은 데이터베이스 트래픽 급증을 처리할 수 있다. RDS Proxy는 데이터베이스 커넥션 풀을 설정하고 이 풀에서 커넥션을 재사용한다. 이 접근 방식은 매번 새 데이터베이스 커넥션을 여는 데서 오는 메모리 및 CPU 오버헤드 를 방지한다. 초과 구독으로부터 데이터베이스를 보호하기 위해 생성되는 데이터베이스 커넥션 수를 제어할 수 있다.</p>
+
+<blockquote>
+  <p><strong>참고</strong> <br />
+<a href="https://docs.aws.amazon.com/ko_kr/AmazonRDS/latest/UserGuide/rds-proxy.howitworks.html">RDS Proxy 개념 및 용어 - Docs.aws.amazon.com.</a> <br />
+<a href="https://docs.aws.amazon.com/ko_kr/AmazonRDS/latest/UserGuide/rds-proxy.html">Amazon RDS 프록시 사용 - Docs.aws.amazon.com.</a></p>
+</blockquote>]]></content><author><name>97kim</name></author><category term="dev" /><category term="AWS" /><category term="VPC" /><summary type="html"><![CDATA[AWS를 사용하면서 알아야 할 VPC에 대해 적어보려고 한다.]]></summary></entry><entry><title type="html">Querydsl</title><link href="https://97kim.github.io/jekyll-theme-yat/dev/2022/08/28/Querydsl.html" rel="alternate" type="text/html" title="Querydsl" /><published>2022-08-28T00:00:00+09:00</published><updated>2022-08-28T00:00:00+09:00</updated><id>https://97kim.github.io/jekyll-theme-yat/dev/2022/08/28/Querydsl</id><content type="html" xml:base="https://97kim.github.io/jekyll-theme-yat/dev/2022/08/28/Querydsl.html"><![CDATA[<h2>Querydsl</h2>
+
+<p>Spring을 사용하는 백엔드 개발자라면 Querydsl이라는 키워드를 많이 들어봤을 것이다. JPA를 사용하면 데이터베이스의 테이블을 Java 코드로 Entity를 만들어 관리하게 된다. Spring에서는 Spring Data JPA를 활용해서 기본적인 CRUD를 사용할 수 있지만 조금만 복잡해지면 JPQL을 사용해야 한다.</p>
+
+<p>JPQL의 간단한 예시를 보자</p>
+
+<h3 id="personentity">Person(Entity)</h3>
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Entity</span>
+<span class="kd">class</span> <span class="nc">Person</span><span class="p">(</span>
+
+    <span class="nd">@Id</span>
+    <span class="nd">@GeneratedValue</span><span class="p">(</span><span class="n">strategy</span> <span class="p">=</span> <span class="nc">GenerationType</span><span class="p">.</span><span class="nc">IDENTITY</span><span class="p">)</span>
+    <span class="kd">var</span> <span class="py">id</span><span class="p">:</span> <span class="nc">Long</span><span class="p">?</span> <span class="p">=</span> <span class="k">null</span><span class="p">,</span>
+
+    <span class="nd">@Column</span><span class="p">(</span><span class="n">name</span> <span class="p">=</span> <span class="s">"name"</span><span class="p">)</span>
+    <span class="kd">var</span> <span class="py">name</span><span class="p">:</span> <span class="nc">String</span><span class="p">?</span> <span class="p">=</span> <span class="k">null</span><span class="p">,</span>
+
+    <span class="nd">@Column</span><span class="p">(</span><span class="n">name</span> <span class="p">=</span> <span class="s">"age"</span><span class="p">)</span>
+    <span class="kd">var</span> <span class="py">age</span><span class="p">:</span> <span class="nc">Int</span><span class="p">?</span> <span class="p">=</span> <span class="k">null</span><span class="p">,</span>
+
+    <span class="nd">@Column</span><span class="p">(</span><span class="n">name</span> <span class="p">=</span> <span class="s">"job"</span><span class="p">)</span>
+    <span class="kd">var</span> <span class="py">job</span><span class="p">:</span> <span class="nc">String</span><span class="p">?</span> <span class="p">=</span> <span class="k">null</span>
+<span class="p">)</span>
+</code></pre></div></div>
+
+<h3 id="personrepository">PersonRepository</h3>
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">interface</span> <span class="nc">PersonRepository</span><span class="p">:</span> <span class="nc">JpaRepository</span><span class="p">&lt;</span><span class="nc">Person</span><span class="p">,</span> <span class="nc">Long</span><span class="p">&gt;</span> <span class="p">{</span>
+    <span class="nd">@Query</span><span class="p">(</span><span class="s">"select p.id from Person p where p.age between :from and :to"</span><span class="p">)</span>
+    <span class="k">fun</span> <span class="nf">findIdByAgeBetween</span><span class="p">(</span><span class="nd">@Param</span><span class="p">(</span><span class="s">"from"</span><span class="p">)</span> <span class="n">from</span><span class="p">:</span> <span class="nc">Int</span><span class="p">,</span> <span class="nd">@Param</span><span class="p">(</span><span class="s">"to"</span><span class="p">)</span> <span class="n">to</span><span class="p">:</span> <span class="nc">Int</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>@Query 어노테이션을 활용하면 nativeQuery 옵션을 true로 줘서 SQL도 사용할 수 있지만 생략하거나 false로 준다면 JPQL을 사용할 수 있다.</p>
+
+<p>전반적으로 JPQL은 문자열로 작성되기 때문에 사람이 작성하는 특성 상 오타가 없을 거라는 확신은 가질 수 없다. 위 예제에서는 나이가 from과 to 사이인 사람의 id를 조회하는 메서드인데 파라미터 바인딩 시 <code class="language-plaintext highlighter-rouge">:from</code> 대신 <code class="language-plaintext highlighter-rouge">:fron</code>으로 들어갈 수도 있고, 이는 컴파일 오류를 내지 않기 때문에 런타임 시점에 해당 메서드가 사용될 때 잘못 됐다는 것을 알 수 있다. 그리고 이 예제는 정적 쿼리이기 때문에 간단하게 보일 수 있다. 동적 쿼리를 JPQL로 짠다면 코드가 복잡해진다. (사람마다 다르겠지만 내 기준으로는 가독성이 떨어져 보인다.)</p>
+
+<h3 id="querydsl-장점">Querydsl 장점</h3>
+<ul>
+  <li>문자열이 아닌 Java 코드로 쿼리를 작성할 수 있다.</li>
+  <li>컴파일 시점에 오류를 확인할 수 있다.</li>
+  <li>동적 쿼리 작성이 용이하다.</li>
+</ul>
+
+<p>이러한 이점으로 많은 사람들이 Querydsl을 사용한다.</p>
+
+<h3 id="querydsl-설정">Querydsl 설정</h3>
+<p>Kotlin, Spring Boot 기준으로 예제 코드를 준비했다.</p>
+
+<h3 id="개발-환경">개발 환경</h3>
+<ul>
+  <li>Kotlin / Spring Boot</li>
+  <li>Gradle (Kotlin dsl)</li>
+</ul>
+
+<h3 id="buildgradlekts">build.gradle.kts</h3>
+<pre><code class="language-kotlin_dsl">plugins {
+    id("org.springframework.boot") version "2.7.3"
+    id("io.spring.dependency-management") version "1.0.13.RELEASE"
+    kotlin("jvm") version "1.6.21"
+    kotlin("plugin.spring") version "1.6.21"
+    kotlin("plugin.jpa") version "1.6.21"
+    kotlin("kapt") version "1.6.21" // kapt 추가
+}
+
+...
+
+// querydsl version
+val querydslVersion = "5.0.0"
+
+dependencies {
+    ...
+
+    // querydsl
+    implementation("com.querydsl:querydsl-jpa:$querydslVersion")
+    kapt("com.querydsl:querydsl-apt:$querydslVersion:jpa")
+}
+</code></pre>
+
+<blockquote>
+  <p><strong>KAPT</strong> <br />
+이 프로젝트는 Kotlin을 사용하기 때문에 컴파일을 javac로 하지 않고 kotlinc로 컴파일한다. 따라서 Java로 작성 된 Annotation Processor가 동작하지 않고, Kotlin에서는 KAPT(Kotlin Annotation Precessing Tool)을 사용한다.</p>
+</blockquote>
+
+<h3 id="querydslconfiguration">QuerydslConfiguration</h3>
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Configuration</span>
+<span class="kd">class</span> <span class="nc">QuerydslConfiguration</span> <span class="p">{</span>
+
+    <span class="nd">@PersistenceContext</span>
+    <span class="k">private</span> <span class="k">lateinit</span> <span class="kd">var</span> <span class="py">entityManager</span><span class="p">:</span> <span class="nc">EntityManager</span>
+
+    <span class="nd">@Bean</span>
+    <span class="k">fun</span> <span class="nf">jpaQueryFactory</span><span class="p">():</span> <span class="nc">JPAQueryFactory</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nc">JPAQueryFactory</span><span class="p">(</span><span class="n">entityManager</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><br /></p>
+
+<p>gradle의 <code class="language-plaintext highlighter-rouge">compileKotlin</code>을 해보면</p>
+
+<p><img src="/assets/images/querydsl/querydsl1.png" alt="querydsl1" /></p>
+
+<p>Q파일이 <code class="language-plaintext highlighter-rouge">build/generated/source/kapt/...</code> 경로에 생성되었다.</p>
+
+<h4 id="사용-하는-방법은-다음-게시글에서">사용 하는 방법은 다음 게시글에서!</h4>]]></content><author><name>97kim</name></author><category term="dev" /><category term="Querydsl" /><summary type="html"><![CDATA[Querydsl]]></summary></entry><entry><title type="html">Querydsl 조회 쿼리</title><link href="https://97kim.github.io/jekyll-theme-yat/dev/2022/08/28/Querydsl2.html" rel="alternate" type="text/html" title="Querydsl 조회 쿼리" /><published>2022-08-28T00:00:00+09:00</published><updated>2022-08-28T00:00:00+09:00</updated><id>https://97kim.github.io/jekyll-theme-yat/dev/2022/08/28/Querydsl2</id><content type="html" xml:base="https://97kim.github.io/jekyll-theme-yat/dev/2022/08/28/Querydsl2.html"><![CDATA[<h3 id="personentity">Person(Entity)</h3>
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Entity</span>
+<span class="kd">class</span> <span class="nc">Person</span><span class="p">(</span>
+
+    <span class="nd">@Id</span>
+    <span class="nd">@GeneratedValue</span><span class="p">(</span><span class="n">strategy</span> <span class="p">=</span> <span class="nc">GenerationType</span><span class="p">.</span><span class="nc">IDENTITY</span><span class="p">)</span>
+    <span class="kd">var</span> <span class="py">id</span><span class="p">:</span> <span class="nc">Long</span><span class="p">?</span> <span class="p">=</span> <span class="k">null</span><span class="p">,</span>
+
+    <span class="nd">@Column</span><span class="p">(</span><span class="n">name</span> <span class="p">=</span> <span class="s">"name"</span><span class="p">)</span>
+    <span class="kd">var</span> <span class="py">name</span><span class="p">:</span> <span class="nc">String</span><span class="p">?</span> <span class="p">=</span> <span class="k">null</span><span class="p">,</span>
+
+    <span class="nd">@Column</span><span class="p">(</span><span class="n">name</span> <span class="p">=</span> <span class="s">"age"</span><span class="p">)</span>
+    <span class="kd">var</span> <span class="py">age</span><span class="p">:</span> <span class="nc">Int</span><span class="p">?</span> <span class="p">=</span> <span class="k">null</span><span class="p">,</span>
+
+    <span class="nd">@Column</span><span class="p">(</span><span class="n">name</span> <span class="p">=</span> <span class="s">"job"</span><span class="p">)</span>
+    <span class="kd">var</span> <span class="py">job</span><span class="p">:</span> <span class="nc">String</span><span class="p">?</span> <span class="p">=</span> <span class="k">null</span>
+<span class="p">)</span>
+</code></pre></div></div>
+
+<h3 id="personrepository-personcustomrepostiory">PersonRepository, PersonCustomRepostiory</h3>
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">interface</span> <span class="nc">PersonRepository</span><span class="p">:</span> <span class="nc">JpaRepository</span><span class="p">&lt;</span><span class="nc">Person</span><span class="p">,</span> <span class="nc">Long</span><span class="p">&gt;,</span> <span class="nc">PersonCustomRepository</span> <span class="p">{</span>
+    <span class="c1">// JPQL 예제용</span>
+    <span class="nd">@Query</span><span class="p">(</span><span class="s">"select p.id from Person p where p.age between :from and :to"</span><span class="p">)</span>
+    <span class="k">fun</span> <span class="nf">findIdByAgeBetween</span><span class="p">(</span><span class="nd">@Param</span><span class="p">(</span><span class="s">"from"</span><span class="p">)</span> <span class="n">from</span><span class="p">:</span> <span class="nc">Int</span><span class="p">,</span> <span class="nd">@Param</span><span class="p">(</span><span class="s">"to"</span><span class="p">)</span> <span class="n">to</span><span class="p">:</span> <span class="nc">Int</span><span class="p">)</span>
+<span class="p">}</span>
+
+<span class="kd">interface</span> <span class="nc">PersonCustomRepository</span> <span class="p">{</span>
+    <span class="k">fun</span> <span class="nf">findPeople</span><span class="p">():</span> <span class="nc">MutableList</span><span class="p">&lt;</span><span class="nc">Person</span><span class="p">&gt;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<h3 id="personcustomrepositoryimpl">PersonCustomRepositoryImpl</h3>
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">import</span> <span class="nn">com.example.querydsl.domain.QPerson.*</span>
+
+<span class="nd">@Repository</span>
+<span class="nd">@Transactional</span>
+<span class="kd">class</span> <span class="nc">PersonCustomRepositoryImpl</span><span class="p">(</span>
+    <span class="k">private</span> <span class="kd">val</span> <span class="py">jpaQueryFactory</span><span class="p">:</span> <span class="nc">JPAQueryFactory</span>
+<span class="p">):</span> <span class="nc">PersonCustomRepository</span> <span class="p">{</span>
+
+    <span class="k">override</span> <span class="k">fun</span> <span class="nf">findPeople</span><span class="p">():</span> <span class="nc">MutableList</span><span class="p">&lt;</span><span class="nc">Person</span><span class="p">&gt;</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">jpaQueryFactory</span>
+            <span class="p">.</span><span class="nf">selectFrom</span><span class="p">(</span><span class="n">person</span><span class="p">)</span>
+            <span class="p">.</span><span class="nf">fetch</span><span class="p">()</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>Custom 키워드를 사용해 Repostiory를 만들었는데 이는 Spring Data JPA도 사용하고 Querydsl 둘 다 사용할 때 보통 이 구조로 구성한다. 이 구조는 
+<a href="https://docs.spring.io/spring-data/jpa/docs/2.1.3.RELEASE/reference/html/#repositories.custom-implementations">Spring Data JPA 공식 문서</a>에 나온다.</p>
+
+<p>Querydsl Repository, Spring Data JPA Repository 두 개가 분리되어 있고 서로 상속/구현 관계가 맺어져 있지 않으면 두 개의 Repository가 필요한 Service 파일에 의존성을 둘 다 주입해야 한다.</p>
+
+<p>하지만 위 구조로 구성한다면 하나의 Repository를 의존성 주입(DI)해도 두 가지 Repository 기능을 사용할 수 있다.</p>
+
+<p>JpaQueryFactory를 사용해 쿼리를 구현한다. <br /> <br />
+위 예제에서 <code class="language-plaintext highlighter-rouge">person</code>은 <code class="language-plaintext highlighter-rouge">QPerson.person</code>인데 <code class="language-plaintext highlighter-rouge">QPerson.*</code>을 <code class="language-plaintext highlighter-rouge">static import</code>해서 <code class="language-plaintext highlighter-rouge">person</code>으로 사용할 수 있다. <br />
+<code class="language-plaintext highlighter-rouge">.selectFrom(person)</code>은 <code class="language-plaintext highlighter-rouge">.select(person).from(person)</code>과 같다. <br />
+<code class="language-plaintext highlighter-rouge">.selectFrom(person)</code>은 Person 엔티티의 모든 컬럼을 조회하는 것이고, <code class="language-plaintext highlighter-rouge">select</code>와 <code class="language-plaintext highlighter-rouge">from</code>을 분리해서 쓰면 <code class="language-plaintext highlighter-rouge">select</code>의 인자에 우리가 조회할 컬럼 하나 또는 필요한 컬럼들을 DTO로 변환해 조회할 수 있다. DTO로 변환하는 방법은 나중에 따로 게시글을 작성할 예정이다.</p>
+
+<blockquote>
+  <p>(Kotlin 프로젝트 기준) <br />
+Q파일이 생성되지 않았다면 gradle의 <code class="language-plaintext highlighter-rouge">compileKotlin</code>을 실행해서 생성시키자.</p>
+</blockquote>
+
+<p>위 예제에서 <code class="language-plaintext highlighter-rouge">findPerson()</code> 메서드는 Person 엔티티의 모든 사람들을 조회하는 메서드다.
+따라서 리턴 타입을 <code class="language-plaintext highlighter-rouge">MutableList&lt;Person&gt;</code>으로 받았다. 참고로 Kotlin에서는 앞에 Mutable이 붙은 컬렉션은 mutable 하고 앞에 Mutable이 붙지 않은 컬렉션은 immutable 하다. 위 예제에서 List나 MutableList나 둘 중 아무거나 사용해도 무방하다.</p>
+
+<h3 id="결과-조회">결과 조회</h3>
+<ul>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">fetch()</code>는 리스트 조회할 때 사용되고 데이터가 없으면 빈 리스트를 반환한다.</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">fetchOne()</code>은 한 건을 조회할 때 사용되고 데이터가 없으면 null을 반환한다. 한 건 조회인데 결과가 두 개 이상이라면 <code class="language-plaintext highlighter-rouge">com.querydsl.core.NonUniqueResultException</code>을 발생시킨다.</p>
+  </li>
+</ul>
+
+<p>이외에도 <code class="language-plaintext highlighter-rouge">fetchFirst()</code>, <code class="language-plaintext highlighter-rouge">fetchResults()</code>, <code class="language-plaintext highlighter-rouge">fetchCount()</code>가 있다.</p>
+
+<ul>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">fetchFirst()</code>는 첫 번째 한 건을 조회할 때 사용된다.</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">fetchResults()</code>는 페이징 정보를 포함하고 total count 쿼리를 추가로 실행한다.</p>
+  </li>
+  <li>
+    <p><code class="language-plaintext highlighter-rouge">fetchCount()</code>는 count 쿼리로 변경해서 count 수를 조회한다.</p>
+  </li>
+</ul>
+
+<p>하지만 <code class="language-plaintext highlighter-rouge">fetchResults()</code>와 <code class="language-plaintext highlighter-rouge">fetchCount()</code>는 deprecated 되었다.</p>
+
+<p>테스트 코드를 만들어 위 예제를 테스트 해보자.</p>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@SpringBootTest</span>
+<span class="kd">class</span> <span class="nc">Test</span> <span class="p">{</span>
+
+    <span class="nd">@Autowired</span>
+    <span class="k">private</span> <span class="k">lateinit</span> <span class="kd">var</span> <span class="py">personRepository</span><span class="p">:</span> <span class="nc">PersonRepository</span>
+
+    <span class="nd">@Test</span>
+    <span class="k">fun</span> <span class="nf">findPeopleTest</span><span class="p">()</span> <span class="p">{</span>
+        <span class="c1">// given</span>
+        <span class="kd">val</span> <span class="py">person1</span> <span class="p">=</span> <span class="nc">Person</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s">"person1"</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="s">"backend-programmer"</span><span class="p">)</span>
+        <span class="kd">val</span> <span class="py">person2</span> <span class="p">=</span> <span class="nc">Person</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s">"person1"</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="s">"frontend-programmer"</span><span class="p">)</span>
+
+        <span class="c1">// when</span>
+        <span class="n">personRepository</span><span class="p">.</span><span class="nf">saveAll</span><span class="p">(</span><span class="nf">mutableListOf</span><span class="p">(</span><span class="n">person1</span><span class="p">,</span> <span class="n">person2</span><span class="p">))</span>
+
+        <span class="c1">// then</span>
+        <span class="nf">assertThat</span><span class="p">(</span><span class="n">personRepository</span><span class="p">.</span><span class="nf">findPeople</span><span class="p">().</span><span class="n">size</span><span class="p">).</span><span class="nf">isEqualTo</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+        <span class="nf">assertThat</span><span class="p">(</span><span class="n">personRepository</span><span class="p">.</span><span class="nf">findPeople</span><span class="p">().</span><span class="nf">first</span><span class="p">().</span><span class="n">id</span><span class="p">).</span><span class="nf">isEqualTo</span><span class="p">(</span><span class="n">person1</span><span class="p">.</span><span class="n">id</span><span class="p">)</span>
+        <span class="nf">assertThat</span><span class="p">(</span><span class="n">personRepository</span><span class="p">.</span><span class="nf">findPeople</span><span class="p">().</span><span class="nf">first</span><span class="p">().</span><span class="n">name</span><span class="p">).</span><span class="nf">isEqualTo</span><span class="p">(</span><span class="n">person1</span><span class="p">.</span><span class="n">name</span><span class="p">)</span>
+        <span class="nf">assertThat</span><span class="p">(</span><span class="n">personRepository</span><span class="p">.</span><span class="nf">findPeople</span><span class="p">().</span><span class="nf">first</span><span class="p">().</span><span class="n">age</span><span class="p">).</span><span class="nf">isEqualTo</span><span class="p">(</span><span class="n">person1</span><span class="p">.</span><span class="n">age</span><span class="p">)</span>
+        <span class="nf">assertThat</span><span class="p">(</span><span class="n">personRepository</span><span class="p">.</span><span class="nf">findPeople</span><span class="p">().</span><span class="nf">first</span><span class="p">().</span><span class="n">job</span><span class="p">).</span><span class="nf">isEqualTo</span><span class="p">(</span><span class="n">person1</span><span class="p">.</span><span class="n">job</span><span class="p">)</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><img src="/assets/images/querydsl/querydsl2.png" alt="querydsl2" /></p>
+
+<h3 id="조건-where">조건 (where)</h3>
+<p>위 예제는 조건 없이 조회해서 코드에서 where절을 볼 수 없었다.</p>
+
+<p>where절도 간단하다.</p>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">override</span> <span class="k">fun</span> <span class="nf">findPeopleByAge</span><span class="p">(</span><span class="n">age</span><span class="p">:</span> <span class="nc">Int</span><span class="p">):</span> <span class="nc">MutableList</span><span class="p">&lt;</span><span class="nc">Person</span><span class="p">&gt;</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">jpaQueryFactory</span>
+            <span class="p">.</span><span class="nf">selectFrom</span><span class="p">(</span><span class="n">person</span><span class="p">)</span>
+            <span class="p">.</span><span class="k">where</span><span class="p">(</span><span class="n">person</span><span class="p">.</span><span class="n">age</span><span class="p">.</span><span class="nf">eq</span><span class="p">(</span><span class="mi">20</span><span class="p">))</span>
+            <span class="p">.</span><span class="nf">fetch</span><span class="p">()</span>
+    <span class="p">}</span>
+</code></pre></div></div>
+
+<p>나이가 20살인 사람들을 조회하는 쿼리다.
+<code class="language-plaintext highlighter-rouge">eq()</code> 메서드를 사용해 인자값과 같은 사람을 조회한다. 테스트 코드로 확인해보자.</p>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Test</span>
+<span class="k">fun</span> <span class="nf">findPeopleByAgeTest</span><span class="p">()</span> <span class="p">{</span>
+    <span class="c1">// given</span>
+    <span class="kd">val</span> <span class="py">person1</span> <span class="p">=</span> <span class="nc">Person</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s">"person1"</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="s">"backend-programmer"</span><span class="p">)</span>
+    <span class="kd">val</span> <span class="py">person2</span> <span class="p">=</span> <span class="nc">Person</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="s">"person1"</span><span class="p">,</span> <span class="mi">25</span><span class="p">,</span> <span class="s">"frontend-programmer"</span><span class="p">)</span>
+
+    <span class="c1">// when</span>
+    <span class="n">personRepository</span><span class="p">.</span><span class="nf">saveAll</span><span class="p">(</span><span class="nf">mutableListOf</span><span class="p">(</span><span class="n">person1</span><span class="p">,</span> <span class="n">person2</span><span class="p">))</span>
+
+    <span class="c1">// then</span>
+    <span class="nf">assertThat</span><span class="p">(</span><span class="n">personRepository</span><span class="p">.</span><span class="nf">findPeopleByAge</span><span class="p">(</span><span class="mi">20</span><span class="p">).</span><span class="n">size</span><span class="p">).</span><span class="nf">isEqualTo</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+    <span class="nf">assertThat</span><span class="p">(</span><span class="n">personRepository</span><span class="p">.</span><span class="nf">findPeopleByAge</span><span class="p">(</span><span class="mi">20</span><span class="p">).</span><span class="nf">first</span><span class="p">().</span><span class="n">id</span><span class="p">).</span><span class="nf">isEqualTo</span><span class="p">(</span><span class="n">person1</span><span class="p">.</span><span class="n">id</span><span class="p">)</span>
+    <span class="nf">assertThat</span><span class="p">(</span><span class="n">personRepository</span><span class="p">.</span><span class="nf">findPeopleByAge</span><span class="p">(</span><span class="mi">20</span><span class="p">).</span><span class="nf">first</span><span class="p">().</span><span class="n">name</span><span class="p">).</span><span class="nf">isEqualTo</span><span class="p">(</span><span class="n">person1</span><span class="p">.</span><span class="n">name</span><span class="p">)</span>
+    <span class="nf">assertThat</span><span class="p">(</span><span class="n">personRepository</span><span class="p">.</span><span class="nf">findPeopleByAge</span><span class="p">(</span><span class="mi">20</span><span class="p">).</span><span class="nf">first</span><span class="p">().</span><span class="n">job</span><span class="p">).</span><span class="nf">isEqualTo</span><span class="p">(</span><span class="n">person1</span><span class="p">.</span><span class="n">job</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><img src="/assets/images/querydsl/querydsl3.png" alt="querydsl3" /></p>
+
+<p><code class="language-plaintext highlighter-rouge">eq()</code> 이외에도</p>
+<ul>
+  <li><code class="language-plaintext highlighter-rouge">gt()</code>: 큰지</li>
+  <li><code class="language-plaintext highlighter-rouge">goe()</code>: 크거나 같은지</li>
+  <li><code class="language-plaintext highlighter-rouge">lt()</code>: 작은지</li>
+  <li><code class="language-plaintext highlighter-rouge">loe()</code>: 작거나 같은지</li>
+  <li><code class="language-plaintext highlighter-rouge">between()</code>: 사이 범위에 있는지</li>
+  <li><code class="language-plaintext highlighter-rouge">like()</code>: %를 사용해 해당 위치에 부합하는지
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">person.name.like("김%")</code>: 성이 김씨인지</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">contains()</code>: ~에 포함되었는지
+    <ul>
+      <li><code class="language-plaintext highlighter-rouge">like("%문자열%")</code>와 같다.</li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">isNull()</code>: null인지</li>
+  <li><code class="language-plaintext highlighter-rouge">isNotNull()</code>: null이 아닌지</li>
+  <li><code class="language-plaintext highlighter-rouge">and()</code>: 그리고
+    <ul>
+      <li>콤마(<code class="language-plaintext highlighter-rouge">,</code>)로 대체 가능하다.</li>
+      <li><code class="language-plaintext highlighter-rouge">person.age.eq(20).and(person.job.eq("backend-programmer"))</code></li>
+      <li><code class="language-plaintext highlighter-rouge">person.age.eq(20), person.job.eq("backend-programmer")</code></li>
+    </ul>
+  </li>
+  <li><code class="language-plaintext highlighter-rouge">or()</code>: 또는</li>
+</ul>
+
+<p>등등… 엄청 많이 있다. 필요한 부분은 검색해보면서 적용해보도록 하자!</p>]]></content><author><name>97kim</name></author><category term="dev" /><category term="Querydsl" /><summary type="html"><![CDATA[Person(Entity) ``` kotlin @Entity class Person(]]></summary></entry><entry><title type="html">MapStruct</title><link href="https://97kim.github.io/jekyll-theme-yat/dev/2022/08/13/Mapstruct.html" rel="alternate" type="text/html" title="MapStruct" /><published>2022-08-13T00:00:00+09:00</published><updated>2022-08-13T00:00:00+09:00</updated><id>https://97kim.github.io/jekyll-theme-yat/dev/2022/08/13/Mapstruct</id><content type="html" xml:base="https://97kim.github.io/jekyll-theme-yat/dev/2022/08/13/Mapstruct.html"><![CDATA[<p>MapStruct는 자바에서 서로 다른 객체 간 매핑에 대한 코드를 간편하게 자동으로 생성해주는 라이브러리다. Annotaion Processor를 사용해 컴파일 시 구현체를 생성한다.</p>
+
+<p>객체 간 매핑에 대한 라이브러리로 ModelMapper도 있지만 MapStruct는 컴파일 시 매핑 코드를 생성하기 때문에 아래와 같은 장점이 있다.</p>
+
+<ol>
+  <li>Reflection을 사용하지 않아 속도가 빠르다.
+    <ul>
+      <li>Reflection: 구체적인 클래스 타입을 알지 못해도 해당 클래스의 정보(메서드, 타입, 변수 등)에 접근할 수 있게 해주는 것</li>
+    </ul>
+  </li>
+  <li>컴파일 시점에 매핑 코드를 생성하기 때문에 에러가 발생하면 확인이 가능하다.</li>
+  <li>자동으로 생성된 구현체 코드를 직접 확인할 수 있다.</li>
+</ol>
+
+<p>이 글에서는 DTO를 Entity로, Entity를 DTO로 변환하는 예제를 통해 설명하려고 한다.</p>
+
+<h3 id="개발-환경">개발 환경</h3>
+<ul>
+  <li>Kotlin / Spring Boot</li>
+  <li>Gradle (Kotlin dsl)</li>
+</ul>
+
+<h3 id="buildgradlekts-설정">build.gradle.kts 설정</h3>
+<pre><code class="language-kotlin_dsl">...
+
+plugins {
+    kotlin("jvm") version "1.6.21"
+    kotlin("kapt") version "1.6.21"
+}
+
+...
+
+dependencies {
+    implementation("org.mapstruct:mapstruct:1.5.2.Final")
+    kapt("org.mapstruct:mapstruct-processor:1.5.2.Final")
+}
+
+...
+</code></pre>
+
+<p><code class="language-plaintext highlighter-rouge">build.gradle</code>을 Groovy DSL 대신 Kotlin DSL을 사용했기 때문에 <code class="language-plaintext highlighter-rouge">.kts</code>라는 확장자가 추가로 붙는다. 그리고 Kotlin DSL을 사용하면 Annotation Processor 대신 kapt라는 플러그인을 사용해야 한다.</p>
+
+<p>만약 Groovy DSL을 사용한다면 위 코드의 <code class="language-plaintext highlighter-rouge">kapt()</code> 대신 <code class="language-plaintext highlighter-rouge">annotationProcessor()</code>를 넣으면 된다.</p>
+
+<h3 id="personentity">Person(Entity)</h3>
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Entity</span>
+<span class="kd">class</span> <span class="nc">Person</span><span class="p">(</span>
+
+    <span class="nd">@Id</span>
+    <span class="nd">@Column</span><span class="p">(</span><span class="n">name</span> <span class="p">=</span> <span class="s">"person_id"</span><span class="p">)</span>
+    <span class="kd">var</span> <span class="py">id</span><span class="p">:</span> <span class="nc">Long</span><span class="p">?</span> <span class="p">=</span> <span class="k">null</span><span class="p">,</span>
+
+    <span class="nd">@Column</span><span class="p">(</span><span class="n">name</span> <span class="p">=</span> <span class="s">"name"</span><span class="p">)</span>
+    <span class="kd">var</span> <span class="py">name</span><span class="p">:</span> <span class="nc">String</span><span class="p">?</span> <span class="p">=</span> <span class="k">null</span><span class="p">,</span>
+
+    <span class="nd">@Column</span><span class="p">(</span><span class="n">name</span> <span class="p">=</span> <span class="s">"age"</span><span class="p">)</span>
+    <span class="kd">var</span> <span class="py">age</span><span class="p">:</span> <span class="nc">Int</span><span class="p">?</span> <span class="p">=</span> <span class="k">null</span><span class="p">,</span>
+
+    <span class="nd">@Column</span><span class="p">(</span><span class="n">name</span> <span class="p">=</span> <span class="s">"phone_number"</span><span class="p">)</span>
+    <span class="kd">var</span> <span class="py">phoneNumber</span><span class="p">:</span> <span class="nc">String</span><span class="p">?</span> <span class="p">=</span> <span class="k">null</span><span class="p">,</span>
+
+    <span class="nd">@Column</span><span class="p">(</span><span class="n">name</span> <span class="p">=</span> <span class="s">"birth"</span><span class="p">)</span>
+    <span class="kd">var</span> <span class="py">birth</span><span class="p">:</span> <span class="nc">LocalDate</span><span class="p">?</span> <span class="p">=</span> <span class="k">null</span>
+<span class="p">)</span>
+</code></pre></div></div>
+
+<h3 id="persondtodto">PersonDTO(DTO)</h3>
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">data class</span> <span class="nc">PersonDTO</span><span class="p">(</span>
+
+    <span class="kd">var</span> <span class="py">id</span><span class="p">:</span> <span class="nc">Long</span><span class="p">?</span> <span class="p">=</span> <span class="k">null</span><span class="p">,</span>
+
+    <span class="kd">var</span> <span class="py">name</span><span class="p">:</span> <span class="nc">String</span><span class="p">?</span> <span class="p">=</span> <span class="k">null</span><span class="p">,</span>
+
+    <span class="kd">var</span> <span class="py">age</span><span class="p">:</span> <span class="nc">Int</span><span class="p">?</span> <span class="p">=</span> <span class="k">null</span><span class="p">,</span>
+
+    <span class="kd">var</span> <span class="py">phoneNumber</span><span class="p">:</span> <span class="nc">String</span><span class="p">?</span> <span class="p">=</span> <span class="k">null</span><span class="p">,</span>
+
+    <span class="kd">var</span> <span class="py">birth</span><span class="p">:</span> <span class="nc">LocalDate</span><span class="p">?</span> <span class="p">=</span> <span class="k">null</span>
+<span class="p">)</span>
+</code></pre></div></div>
+
+<p>기본적으로 Person이라는 Entity와 DTO를 생성했다.</p>
+
+<p>라이브러리를 사용하지 않고 Entity와 DTO의 변환을 해야 한다면 아래와 같이 코드를 짤 수 있다.</p>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">fun</span> <span class="nf">toPersonDTO</span><span class="p">(</span><span class="n">entity</span><span class="p">:</span> <span class="nc">Person</span><span class="p">):</span> <span class="nc">PersonDTO</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nc">PersonDTO</span><span class="p">(</span>
+            <span class="n">id</span> <span class="p">=</span> <span class="n">entity</span><span class="p">.</span><span class="n">id</span><span class="p">,</span>
+            <span class="n">name</span> <span class="p">=</span> <span class="n">entity</span><span class="p">.</span><span class="n">name</span><span class="p">,</span>
+            <span class="n">age</span> <span class="p">=</span> <span class="n">entity</span><span class="p">.</span><span class="n">age</span><span class="p">,</span>
+            <span class="n">phoneNumber</span> <span class="p">=</span> <span class="n">entity</span><span class="p">.</span><span class="n">phoneNumber</span><span class="p">,</span>
+            <span class="n">birth</span> <span class="p">=</span> <span class="n">entity</span><span class="p">.</span><span class="n">birth</span>
+        <span class="p">)</span>
+    <span class="p">}</span>
+
+<span class="k">fun</span> <span class="nf">toPerson</span><span class="p">(</span><span class="n">dto</span><span class="p">:</span> <span class="nc">PersonDTO</span><span class="p">):</span> <span class="nc">Person</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nc">Person</span><span class="p">(</span>
+            <span class="n">id</span> <span class="p">=</span> <span class="n">dto</span><span class="p">.</span><span class="n">id</span><span class="p">,</span>
+            <span class="n">name</span> <span class="p">=</span> <span class="n">dto</span><span class="p">.</span><span class="n">name</span><span class="p">,</span>
+            <span class="n">age</span> <span class="p">=</span> <span class="n">dto</span><span class="p">.</span><span class="n">age</span><span class="p">,</span>
+            <span class="n">phoneNumber</span> <span class="p">=</span> <span class="n">dto</span><span class="p">.</span><span class="n">phoneNumber</span><span class="p">,</span>
+            <span class="n">birth</span> <span class="p">=</span> <span class="n">dto</span><span class="p">.</span><span class="n">birth</span>
+        <span class="p">)</span>
+    <span class="p">}</span>
+</code></pre></div></div>
+
+<p>위 코드를 보면 간단해서 하나씩 만들어도 상관 없을 것 같다는 생각이 들 수 있지만 필드가 늘어나면 늘어날수록 개발자의 피로가 증가할 것이다.</p>
+
+<p>MapStruct를 사용하면 아래와 같이 사용할 수 있다.</p>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Component</span>
+<span class="nd">@Mapper</span><span class="p">(</span><span class="n">componentModel</span> <span class="p">=</span> <span class="s">"spring"</span><span class="p">)</span>
+<span class="kd">interface</span> <span class="nc">PersonMapper</span> <span class="p">{</span>
+
+    <span class="k">fun</span> <span class="nf">toPerson</span><span class="p">(</span><span class="n">dto</span><span class="p">:</span> <span class="nc">PersonDTO</span><span class="p">):</span> <span class="nc">Person</span>
+
+    <span class="k">fun</span> <span class="nf">toPersonDTO</span><span class="p">(</span><span class="n">entity</span><span class="p">:</span> <span class="nc">Person</span><span class="p">):</span> <span class="nc">PersonDTO</span>
+
+    <span class="k">fun</span> <span class="nf">toPersons</span><span class="p">(</span><span class="n">dtoList</span><span class="p">:</span> <span class="nc">MutableList</span><span class="p">&lt;</span><span class="nc">PersonDTO</span><span class="p">&gt;):</span> <span class="nc">MutableList</span><span class="p">&lt;</span><span class="nc">Person</span><span class="p">&gt;</span>
+
+    <span class="k">fun</span> <span class="nf">toPersonDTOs</span><span class="p">(</span><span class="n">entityList</span><span class="p">:</span> <span class="nc">MutableList</span><span class="p">&lt;</span><span class="nc">Person</span><span class="p">&gt;):</span> <span class="nc">MutableList</span><span class="p">&lt;</span><span class="nc">PersonDTO</span><span class="p">&gt;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>우선 Mapper 파일은 class가 아니라 interface다.
+해당 인터페이스의 구현체는 컴파일 시 생성된다.</p>
+
+<ul>
+  <li>(Kotlin/Spring, kapt 기준) <code class="language-plaintext highlighter-rouge">/build/generated/source/kapt/main/...</code> 경로에 구현체가 생성이 된다.</li>
+</ul>
+
+<p><img src="/assets/images/mapstruct/mapstruct1.png" alt="mapstruct1" /></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Generated</span><span class="o">(</span>
+    <span class="n">value</span> <span class="o">=</span> <span class="s">"org.mapstruct.ap.MappingProcessor"</span><span class="o">,</span>
+    <span class="n">date</span> <span class="o">=</span> <span class="s">"2022-08-13T21:53:06+0900"</span><span class="o">,</span>
+    <span class="n">comments</span> <span class="o">=</span> <span class="s">"version: 1.5.2.Final, compiler: IncrementalProcessingEnvironment from kotlin-annotation-processing-gradle-1.6.21.jar, environment: Java 17.0.2 (Oracle Corporation)"</span>
+<span class="o">)</span>
+<span class="nd">@Component</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">PersonMapperImpl</span> <span class="kd">implements</span> <span class="nc">PersonMapper</span> <span class="o">{</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="nc">Person</span> <span class="nf">toPerson</span><span class="o">(</span><span class="nc">PersonDTO</span> <span class="n">dto</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span> <span class="n">dto</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">)</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
+        <span class="o">}</span>
+
+        <span class="nc">Person</span> <span class="n">person</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Person</span><span class="o">();</span>
+
+        <span class="n">person</span><span class="o">.</span><span class="na">setId</span><span class="o">(</span> <span class="n">dto</span><span class="o">.</span><span class="na">getId</span><span class="o">()</span> <span class="o">);</span>
+        <span class="n">person</span><span class="o">.</span><span class="na">setName</span><span class="o">(</span> <span class="n">dto</span><span class="o">.</span><span class="na">getName</span><span class="o">()</span> <span class="o">);</span>
+        <span class="n">person</span><span class="o">.</span><span class="na">setAge</span><span class="o">(</span> <span class="n">dto</span><span class="o">.</span><span class="na">getAge</span><span class="o">()</span> <span class="o">);</span>
+        <span class="n">person</span><span class="o">.</span><span class="na">setPhoneNumber</span><span class="o">(</span> <span class="n">dto</span><span class="o">.</span><span class="na">getPhoneNumber</span><span class="o">()</span> <span class="o">);</span>
+        <span class="n">person</span><span class="o">.</span><span class="na">setBirth</span><span class="o">(</span> <span class="n">dto</span><span class="o">.</span><span class="na">getBirth</span><span class="o">()</span> <span class="o">);</span>
+
+        <span class="k">return</span> <span class="n">person</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="nc">PersonDTO</span> <span class="nf">toPersonDTO</span><span class="o">(</span><span class="nc">Person</span> <span class="n">entity</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span> <span class="n">entity</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">)</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
+        <span class="o">}</span>
+
+        <span class="nc">PersonDTO</span> <span class="n">personDTO</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">PersonDTO</span><span class="o">();</span>
+
+        <span class="n">personDTO</span><span class="o">.</span><span class="na">setId</span><span class="o">(</span> <span class="n">entity</span><span class="o">.</span><span class="na">getId</span><span class="o">()</span> <span class="o">);</span>
+        <span class="n">personDTO</span><span class="o">.</span><span class="na">setName</span><span class="o">(</span> <span class="n">entity</span><span class="o">.</span><span class="na">getName</span><span class="o">()</span> <span class="o">);</span>
+        <span class="n">personDTO</span><span class="o">.</span><span class="na">setAge</span><span class="o">(</span> <span class="n">entity</span><span class="o">.</span><span class="na">getAge</span><span class="o">()</span> <span class="o">);</span>
+        <span class="n">personDTO</span><span class="o">.</span><span class="na">setPhoneNumber</span><span class="o">(</span> <span class="n">entity</span><span class="o">.</span><span class="na">getPhoneNumber</span><span class="o">()</span> <span class="o">);</span>
+        <span class="n">personDTO</span><span class="o">.</span><span class="na">setBirth</span><span class="o">(</span> <span class="n">entity</span><span class="o">.</span><span class="na">getBirth</span><span class="o">()</span> <span class="o">);</span>
+
+        <span class="k">return</span> <span class="n">personDTO</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Person</span><span class="o">&gt;</span> <span class="nf">toPersons</span><span class="o">(</span><span class="nc">List</span><span class="o">&lt;</span><span class="nc">PersonDTO</span><span class="o">&gt;</span> <span class="n">dtoList</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span> <span class="n">dtoList</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">)</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
+        <span class="o">}</span>
+
+        <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Person</span><span class="o">&gt;</span> <span class="n">list</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;</span><span class="nc">Person</span><span class="o">&gt;(</span> <span class="n">dtoList</span><span class="o">.</span><span class="na">size</span><span class="o">()</span> <span class="o">);</span>
+        <span class="k">for</span> <span class="o">(</span> <span class="nc">PersonDTO</span> <span class="n">personDTO</span> <span class="o">:</span> <span class="n">dtoList</span> <span class="o">)</span> <span class="o">{</span>
+            <span class="n">list</span><span class="o">.</span><span class="na">add</span><span class="o">(</span> <span class="n">toPerson</span><span class="o">(</span> <span class="n">personDTO</span> <span class="o">)</span> <span class="o">);</span>
+        <span class="o">}</span>
+
+        <span class="k">return</span> <span class="n">list</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">PersonDTO</span><span class="o">&gt;</span> <span class="nf">toPersonDTOs</span><span class="o">(</span><span class="nc">List</span><span class="o">&lt;</span><span class="nc">Person</span><span class="o">&gt;</span> <span class="n">entityList</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span> <span class="n">entityList</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">)</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
+        <span class="o">}</span>
+
+        <span class="nc">List</span><span class="o">&lt;</span><span class="nc">PersonDTO</span><span class="o">&gt;</span> <span class="n">list</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;</span><span class="nc">PersonDTO</span><span class="o">&gt;(</span> <span class="n">entityList</span><span class="o">.</span><span class="na">size</span><span class="o">()</span> <span class="o">);</span>
+        <span class="k">for</span> <span class="o">(</span> <span class="nc">Person</span> <span class="n">person</span> <span class="o">:</span> <span class="n">entityList</span> <span class="o">)</span> <span class="o">{</span>
+            <span class="n">list</span><span class="o">.</span><span class="na">add</span><span class="o">(</span> <span class="n">toPersonDTO</span><span class="o">(</span> <span class="n">person</span> <span class="o">)</span> <span class="o">);</span>
+        <span class="o">}</span>
+
+        <span class="k">return</span> <span class="n">list</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>구현체가 잘 생성됐다. Kotlin으로 인터페이스를 만들었지만 구현체는 Java로 생성이 된다. 생성이 잘 됐으면 아래 코드처럼 활용할 수 있다.</p>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">val</span> <span class="py">person</span> <span class="p">=</span> <span class="nc">Person</span><span class="p">(</span>
+            <span class="n">id</span> <span class="p">=</span> <span class="mi">1L</span><span class="p">,</span>
+            <span class="n">name</span> <span class="p">=</span>  <span class="s">"name"</span><span class="p">,</span>
+            <span class="n">age</span> <span class="p">=</span>  <span class="mi">20</span><span class="p">,</span>
+            <span class="n">phoneNumber</span> <span class="p">=</span> <span class="s">"01012341234"</span><span class="p">,</span>
+            <span class="n">birth</span> <span class="p">=</span> <span class="nc">LocalDate</span><span class="p">.</span><span class="nf">of</span><span class="p">(</span><span class="mi">2003</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="kd">val</span> <span class="py">personDTO</span> <span class="p">=</span> <span class="n">personMapper</span><span class="p">.</span><span class="nf">toPersonDTO</span><span class="p">(</span><span class="n">person</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>테스트 코드로 확인해보자.</p>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Test</span>
+<span class="k">fun</span> <span class="nf">test</span><span class="p">()</span> <span class="p">{</span>
+
+    <span class="c1">// given</span>
+    <span class="kd">val</span> <span class="py">person</span> <span class="p">=</span> <span class="nc">Person</span><span class="p">(</span>
+        <span class="n">id</span> <span class="p">=</span> <span class="mi">1L</span><span class="p">,</span>
+        <span class="n">name</span> <span class="p">=</span>  <span class="s">"name"</span><span class="p">,</span>
+        <span class="n">age</span> <span class="p">=</span>  <span class="mi">20</span><span class="p">,</span>
+        <span class="n">phoneNumber</span> <span class="p">=</span> <span class="s">"01012341234"</span><span class="p">,</span>
+        <span class="n">birth</span> <span class="p">=</span> <span class="nc">LocalDate</span><span class="p">.</span><span class="nf">of</span><span class="p">(</span><span class="mi">2003</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+    <span class="p">)</span>
+
+    <span class="c1">// when</span>
+    <span class="kd">val</span> <span class="py">personDTO</span> <span class="p">=</span> <span class="n">personMapper</span><span class="p">.</span><span class="nf">toPersonDTO</span><span class="p">(</span><span class="n">person</span><span class="p">)</span>
+
+    <span class="c1">// then</span>
+    <span class="nf">assertThat</span><span class="p">(</span><span class="n">person</span><span class="p">.</span><span class="n">id</span><span class="p">).</span><span class="nf">isEqualTo</span><span class="p">(</span><span class="n">personDTO</span><span class="p">.</span><span class="n">id</span><span class="p">)</span>
+    <span class="nf">assertThat</span><span class="p">(</span><span class="n">person</span><span class="p">.</span><span class="n">name</span><span class="p">).</span><span class="nf">isEqualTo</span><span class="p">(</span><span class="n">personDTO</span><span class="p">.</span><span class="n">name</span><span class="p">)</span>
+    <span class="nf">assertThat</span><span class="p">(</span><span class="n">person</span><span class="p">.</span><span class="n">age</span><span class="p">).</span><span class="nf">isEqualTo</span><span class="p">(</span><span class="n">personDTO</span><span class="p">.</span><span class="n">age</span><span class="p">)</span>
+    <span class="nf">assertThat</span><span class="p">(</span><span class="n">person</span><span class="p">.</span><span class="n">phoneNumber</span><span class="p">).</span><span class="nf">isEqualTo</span><span class="p">(</span><span class="n">personDTO</span><span class="p">.</span><span class="n">phoneNumber</span><span class="p">)</span>
+    <span class="nf">assertThat</span><span class="p">(</span><span class="n">person</span><span class="p">.</span><span class="n">birth</span><span class="p">).</span><span class="nf">isEqualTo</span><span class="p">(</span><span class="n">personDTO</span><span class="p">.</span><span class="n">birth</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><img src="/assets/images/mapstruct/mapstruct2.png" alt="mapstruct2" /></p>
+
+<p>위 방법은 MapStruct의 기본적인 기능이다.
+매핑시켜야할 Entity와 DTO가 많다면 Mapper를 만들고 함수도 계속 따로 만들어야 될까?</p>
+
+<p>이럴 때는 공통으로 사용할 인터페이스를 만들어 상속받으면 된다.</p>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cm">/**
+ * @param D is Dto type
+ * @param E is Entity type
+ */</span>
+<span class="kd">interface</span> <span class="nc">EntityMapper</span><span class="p">&lt;</span><span class="nc">D</span><span class="p">,</span> <span class="nc">E</span><span class="p">&gt;</span> <span class="p">{</span>
+
+    <span class="k">fun</span> <span class="nf">toEntity</span><span class="p">(</span><span class="n">dto</span><span class="p">:</span> <span class="nc">D</span><span class="p">):</span> <span class="nc">E</span>
+
+    <span class="k">fun</span> <span class="nf">toDto</span><span class="p">(</span><span class="n">entity</span><span class="p">:</span> <span class="nc">E</span><span class="p">):</span> <span class="nc">D</span>
+
+    <span class="k">fun</span> <span class="nf">toEntity</span><span class="p">(</span><span class="n">dtoList</span><span class="p">:</span> <span class="nc">MutableList</span><span class="p">&lt;</span><span class="nc">D</span><span class="p">&gt;):</span> <span class="nc">MutableList</span><span class="p">&lt;</span><span class="nc">E</span><span class="p">&gt;</span>
+
+    <span class="k">fun</span> <span class="nf">toDto</span><span class="p">(</span><span class="n">entityList</span><span class="p">:</span> <span class="nc">MutableList</span><span class="p">&lt;</span><span class="nc">E</span><span class="p">&gt;):</span> <span class="nc">MutableList</span><span class="p">&lt;</span><span class="nc">D</span><span class="p">&gt;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>EntityMapper 인터페이스를 만들고 Generic을 사용해 DTO와 Entity 타입을 지정한다.</p>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Component</span>
+<span class="nd">@Mapper</span><span class="p">(</span><span class="n">componentModel</span> <span class="p">=</span> <span class="s">"spring"</span><span class="p">)</span>
+<span class="kd">interface</span> <span class="nc">PersonMapper</span><span class="p">:</span> <span class="nc">EntityMapper</span><span class="p">&lt;</span><span class="nc">PersonDTO</span><span class="p">,</span> <span class="nc">Person</span><span class="p">&gt;</span>
+</code></pre></div></div>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Component</span>
+<span class="nd">@Mapper</span><span class="p">(</span><span class="n">componentModel</span> <span class="p">=</span> <span class="s">"spring"</span><span class="p">)</span>
+<span class="kd">interface</span> <span class="nc">CarMapper</span><span class="p">:</span> <span class="nc">EntityMapper</span><span class="p">&lt;</span><span class="nc">CarDTO</span><span class="p">,</span> <span class="nc">Car</span><span class="p">&gt;</span>
+</code></pre></div></div>
+
+<p>이렇게 사용하면 함수를 계속 안 만들어도 되고 굉장히 간결해졌다.</p>
+
+<p>컴파일을 해서 구현체도 확인해보자.</p>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Component</span>
+<span class="k">public</span> <span class="kd">class</span> <span class="nc">PersonMapperImpl</span> <span class="n">implements</span> <span class="nc">PersonMapper</span> <span class="p">{</span>
+
+    <span class="nd">@Override</span>
+    <span class="k">public</span> <span class="nc">Person</span> <span class="nf">toEntity</span><span class="p">(</span><span class="nc">PersonDTO</span> <span class="n">dto</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span> <span class="n">dto</span> <span class="p">==</span> <span class="k">null</span> <span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="k">null</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="nc">Person</span> <span class="n">person</span> <span class="p">=</span> <span class="n">new</span> <span class="nc">Person</span><span class="p">();</span>
+
+        <span class="n">person</span><span class="p">.</span><span class="nf">setId</span><span class="p">(</span> <span class="n">dto</span><span class="p">.</span><span class="nf">getId</span><span class="p">()</span> <span class="p">);</span>
+        <span class="n">person</span><span class="p">.</span><span class="nf">setName</span><span class="p">(</span> <span class="n">dto</span><span class="p">.</span><span class="nf">getName</span><span class="p">()</span> <span class="p">);</span>
+        <span class="n">person</span><span class="p">.</span><span class="nf">setAge</span><span class="p">(</span> <span class="n">dto</span><span class="p">.</span><span class="nf">getAge</span><span class="p">()</span> <span class="p">);</span>
+        <span class="n">person</span><span class="p">.</span><span class="nf">setPhoneNumber</span><span class="p">(</span> <span class="n">dto</span><span class="p">.</span><span class="nf">getPhoneNumber</span><span class="p">()</span> <span class="p">);</span>
+        <span class="n">person</span><span class="p">.</span><span class="nf">setBirth</span><span class="p">(</span> <span class="n">dto</span><span class="p">.</span><span class="nf">getBirth</span><span class="p">()</span> <span class="p">);</span>
+
+        <span class="k">return</span> <span class="n">person</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="k">public</span> <span class="nc">PersonDTO</span> <span class="nf">toDto</span><span class="p">(</span><span class="nc">Person</span> <span class="n">entity</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span> <span class="n">entity</span> <span class="p">==</span> <span class="k">null</span> <span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="k">null</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="nc">PersonDTO</span> <span class="n">personDTO</span> <span class="p">=</span> <span class="n">new</span> <span class="nc">PersonDTO</span><span class="p">();</span>
+
+        <span class="n">personDTO</span><span class="p">.</span><span class="nf">setId</span><span class="p">(</span> <span class="n">entity</span><span class="p">.</span><span class="nf">getId</span><span class="p">()</span> <span class="p">);</span>
+        <span class="n">personDTO</span><span class="p">.</span><span class="nf">setName</span><span class="p">(</span> <span class="n">entity</span><span class="p">.</span><span class="nf">getName</span><span class="p">()</span> <span class="p">);</span>
+        <span class="n">personDTO</span><span class="p">.</span><span class="nf">setAge</span><span class="p">(</span> <span class="n">entity</span><span class="p">.</span><span class="nf">getAge</span><span class="p">()</span> <span class="p">);</span>
+        <span class="n">personDTO</span><span class="p">.</span><span class="nf">setPhoneNumber</span><span class="p">(</span> <span class="n">entity</span><span class="p">.</span><span class="nf">getPhoneNumber</span><span class="p">()</span> <span class="p">);</span>
+        <span class="n">personDTO</span><span class="p">.</span><span class="nf">setBirth</span><span class="p">(</span> <span class="n">entity</span><span class="p">.</span><span class="nf">getBirth</span><span class="p">()</span> <span class="p">);</span>
+
+        <span class="k">return</span> <span class="n">personDTO</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="k">public</span> <span class="nc">List</span><span class="p">&lt;</span><span class="nc">Person</span><span class="p">&gt;</span> <span class="nf">toEntity</span><span class="p">(</span><span class="nc">List</span><span class="p">&lt;</span><span class="nc">PersonDTO</span><span class="p">&gt;</span> <span class="n">dtoList</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span> <span class="n">dtoList</span> <span class="p">==</span> <span class="k">null</span> <span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="k">null</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="nc">List</span><span class="p">&lt;</span><span class="nc">Person</span><span class="p">&gt;</span> <span class="n">list</span> <span class="p">=</span> <span class="n">new</span> <span class="nc">ArrayList</span><span class="p">&lt;</span><span class="nc">Person</span><span class="p">&gt;(</span> <span class="n">dtoList</span><span class="p">.</span><span class="nf">size</span><span class="p">()</span> <span class="p">);</span>
+        <span class="k">for</span> <span class="p">(</span> <span class="nc">PersonDTO</span> <span class="n">personDTO</span> <span class="p">:</span> <span class="n">dtoList</span> <span class="p">)</span> <span class="p">{</span>
+            <span class="n">list</span><span class="p">.</span><span class="nf">add</span><span class="p">(</span> <span class="nf">toEntity</span><span class="p">(</span> <span class="n">personDTO</span> <span class="p">)</span> <span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="k">return</span> <span class="n">list</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="k">public</span> <span class="nc">List</span><span class="p">&lt;</span><span class="nc">PersonDTO</span><span class="p">&gt;</span> <span class="nf">toDto</span><span class="p">(</span><span class="nc">List</span><span class="p">&lt;</span><span class="nc">Person</span><span class="p">&gt;</span> <span class="n">entityList</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span> <span class="n">entityList</span> <span class="p">==</span> <span class="k">null</span> <span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="k">null</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="nc">List</span><span class="p">&lt;</span><span class="nc">PersonDTO</span><span class="p">&gt;</span> <span class="n">list</span> <span class="p">=</span> <span class="n">new</span> <span class="nc">ArrayList</span><span class="p">&lt;</span><span class="nc">PersonDTO</span><span class="p">&gt;(</span> <span class="n">entityList</span><span class="p">.</span><span class="nf">size</span><span class="p">()</span> <span class="p">);</span>
+        <span class="k">for</span> <span class="p">(</span> <span class="nc">Person</span> <span class="n">person</span> <span class="p">:</span> <span class="n">entityList</span> <span class="p">)</span> <span class="p">{</span>
+            <span class="n">list</span><span class="p">.</span><span class="nf">add</span><span class="p">(</span> <span class="nf">toDto</span><span class="p">(</span> <span class="n">person</span> <span class="p">)</span> <span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="k">return</span> <span class="n">list</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Component</span>
+<span class="k">public</span> <span class="kd">class</span> <span class="nc">CarMapperImpl</span> <span class="n">implements</span> <span class="nc">CarMapper</span> <span class="p">{</span>
+
+    <span class="nd">@Override</span>
+    <span class="k">public</span> <span class="nc">Car</span> <span class="nf">toEntity</span><span class="p">(</span><span class="nc">CarDTO</span> <span class="n">dto</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span> <span class="n">dto</span> <span class="p">==</span> <span class="k">null</span> <span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="k">null</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="nc">Car</span> <span class="n">car</span> <span class="p">=</span> <span class="n">new</span> <span class="nc">Car</span><span class="p">();</span>
+
+        <span class="n">car</span><span class="p">.</span><span class="nf">setId</span><span class="p">(</span> <span class="n">dto</span><span class="p">.</span><span class="nf">getId</span><span class="p">()</span> <span class="p">);</span>
+        <span class="n">car</span><span class="p">.</span><span class="nf">setName</span><span class="p">(</span> <span class="n">dto</span><span class="p">.</span><span class="nf">getName</span><span class="p">()</span> <span class="p">);</span>
+        <span class="n">car</span><span class="p">.</span><span class="nf">setColor</span><span class="p">(</span> <span class="n">dto</span><span class="p">.</span><span class="nf">getColor</span><span class="p">()</span> <span class="p">);</span>
+
+        <span class="k">return</span> <span class="n">car</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="k">public</span> <span class="nc">CarDTO</span> <span class="nf">toDto</span><span class="p">(</span><span class="nc">Car</span> <span class="n">entity</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span> <span class="n">entity</span> <span class="p">==</span> <span class="k">null</span> <span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="k">null</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="nc">CarDTO</span> <span class="n">carDTO</span> <span class="p">=</span> <span class="n">new</span> <span class="nc">CarDTO</span><span class="p">();</span>
+
+        <span class="n">carDTO</span><span class="p">.</span><span class="nf">setId</span><span class="p">(</span> <span class="n">entity</span><span class="p">.</span><span class="nf">getId</span><span class="p">()</span> <span class="p">);</span>
+        <span class="n">carDTO</span><span class="p">.</span><span class="nf">setName</span><span class="p">(</span> <span class="n">entity</span><span class="p">.</span><span class="nf">getName</span><span class="p">()</span> <span class="p">);</span>
+        <span class="n">carDTO</span><span class="p">.</span><span class="nf">setColor</span><span class="p">(</span> <span class="n">entity</span><span class="p">.</span><span class="nf">getColor</span><span class="p">()</span> <span class="p">);</span>
+
+        <span class="k">return</span> <span class="n">carDTO</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="k">public</span> <span class="nc">List</span><span class="p">&lt;</span><span class="nc">Car</span><span class="p">&gt;</span> <span class="nf">toEntity</span><span class="p">(</span><span class="nc">List</span><span class="p">&lt;</span><span class="nc">CarDTO</span><span class="p">&gt;</span> <span class="n">dtoList</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span> <span class="n">dtoList</span> <span class="p">==</span> <span class="k">null</span> <span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="k">null</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="nc">List</span><span class="p">&lt;</span><span class="nc">Car</span><span class="p">&gt;</span> <span class="n">list</span> <span class="p">=</span> <span class="n">new</span> <span class="nc">ArrayList</span><span class="p">&lt;</span><span class="nc">Car</span><span class="p">&gt;(</span> <span class="n">dtoList</span><span class="p">.</span><span class="nf">size</span><span class="p">()</span> <span class="p">);</span>
+        <span class="k">for</span> <span class="p">(</span> <span class="nc">CarDTO</span> <span class="n">carDTO</span> <span class="p">:</span> <span class="n">dtoList</span> <span class="p">)</span> <span class="p">{</span>
+            <span class="n">list</span><span class="p">.</span><span class="nf">add</span><span class="p">(</span> <span class="nf">toEntity</span><span class="p">(</span> <span class="n">carDTO</span> <span class="p">)</span> <span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="k">return</span> <span class="n">list</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="k">public</span> <span class="nc">List</span><span class="p">&lt;</span><span class="nc">CarDTO</span><span class="p">&gt;</span> <span class="nf">toDto</span><span class="p">(</span><span class="nc">List</span><span class="p">&lt;</span><span class="nc">Car</span><span class="p">&gt;</span> <span class="n">entityList</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span> <span class="n">entityList</span> <span class="p">==</span> <span class="k">null</span> <span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="k">null</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="nc">List</span><span class="p">&lt;</span><span class="nc">CarDTO</span><span class="p">&gt;</span> <span class="n">list</span> <span class="p">=</span> <span class="n">new</span> <span class="nc">ArrayList</span><span class="p">&lt;</span><span class="nc">CarDTO</span><span class="p">&gt;(</span> <span class="n">entityList</span><span class="p">.</span><span class="nf">size</span><span class="p">()</span> <span class="p">);</span>
+        <span class="k">for</span> <span class="p">(</span> <span class="nc">Car</span> <span class="n">car</span> <span class="p">:</span> <span class="n">entityList</span> <span class="p">)</span> <span class="p">{</span>
+            <span class="n">list</span><span class="p">.</span><span class="nf">add</span><span class="p">(</span> <span class="nf">toDto</span><span class="p">(</span> <span class="n">car</span> <span class="p">)</span> <span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="k">return</span> <span class="n">list</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>아주 잘 생성이 됐다!</p>
+
+<hr />
+
+<p>위에서 설명한 예제들은 Entity와 DTO의 필드명과 타입이 다 같았다. 예외적인 상황에서는 어떻게 할까?</p>
+
+<h3 id="서로-필드명이-다를-때">서로 필드명이 다를 때</h3>
+<p>Person Entity의 phoneNumber 필드가 Person DTO에서는 call 필드로 받고 싶다. 그러면 아래처럼 <code class="language-plaintext highlighter-rouge">source</code>와 <code class="language-plaintext highlighter-rouge">target</code>을 <code class="language-plaintext highlighter-rouge">@Maaping</code> 어노테이션에 명시해주면 된다.</p>
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Mapping</span><span class="p">(</span><span class="n">source</span> <span class="p">=</span> <span class="s">"call"</span><span class="p">,</span> <span class="n">target</span> <span class="p">=</span> <span class="s">"phoneNumber"</span><span class="p">)</span>
+<span class="k">fun</span> <span class="nf">toPerson</span><span class="p">(</span><span class="n">dto</span><span class="p">:</span> <span class="nc">PersonDTO</span><span class="p">):</span> <span class="nc">Person</span>
+
+<span class="nd">@Mapping</span><span class="p">(</span><span class="n">source</span> <span class="p">=</span> <span class="s">"phoneNumber"</span><span class="p">,</span> <span class="n">target</span> <span class="p">=</span> <span class="s">"call"</span><span class="p">)</span>
+<span class="k">fun</span> <span class="nf">toPersonDTO</span><span class="p">(</span><span class="n">entity</span><span class="p">:</span> <span class="nc">Person</span><span class="p">):</span> <span class="nc">PersonDTO</span>
+</code></pre></div></div>
+<p>A를 B로 변환시켜야 한다고 했을 때 A의 필드는 <code class="language-plaintext highlighter-rouge">source</code>가 되고 B의 필드는 <code class="language-plaintext highlighter-rouge">target</code>이 된다.</p>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Override</span>
+<span class="k">public</span> <span class="nc">Person</span> <span class="nf">toPerson</span><span class="p">(</span><span class="nc">PersonDTO</span> <span class="n">dto</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span> <span class="n">dto</span> <span class="p">==</span> <span class="k">null</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="k">null</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="nc">Person</span> <span class="n">person</span> <span class="p">=</span> <span class="n">new</span> <span class="nc">Person</span><span class="p">();</span>
+
+    <span class="n">person</span><span class="p">.</span><span class="nf">setPhoneNumber</span><span class="p">(</span> <span class="n">dto</span><span class="p">.</span><span class="nf">getCall</span><span class="p">()</span> <span class="p">);</span>
+    <span class="n">person</span><span class="p">.</span><span class="nf">setId</span><span class="p">(</span> <span class="n">dto</span><span class="p">.</span><span class="nf">getId</span><span class="p">()</span> <span class="p">);</span>
+    <span class="n">person</span><span class="p">.</span><span class="nf">setName</span><span class="p">(</span> <span class="n">dto</span><span class="p">.</span><span class="nf">getName</span><span class="p">()</span> <span class="p">);</span>
+    <span class="n">person</span><span class="p">.</span><span class="nf">setAge</span><span class="p">(</span> <span class="n">dto</span><span class="p">.</span><span class="nf">getAge</span><span class="p">()</span> <span class="p">);</span>
+    <span class="n">person</span><span class="p">.</span><span class="nf">setBirth</span><span class="p">(</span> <span class="n">dto</span><span class="p">.</span><span class="nf">getBirth</span><span class="p">()</span> <span class="p">);</span>
+
+    <span class="k">return</span> <span class="n">person</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nd">@Override</span>
+<span class="k">public</span> <span class="nc">PersonDTO</span> <span class="nf">toPersonDTO</span><span class="p">(</span><span class="nc">Person</span> <span class="n">entity</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span> <span class="n">entity</span> <span class="p">==</span> <span class="k">null</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="k">null</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="nc">PersonDTO</span> <span class="n">personDTO</span> <span class="p">=</span> <span class="n">new</span> <span class="nc">PersonDTO</span><span class="p">();</span>
+
+    <span class="n">personDTO</span><span class="p">.</span><span class="nf">setCall</span><span class="p">(</span> <span class="n">entity</span><span class="p">.</span><span class="nf">getPhoneNumber</span><span class="p">()</span> <span class="p">);</span>
+    <span class="n">personDTO</span><span class="p">.</span><span class="nf">setId</span><span class="p">(</span> <span class="n">entity</span><span class="p">.</span><span class="nf">getId</span><span class="p">()</span> <span class="p">);</span>
+    <span class="n">personDTO</span><span class="p">.</span><span class="nf">setName</span><span class="p">(</span> <span class="n">entity</span><span class="p">.</span><span class="nf">getName</span><span class="p">()</span> <span class="p">);</span>
+    <span class="n">personDTO</span><span class="p">.</span><span class="nf">setAge</span><span class="p">(</span> <span class="n">entity</span><span class="p">.</span><span class="nf">getAge</span><span class="p">()</span> <span class="p">);</span>
+    <span class="n">personDTO</span><span class="p">.</span><span class="nf">setBirth</span><span class="p">(</span> <span class="n">entity</span><span class="p">.</span><span class="nf">getBirth</span><span class="p">()</span> <span class="p">);</span>
+
+    <span class="k">return</span> <span class="n">personDTO</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>구현체 코드를 보면 잘 매핑이 되는 것을 확인할 수 있다.</p>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// then</span>
+<span class="nf">assertThat</span><span class="p">(</span><span class="n">person</span><span class="p">.</span><span class="n">phoneNumber</span><span class="p">).</span><span class="nf">isEqualTo</span><span class="p">(</span><span class="n">personDTO</span><span class="p">.</span><span class="n">call</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>아까 테스트 코드에서 phoneNumber 부분만 수정해서 테스트 해보면 성공이 뜬다.</p>
+
+<h3 id="매핑하려는-필드끼리-타입이-다를-때">매핑하려는 필드끼리 타입이 다를 때</h3>
+<p><code class="language-plaintext highlighter-rouge">Person</code>은 <code class="language-plaintext highlighter-rouge">job</code> 필드의 타입이 <code class="language-plaintext highlighter-rouge">String(json)</code>이고, <code class="language-plaintext highlighter-rouge">PersonDTO</code>는 <code class="language-plaintext highlighter-rouge">job</code> 필드의 타입이 <code class="language-plaintext highlighter-rouge">JobDTO</code>일 때 어떻게 해야 할까?</p>
+
+<h3 id="jobdto">JobDTO</h3>
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">data class</span> <span class="nc">JobDTO</span><span class="p">(</span>
+
+    <span class="kd">var</span> <span class="py">type</span><span class="p">:</span> <span class="nc">String</span><span class="p">?</span> <span class="p">=</span> <span class="k">null</span><span class="p">,</span>
+
+    <span class="kd">var</span> <span class="py">location</span><span class="p">:</span> <span class="nc">String</span><span class="p">?</span> <span class="p">=</span> <span class="k">null</span><span class="p">,</span>
+
+    <span class="kd">var</span> <span class="py">year</span><span class="p">:</span> <span class="nc">Int</span><span class="p">?</span> <span class="p">=</span> <span class="k">null</span>
+<span class="p">)</span>
+</code></pre></div></div>
+
+<h3 id="person에-추가-된-job-필드">Person에 추가 된 job 필드</h3>
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Entity</span>
+<span class="kd">class</span> <span class="nc">Person</span> <span class="p">(</span>
+
+    <span class="nd">@Id</span>
+    <span class="nd">@Column</span><span class="p">(</span><span class="n">name</span> <span class="p">=</span> <span class="s">"person_id"</span><span class="p">)</span>
+    <span class="kd">var</span> <span class="py">id</span><span class="p">:</span> <span class="nc">Long</span><span class="p">?</span> <span class="p">=</span> <span class="k">null</span><span class="p">,</span>
+
+    <span class="nd">@Column</span><span class="p">(</span><span class="n">name</span> <span class="p">=</span> <span class="s">"name"</span><span class="p">)</span>
+    <span class="kd">var</span> <span class="py">name</span><span class="p">:</span> <span class="nc">String</span><span class="p">?</span> <span class="p">=</span> <span class="k">null</span><span class="p">,</span>
+
+    <span class="nd">@Column</span><span class="p">(</span><span class="n">name</span> <span class="p">=</span> <span class="s">"age"</span><span class="p">)</span>
+    <span class="kd">var</span> <span class="py">age</span><span class="p">:</span> <span class="nc">Int</span><span class="p">?</span> <span class="p">=</span> <span class="k">null</span><span class="p">,</span>
+
+    <span class="nd">@Column</span><span class="p">(</span><span class="n">name</span> <span class="p">=</span> <span class="s">"phone_number"</span><span class="p">)</span>
+    <span class="kd">var</span> <span class="py">phoneNumber</span><span class="p">:</span> <span class="nc">String</span><span class="p">?</span> <span class="p">=</span> <span class="k">null</span><span class="p">,</span>
+
+    <span class="nd">@Column</span><span class="p">(</span><span class="n">name</span> <span class="p">=</span> <span class="s">"birth"</span><span class="p">)</span>
+    <span class="kd">var</span> <span class="py">birth</span><span class="p">:</span> <span class="nc">LocalDate</span><span class="p">?</span> <span class="p">=</span> <span class="k">null</span><span class="p">,</span>
+
+    <span class="nd">@Column</span><span class="p">(</span><span class="n">name</span> <span class="p">=</span> <span class="s">"job"</span><span class="p">)</span>
+    <span class="kd">var</span> <span class="py">job</span><span class="p">:</span> <span class="nc">String</span><span class="p">?</span> <span class="p">=</span> <span class="k">null</span>
+<span class="p">)</span>
+</code></pre></div></div>
+
+<h3 id="persondto에-추가-된-job-필드">PersonDTO에 추가 된 job 필드</h3>
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">data class</span> <span class="nc">PersonDTO</span><span class="p">(</span>
+
+    <span class="kd">var</span> <span class="py">id</span><span class="p">:</span> <span class="nc">Long</span><span class="p">?</span> <span class="p">=</span> <span class="k">null</span><span class="p">,</span>
+
+    <span class="kd">var</span> <span class="py">name</span><span class="p">:</span> <span class="nc">String</span><span class="p">?</span> <span class="p">=</span> <span class="k">null</span><span class="p">,</span>
+
+    <span class="kd">var</span> <span class="py">age</span><span class="p">:</span> <span class="nc">Int</span><span class="p">?</span> <span class="p">=</span> <span class="k">null</span><span class="p">,</span>
+
+    <span class="kd">var</span> <span class="py">phoneNumber</span><span class="p">:</span> <span class="nc">String</span><span class="p">?</span> <span class="p">=</span> <span class="k">null</span><span class="p">,</span>
+
+    <span class="kd">var</span> <span class="py">birth</span><span class="p">:</span> <span class="nc">LocalDate</span><span class="p">?</span> <span class="p">=</span> <span class="k">null</span><span class="p">,</span>
+
+    <span class="kd">var</span> <span class="py">job</span><span class="p">:</span> <span class="nc">JobDTO</span><span class="p">?</span> <span class="p">=</span> <span class="k">null</span>
+<span class="p">)</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">PersonMapper</code>를 수정해야 할 부분이 있다.
+MapStruct가 자동으로 생성해주는 구현체는 따로 명시하지 않는 이상 같은 필드명, 같은 필드 타입으로 매핑한다. 구현체의 setter 부분에 우리가 커스텀한 함수를 사용해 타입을 변환해야 한다.</p>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Component</span>
+<span class="nd">@Mapper</span><span class="p">(</span><span class="n">componentModel</span> <span class="p">=</span> <span class="s">"spring"</span><span class="p">)</span>
+<span class="kd">interface</span> <span class="nc">PersonMapper</span><span class="p">:</span> <span class="nc">EntityMapper</span><span class="p">&lt;</span><span class="nc">PersonDTO</span><span class="p">,</span> <span class="nc">Person</span><span class="p">&gt;</span> <span class="p">{</span>
+
+    <span class="nd">@Mapping</span><span class="p">(</span><span class="n">source</span> <span class="p">=</span> <span class="s">"job"</span><span class="p">,</span> <span class="n">target</span> <span class="p">=</span> <span class="s">"job"</span><span class="p">,</span> <span class="n">qualifiedByName</span> <span class="p">=</span> <span class="p">[</span><span class="s">"jobDtoToJson"</span><span class="p">])</span>
+    <span class="k">override</span> <span class="k">fun</span> <span class="nf">toEntity</span><span class="p">(</span><span class="n">dto</span><span class="p">:</span> <span class="nc">PersonDTO</span><span class="p">):</span> <span class="nc">Person</span>
+
+    <span class="nd">@Mapping</span><span class="p">(</span><span class="n">source</span> <span class="p">=</span> <span class="s">"job"</span><span class="p">,</span> <span class="n">target</span> <span class="p">=</span> <span class="s">"job"</span><span class="p">,</span> <span class="n">qualifiedByName</span> <span class="p">=</span> <span class="p">[</span><span class="s">"jsonToJobDto"</span><span class="p">])</span>
+    <span class="k">override</span> <span class="k">fun</span> <span class="nf">toDto</span><span class="p">(</span><span class="n">entity</span><span class="p">:</span> <span class="nc">Person</span><span class="p">):</span> <span class="nc">PersonDTO</span>
+
+    <span class="nd">@Mapping</span><span class="p">(</span><span class="n">source</span> <span class="p">=</span> <span class="s">"job"</span><span class="p">,</span> <span class="n">target</span> <span class="p">=</span> <span class="s">"job"</span><span class="p">,</span> <span class="n">qualifiedByName</span> <span class="p">=</span> <span class="p">[</span><span class="s">"jobDtoToJson"</span><span class="p">])</span>
+    <span class="k">override</span> <span class="k">fun</span> <span class="nf">toEntity</span><span class="p">(</span><span class="n">dtoList</span><span class="p">:</span> <span class="nc">MutableList</span><span class="p">&lt;</span><span class="nc">PersonDTO</span><span class="p">&gt;):</span> <span class="nc">MutableList</span><span class="p">&lt;</span><span class="nc">Person</span><span class="p">&gt;</span>
+
+    <span class="nd">@Mapping</span><span class="p">(</span><span class="n">source</span> <span class="p">=</span> <span class="s">"job"</span><span class="p">,</span> <span class="n">target</span> <span class="p">=</span> <span class="s">"job"</span><span class="p">,</span> <span class="n">qualifiedByName</span> <span class="p">=</span> <span class="p">[</span><span class="s">"jsonToJobDto"</span><span class="p">])</span>
+    <span class="k">override</span> <span class="k">fun</span> <span class="nf">toDto</span><span class="p">(</span><span class="n">entityList</span><span class="p">:</span> <span class="nc">MutableList</span><span class="p">&lt;</span><span class="nc">Person</span><span class="p">&gt;):</span> <span class="nc">MutableList</span><span class="p">&lt;</span><span class="nc">PersonDTO</span><span class="p">&gt;</span>
+
+    <span class="k">companion</span> <span class="k">object</span> <span class="p">{</span>
+        <span class="nd">@Named</span><span class="p">(</span><span class="s">"jsonToJobDto"</span><span class="p">)</span>
+        <span class="nd">@JvmStatic</span>
+        <span class="k">fun</span> <span class="nf">jsonToJobDto</span><span class="p">(</span><span class="n">json</span><span class="p">:</span> <span class="nc">String</span><span class="p">?):</span> <span class="nc">JobDTO</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="n">json</span><span class="o">?.</span><span class="nf">let</span> <span class="p">{</span> <span class="nc">ObjectMapper</span><span class="p">().</span><span class="nf">readValue</span><span class="p">(</span><span class="n">it</span><span class="p">,</span> <span class="nc">JobDTO</span><span class="o">::</span><span class="k">class</span><span class="p">.</span><span class="n">java</span><span class="p">)</span> <span class="p">}</span> <span class="o">?:</span> <span class="nc">JobDTO</span><span class="p">()</span>
+        <span class="p">}</span>
+
+        <span class="nd">@Named</span><span class="p">(</span><span class="s">"jobDtoToJson"</span><span class="p">)</span>
+        <span class="nd">@JvmStatic</span>
+        <span class="k">fun</span> <span class="nf">jobDtoToJson</span><span class="p">(</span><span class="n">jobDTO</span><span class="p">:</span> <span class="nc">JobDTO</span><span class="p">?):</span> <span class="nc">String</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="n">jobDTO</span><span class="o">?.</span><span class="nf">let</span> <span class="p">{</span> <span class="nc">ObjectMapper</span><span class="p">().</span><span class="nf">writeValueAsString</span><span class="p">(</span><span class="n">it</span><span class="p">)</span> <span class="p">}</span> <span class="o">?:</span> <span class="s">""</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<p><code class="language-plaintext highlighter-rouge">EntityMapper&lt;DTO, Entity&gt;</code> 인터페이스를 상속 받았지만 이는 기본적인 <code class="language-plaintext highlighter-rouge">toDto()</code>, <code class="language-plaintext highlighter-rouge">toEntity()</code> 함수를 제공하므로 <code class="language-plaintext highlighter-rouge">job</code> 필드처럼 예외 케이스가 있는 경우에는 <code class="language-plaintext highlighter-rouge">toDto()</code>, <code class="language-plaintext highlighter-rouge">toEntity()</code> 함수를 <code class="language-plaintext highlighter-rouge">override</code> 해서 오버라이딩 한 함수에 대해 구현체를 만들게 한다.
+추가로 <code class="language-plaintext highlighter-rouge">@Named</code> 어노테이션과 <code class="language-plaintext highlighter-rouge">@Mapping</code> 어노테이션의 <code class="language-plaintext highlighter-rouge">qualifiedByName</code> 옵션을 사용한다.</p>
+
+<p><code class="language-plaintext highlighter-rouge">@Mapping</code>의 <code class="language-plaintext highlighter-rouge">source</code>와 <code class="language-plaintext highlighter-rouge">target</code>에 명시한 서로 매핑시킬 필드는 <code class="language-plaintext highlighter-rouge">@Named</code>로 지정한 함수를 통해 매핑시킨다. 이때 <code class="language-plaintext highlighter-rouge">@Named</code>에 쓰인 이름을 <code class="language-plaintext highlighter-rouge">@Mapping</code>의 <code class="language-plaintext highlighter-rouge">qualifiedByName</code> 옵션에 명시하면 된다.</p>
+
+<p>그리고 <code class="language-plaintext highlighter-rouge">@Named</code>로 지정한 함수는 <code class="language-plaintext highlighter-rouge">static</code>으로 선언해야 한다. 그렇지 않으면 MapStruct가 해당 함수도 구현체에 구현하려고 해서 컴파일 에러가 발생할 수도 있다. 컴파일 에러가 발생하지 않는다고 해도, 정상적으로 구현체가 생성되지 않을 것이다.</p>
+
+<p>아래 코드는 자동 생성 된 구현체다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Component</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">PersonMapperImpl</span> <span class="kd">implements</span> <span class="nc">PersonMapper</span> <span class="o">{</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="nc">Person</span> <span class="nf">toEntity</span><span class="o">(</span><span class="nc">PersonDTO</span> <span class="n">dto</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span> <span class="n">dto</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">)</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
+        <span class="o">}</span>
+
+        <span class="nc">Person</span> <span class="n">person</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Person</span><span class="o">();</span>
+
+        <span class="n">person</span><span class="o">.</span><span class="na">setJob</span><span class="o">(</span> <span class="nc">PersonMapper</span><span class="o">.</span><span class="na">jobDtoToJson</span><span class="o">(</span> <span class="n">dto</span><span class="o">.</span><span class="na">getJob</span><span class="o">()</span> <span class="o">)</span> <span class="o">);</span>
+        <span class="n">person</span><span class="o">.</span><span class="na">setId</span><span class="o">(</span> <span class="n">dto</span><span class="o">.</span><span class="na">getId</span><span class="o">()</span> <span class="o">);</span>
+        <span class="n">person</span><span class="o">.</span><span class="na">setName</span><span class="o">(</span> <span class="n">dto</span><span class="o">.</span><span class="na">getName</span><span class="o">()</span> <span class="o">);</span>
+        <span class="n">person</span><span class="o">.</span><span class="na">setAge</span><span class="o">(</span> <span class="n">dto</span><span class="o">.</span><span class="na">getAge</span><span class="o">()</span> <span class="o">);</span>
+        <span class="n">person</span><span class="o">.</span><span class="na">setPhoneNumber</span><span class="o">(</span> <span class="n">dto</span><span class="o">.</span><span class="na">getPhoneNumber</span><span class="o">()</span> <span class="o">);</span>
+        <span class="n">person</span><span class="o">.</span><span class="na">setBirth</span><span class="o">(</span> <span class="n">dto</span><span class="o">.</span><span class="na">getBirth</span><span class="o">()</span> <span class="o">);</span>
+
+        <span class="k">return</span> <span class="n">person</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="nc">PersonDTO</span> <span class="nf">toDto</span><span class="o">(</span><span class="nc">Person</span> <span class="n">entity</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span> <span class="n">entity</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">)</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
+        <span class="o">}</span>
+
+        <span class="nc">PersonDTO</span> <span class="n">personDTO</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">PersonDTO</span><span class="o">();</span>
+
+        <span class="n">personDTO</span><span class="o">.</span><span class="na">setJob</span><span class="o">(</span> <span class="nc">PersonMapper</span><span class="o">.</span><span class="na">jsonToJobDto</span><span class="o">(</span> <span class="n">entity</span><span class="o">.</span><span class="na">getJob</span><span class="o">()</span> <span class="o">)</span> <span class="o">);</span>
+        <span class="n">personDTO</span><span class="o">.</span><span class="na">setId</span><span class="o">(</span> <span class="n">entity</span><span class="o">.</span><span class="na">getId</span><span class="o">()</span> <span class="o">);</span>
+        <span class="n">personDTO</span><span class="o">.</span><span class="na">setName</span><span class="o">(</span> <span class="n">entity</span><span class="o">.</span><span class="na">getName</span><span class="o">()</span> <span class="o">);</span>
+        <span class="n">personDTO</span><span class="o">.</span><span class="na">setAge</span><span class="o">(</span> <span class="n">entity</span><span class="o">.</span><span class="na">getAge</span><span class="o">()</span> <span class="o">);</span>
+        <span class="n">personDTO</span><span class="o">.</span><span class="na">setPhoneNumber</span><span class="o">(</span> <span class="n">entity</span><span class="o">.</span><span class="na">getPhoneNumber</span><span class="o">()</span> <span class="o">);</span>
+        <span class="n">personDTO</span><span class="o">.</span><span class="na">setBirth</span><span class="o">(</span> <span class="n">entity</span><span class="o">.</span><span class="na">getBirth</span><span class="o">()</span> <span class="o">);</span>
+
+        <span class="k">return</span> <span class="n">personDTO</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Person</span><span class="o">&gt;</span> <span class="nf">toEntity</span><span class="o">(</span><span class="nc">List</span><span class="o">&lt;</span><span class="nc">PersonDTO</span><span class="o">&gt;</span> <span class="n">dtoList</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span> <span class="n">dtoList</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">)</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
+        <span class="o">}</span>
+
+        <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Person</span><span class="o">&gt;</span> <span class="n">list</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;</span><span class="nc">Person</span><span class="o">&gt;(</span> <span class="n">dtoList</span><span class="o">.</span><span class="na">size</span><span class="o">()</span> <span class="o">);</span>
+        <span class="k">for</span> <span class="o">(</span> <span class="nc">PersonDTO</span> <span class="n">personDTO</span> <span class="o">:</span> <span class="n">dtoList</span> <span class="o">)</span> <span class="o">{</span>
+            <span class="n">list</span><span class="o">.</span><span class="na">add</span><span class="o">(</span> <span class="n">toEntity</span><span class="o">(</span> <span class="n">personDTO</span> <span class="o">)</span> <span class="o">);</span>
+        <span class="o">}</span>
+
+        <span class="k">return</span> <span class="n">list</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">PersonDTO</span><span class="o">&gt;</span> <span class="nf">toDto</span><span class="o">(</span><span class="nc">List</span><span class="o">&lt;</span><span class="nc">Person</span><span class="o">&gt;</span> <span class="n">entityList</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span> <span class="n">entityList</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">)</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
+        <span class="o">}</span>
+
+        <span class="nc">List</span><span class="o">&lt;</span><span class="nc">PersonDTO</span><span class="o">&gt;</span> <span class="n">list</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;</span><span class="nc">PersonDTO</span><span class="o">&gt;(</span> <span class="n">entityList</span><span class="o">.</span><span class="na">size</span><span class="o">()</span> <span class="o">);</span>
+        <span class="k">for</span> <span class="o">(</span> <span class="nc">Person</span> <span class="n">person</span> <span class="o">:</span> <span class="n">entityList</span> <span class="o">)</span> <span class="o">{</span>
+            <span class="n">list</span><span class="o">.</span><span class="na">add</span><span class="o">(</span> <span class="n">toDto</span><span class="o">(</span> <span class="n">person</span> <span class="o">)</span> <span class="o">);</span>
+        <span class="o">}</span>
+
+        <span class="k">return</span> <span class="n">list</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>구현체 코드에서</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">person</span><span class="o">.</span><span class="na">setJob</span><span class="o">(</span> <span class="nc">PersonMapper</span><span class="o">.</span><span class="na">jobDtoToJson</span><span class="o">(</span> <span class="n">dto</span><span class="o">.</span><span class="na">getJob</span><span class="o">()</span> <span class="o">)</span> <span class="o">);</span>
+</code></pre></div></div>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">personDTO</span><span class="o">.</span><span class="na">setJob</span><span class="o">(</span> <span class="nc">PersonMapper</span><span class="o">.</span><span class="na">jsonToJobDto</span><span class="o">(</span> <span class="n">entity</span><span class="o">.</span><span class="na">getJob</span><span class="o">()</span> <span class="o">)</span> <span class="o">);</span>
+</code></pre></div></div>
+
+<p>이 부분들을 보면 우리가 커스텀한 함수를 사용해 매핑하는 것을 확인할 수 있다.</p>
+
+<p>테스트까지 해보면</p>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Test</span>
+<span class="k">fun</span> <span class="nf">test2</span><span class="p">()</span> <span class="p">{</span>
+
+    <span class="c1">// given</span>
+    <span class="kd">val</span> <span class="py">person</span> <span class="p">=</span> <span class="nc">Person</span><span class="p">(</span>
+        <span class="n">job</span> <span class="p">=</span> <span class="s">"{\"type\":\"developer\",\"location\":\"Seoul\",\"year\":1}"</span>
+    <span class="p">)</span>
+    <span class="kd">val</span> <span class="py">jobDto</span> <span class="p">=</span> <span class="nc">JobDTO</span><span class="p">(</span><span class="n">type</span> <span class="p">=</span> <span class="s">"developer"</span><span class="p">,</span> <span class="n">location</span> <span class="p">=</span> <span class="s">"Seoul"</span><span class="p">,</span> <span class="n">year</span> <span class="p">=</span> <span class="mi">1</span><span class="p">)</span>
+
+    <span class="c1">// when</span>
+    <span class="kd">val</span> <span class="py">personDTO</span> <span class="p">=</span> <span class="n">personMapper</span><span class="p">.</span><span class="nf">toDto</span><span class="p">(</span><span class="n">person</span><span class="p">)</span>
+
+    <span class="c1">// then</span>
+    <span class="nf">assertThat</span><span class="p">(</span><span class="n">personDTO</span><span class="p">.</span><span class="n">job</span><span class="p">).</span><span class="nf">isEqualTo</span><span class="p">(</span><span class="n">jobDto</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Test</span>
+<span class="k">fun</span> <span class="nf">test3</span><span class="p">()</span> <span class="p">{</span>
+
+    <span class="c1">// given</span>
+    <span class="kd">val</span> <span class="py">personDto</span> <span class="p">=</span> <span class="nc">PersonDTO</span><span class="p">(</span>
+        <span class="n">job</span> <span class="p">=</span> <span class="nc">JobDTO</span><span class="p">(</span><span class="n">type</span> <span class="p">=</span> <span class="s">"developer"</span><span class="p">,</span> <span class="n">location</span> <span class="p">=</span> <span class="s">"Seoul"</span><span class="p">,</span> <span class="n">year</span> <span class="p">=</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="p">)</span>
+    <span class="kd">val</span> <span class="py">jobJson</span> <span class="p">=</span> <span class="s">"{\"type\":\"developer\",\"location\":\"Seoul\",\"year\":1}"</span>
+
+    <span class="c1">// when</span>
+    <span class="kd">val</span> <span class="py">person</span> <span class="p">=</span> <span class="n">personMapper</span><span class="p">.</span><span class="nf">toEntity</span><span class="p">(</span><span class="n">personDto</span><span class="p">)</span>
+
+    <span class="c1">// then</span>
+    <span class="nf">assertThat</span><span class="p">(</span><span class="n">person</span><span class="p">.</span><span class="n">job</span><span class="p">).</span><span class="nf">isEqualTo</span><span class="p">(</span><span class="n">jobJson</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><img src="/assets/images/mapstruct/mapstruct3.png" alt="mapstruct3" /></p>
+
+<p>성공!</p>
+
+<p>번외로 Kotlin에서는 <code class="language-plaintext highlighter-rouge">static</code>을 사용하려면 Java와 조금 다르게 해야 돼서 헷갈리는 분들을 위해 Java 코드도 준비했다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Component</span>
+<span class="nd">@Mapper</span><span class="o">(</span><span class="n">componentModel</span> <span class="o">=</span> <span class="s">"spring"</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">PersonMapperJava</span> <span class="kd">extends</span> <span class="nc">EntityMapper</span><span class="o">&lt;</span><span class="nc">PersonDTO</span><span class="o">,</span> <span class="nc">Person</span><span class="o">&gt;</span> <span class="o">{</span>
+
+    <span class="nd">@Override</span>
+    <span class="nd">@Mapping</span><span class="o">(</span><span class="n">source</span> <span class="o">=</span> <span class="s">"job"</span><span class="o">,</span> <span class="n">target</span> <span class="o">=</span> <span class="s">"job"</span><span class="o">,</span> <span class="n">qualifiedByName</span> <span class="o">=</span> <span class="s">"jobDtoToJson"</span><span class="o">)</span>
+    <span class="nc">Person</span> <span class="nf">toEntity</span><span class="o">(</span><span class="nc">PersonDTO</span> <span class="n">dto</span><span class="o">);</span>
+
+    <span class="nd">@Override</span>
+    <span class="nd">@Mapping</span><span class="o">(</span><span class="n">source</span> <span class="o">=</span> <span class="s">"job"</span><span class="o">,</span> <span class="n">target</span> <span class="o">=</span> <span class="s">"job"</span><span class="o">,</span> <span class="n">qualifiedByName</span> <span class="o">=</span> <span class="s">"jsonToJobDto"</span><span class="o">)</span>
+    <span class="nc">PersonDTO</span> <span class="nf">toDto</span><span class="o">(</span><span class="nc">Person</span> <span class="n">entity</span><span class="o">);</span>
+
+    <span class="nd">@Override</span>
+    <span class="nd">@Mapping</span><span class="o">(</span><span class="n">source</span> <span class="o">=</span> <span class="s">"job"</span><span class="o">,</span> <span class="n">target</span> <span class="o">=</span> <span class="s">"job"</span><span class="o">,</span> <span class="n">qualifiedByName</span> <span class="o">=</span> <span class="s">"jobDtoToJson"</span><span class="o">)</span>
+    <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Person</span><span class="o">&gt;</span> <span class="nf">toEntity</span><span class="o">(</span><span class="nc">List</span><span class="o">&lt;</span><span class="nc">PersonDTO</span><span class="o">&gt;</span> <span class="n">dtoList</span><span class="o">);</span>
+
+    <span class="nd">@Override</span>
+    <span class="nd">@Mapping</span><span class="o">(</span><span class="n">source</span> <span class="o">=</span> <span class="s">"job"</span><span class="o">,</span> <span class="n">target</span> <span class="o">=</span> <span class="s">"job"</span><span class="o">,</span> <span class="n">qualifiedByName</span> <span class="o">=</span> <span class="s">"jsonToJobDto"</span><span class="o">)</span>
+    <span class="nc">List</span><span class="o">&lt;</span><span class="nc">PersonDTO</span><span class="o">&gt;</span> <span class="nf">toDto</span><span class="o">(</span><span class="nc">List</span><span class="o">&lt;</span><span class="nc">Person</span><span class="o">&gt;</span> <span class="n">entityList</span><span class="o">);</span>
+
+    <span class="nd">@Named</span><span class="o">(</span><span class="s">"jsonToJobDto"</span><span class="o">)</span>
+    <span class="kd">static</span> <span class="nc">JobDTO</span> <span class="nf">jsonToJobDto</span><span class="o">(</span><span class="nc">String</span> <span class="n">json</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">JsonProcessingException</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">json</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">?</span> <span class="k">new</span> <span class="nc">JobDTO</span><span class="o">()</span> <span class="o">:</span> <span class="k">new</span> <span class="nc">ObjectMapper</span><span class="o">().</span><span class="na">readValue</span><span class="o">(</span><span class="n">json</span><span class="o">,</span> <span class="nc">JobDTO</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Named</span><span class="o">(</span><span class="s">"jobDtoToJson"</span><span class="o">)</span>
+    <span class="kd">static</span> <span class="nc">String</span> <span class="nf">jobDtoToJson</span><span class="o">(</span><span class="nc">JobDTO</span> <span class="n">jobDTO</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">JsonProcessingException</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">jobDTO</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">?</span> <span class="s">""</span> <span class="o">:</span> <span class="k">new</span> <span class="nc">ObjectMapper</span><span class="o">().</span><span class="na">writeValueAsString</span><span class="o">(</span><span class="n">jobDTO</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<hr />
+
+<p>MapStruct의 모든 기능들을 다룬 것은 아니다. 하지만 이 정도만 알아도 우리가 개발하는 데 있어서 충분히 이점을 가져갈 수 있을 것이라고 생각한다. 앞으로 MapStruct를 잘 활용해서 편하게 개발해보자!</p>
+
+<blockquote>
+  <p>위에서 설명한 코드 예제는 <a href="https://github.com/97kim/mapstruct_example">Github</a>에 있습니다.</p>
+</blockquote>]]></content><author><name>97kim</name></author><category term="dev" /><category term="MapStruct" /><summary type="html"><![CDATA[MapStruct는 자바에서 서로 다른 객체 간 매핑에 대한 코드를 간편하게 자동으로 생성해주는 라이브러리다. Annotaion Processor를 사용해 컴파일 시 구현체를 생성한다.]]></summary></entry><entry><title type="html">Cron Expression</title><link href="https://97kim.github.io/jekyll-theme-yat/cron/2022/07/10/Cron-Expression.html" rel="alternate" type="text/html" title="Cron Expression" /><published>2022-07-10T00:00:00+09:00</published><updated>2022-07-10T00:00:00+09:00</updated><id>https://97kim.github.io/jekyll-theme-yat/cron/2022/07/10/Cron-Expression</id><content type="html" xml:base="https://97kim.github.io/jekyll-theme-yat/cron/2022/07/10/Cron-Expression.html"><![CDATA[<p>Cron</p>
+
+<p><code class="language-plaintext highlighter-rouge">cron</code>은 UNIX에서 오랫동안 사용된 잡 스케줄러다. 작업을 고정된 시간, 날짜, 간격에 주기적으로 실행할 수 있도록 기능을 제공한다.</p>
+
+<h3 id="format">Format</h3>
+
+<p>cron 표현식은 공백(띄어쓰기)으로 구분 된 6개 또는 7개의 필드로 구성된 문자열이다.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>필드 구분</th>
+      <th>필수</th>
+      <th>허용 값</th>
+      <th>허용 특수문자</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>초</td>
+      <td>o</td>
+      <td>0-59</td>
+      <td>, - * /</td>
+    </tr>
+    <tr>
+      <td>분</td>
+      <td>o</td>
+      <td>0-59</td>
+      <td>, - * /</td>
+    </tr>
+    <tr>
+      <td>시</td>
+      <td>o</td>
+      <td>0-23</td>
+      <td>, - * /</td>
+    </tr>
+    <tr>
+      <td>일</td>
+      <td>o</td>
+      <td>1-31</td>
+      <td>, - * ? / L W</td>
+    </tr>
+    <tr>
+      <td>월</td>
+      <td>o</td>
+      <td>1-12 또는 JAN-DEC</td>
+      <td>, - * /</td>
+    </tr>
+    <tr>
+      <td>요일</td>
+      <td>o</td>
+      <td>1-7 또는 SUN-SAT</td>
+      <td>, - * ? / L #</td>
+    </tr>
+    <tr>
+      <td>년도</td>
+      <td>x</td>
+      <td>empty, 1970-2099</td>
+      <td>, - * /</td>
+    </tr>
+  </tbody>
+</table>
+
+<ul>
+  <li>
+    <p><strong><code class="language-plaintext highlighter-rouge">*</code></strong> - 필드 내의 모든 값을 선택하는 데 사용된다. 예를 들어, <strong><code class="language-plaintext highlighter-rouge">분</code></strong>필드의 <strong><code class="language-plaintext highlighter-rouge">*</code></strong>는 <strong><code class="language-plaintext highlighter-rouge">매분</code></strong>을 의미한다.</p>
+  </li>
+  <li>
+    <p><strong><code class="language-plaintext highlighter-rouge">?</code></strong> - <strong><code class="language-plaintext highlighter-rouge">일, 요일</code></strong> 두 필드에서만 사용되는데 특정 값이 없을 때 (어떤 값이든 상관 없을 때) 사용한다. 예를 들어, 특정 날짜 (예: <strong><code class="language-plaintext highlighter-rouge">10일</code></strong>)에 실행하고 싶지만 그 요일이 무슨 요일인지는 신경 쓰지 않으려면 <strong><code class="language-plaintext highlighter-rouge">일</code></strong>필드에 <strong><code class="language-plaintext highlighter-rouge">10</code></strong>을 넣고, <strong><code class="language-plaintext highlighter-rouge">요일</code></strong>필드에 <strong><code class="language-plaintext highlighter-rouge">?</code></strong>를 넣는다.</p>
+  </li>
+  <li>
+    <p><strong><code class="language-plaintext highlighter-rouge">-</code></strong> - <strong><code class="language-plaintext highlighter-rouge">범위</code></strong>를 지정하는 데 사용된다. 예를 들어, <strong><code class="language-plaintext highlighter-rouge">시간</code></strong> 필드의 <strong><code class="language-plaintext highlighter-rouge">1-3</code></strong> 은 <strong><code class="language-plaintext highlighter-rouge">1시, 2시, 3시</code></strong>를 의미한다.</p>
+  </li>
+  <li>
+    <p><strong><code class="language-plaintext highlighter-rouge">,</code></strong> - <strong><code class="language-plaintext highlighter-rouge">추가 값</code></strong>을 지정하는 데 사용된다. 예를 들어, <strong><code class="language-plaintext highlighter-rouge">요일</code></strong> 필드의 <strong><code class="language-plaintext highlighter-rouge">MON, WED, FRI</code></strong>는 <strong><code class="language-plaintext highlighter-rouge">월요일, 수요일, 금요일</code></strong>을 의미한다.</p>
+  </li>
+  <li>
+    <p><strong><code class="language-plaintext highlighter-rouge">/</code></strong> - <strong><code class="language-plaintext highlighter-rouge">시작 값</code></strong>과 <strong><code class="language-plaintext highlighter-rouge">증가 값</code></strong>을 지정하는 데 사용된다. 예를 들어 <strong><code class="language-plaintext highlighter-rouge">초</code></strong> 필드의 <strong><code class="language-plaintext highlighter-rouge">0/20</code></strong> 는 <strong><code class="language-plaintext highlighter-rouge">0초, 20초, 40초</code></strong>를 의미한다. 그리고 <strong><code class="language-plaintext highlighter-rouge">초</code></strong> 필드의 <strong><code class="language-plaintext highlighter-rouge">5/20</code></strong>은 <strong><code class="language-plaintext highlighter-rouge">5초, 25초, 45초</code></strong>를 의미한다.</p>
+  </li>
+  <li>
+    <p><strong><code class="language-plaintext highlighter-rouge">L</code></strong> - <strong><code class="language-plaintext highlighter-rouge">일, 요일</code></strong> 두 필드에서만 사용되는데 지정할 수 있는 범위의 <strong><code class="language-plaintext highlighter-rouge">마지막 값</code></strong>을 설정할 때 사용한다. 예를 들어, <strong><code class="language-plaintext highlighter-rouge">일</code></strong> 필드에서 <strong><code class="language-plaintext highlighter-rouge">L</code></strong>은 <strong><code class="language-plaintext highlighter-rouge">월</code></strong>의 <strong><code class="language-plaintext highlighter-rouge">마지막 날</code></strong>을 의미한다. 예를 들어, 1월의 경우는 31일, 2월의 경우는 28일이다. <strong><code class="language-plaintext highlighter-rouge">요일</code></strong> 필드에 <strong><code class="language-plaintext highlighter-rouge">L</code></strong>만 사용되는 경우는 <strong><code class="language-plaintext highlighter-rouge">7(SAT)</code></strong>을 의미한다. 그리고 <strong><code class="language-plaintext highlighter-rouge">6L</code></strong>은 <strong><code class="language-plaintext highlighter-rouge">매월 마지막 금요일</code></strong>을 의미한다.</p>
+
+    <blockquote>
+      <p><strong><code class="language-plaintext highlighter-rouge">L-3</code></strong>과 같이 해당 월의 마지막 날부터 오프셋을 지정할 수도 있다. 하지만 <strong><code class="language-plaintext highlighter-rouge">L-3</code></strong>처럼 사용하면 혼동을 주고 예기치 않은 결과를 얻을 수 있으므로 <strong><code class="language-plaintext highlighter-rouge">L</code></strong>을 사용할 때 목록이나 범위를 지정하지 않는 것이 좋다.</p>
+    </blockquote>
+  </li>
+  <li>
+    <p><strong><code class="language-plaintext highlighter-rouge">W</code></strong> - <strong><code class="language-plaintext highlighter-rouge">일</code></strong> 필드에만 쓰이고, 주어진 요일에 가장 가까운 평일(<strong><code class="language-plaintext highlighter-rouge">월요일-금요일</code></strong>)을 지정하는 데 사용된다. 예를 들어, <strong><code class="language-plaintext highlighter-rouge">일</code></strong> 필드에 <strong><code class="language-plaintext highlighter-rouge">15W</code></strong>를 넣으면 <strong><code class="language-plaintext highlighter-rouge">매월 15일에서 가장 가까운 평일</code></strong>에 실행한다. 따라서 15일이 토요일이면 14일 금요일에 실행된다. 15일이 일요일이면 16일 월요일에 실행된다. 15일이 월요일이면 15일 월요일에 실행된다. 그런데 <strong><code class="language-plaintext highlighter-rouge">일</code></strong> 필드에 <strong><code class="language-plaintext highlighter-rouge">1W</code></strong>를 넣었을 때, 1일이 토요일이면 월의 경계를 넘지 않으므로 3일 월요일에 실행된다. <strong><code class="language-plaintext highlighter-rouge">W</code></strong>는 하루인 경우에만 지정할 수 있고 목록이나 범위에 사용할 수 없다.</p>
+
+    <blockquote>
+      <p><strong><code class="language-plaintext highlighter-rouge">L</code></strong> 및 <strong><code class="language-plaintext highlighter-rouge">W</code></strong>는 <strong><code class="language-plaintext highlighter-rouge">LW</code></strong>처럼 <strong><code class="language-plaintext highlighter-rouge">일</code></strong> 필드에서 합쳐 쓸 수 있고, <strong><code class="language-plaintext highlighter-rouge">마지막 평일</code></strong>을 뜻한다.</p>
+    </blockquote>
+  </li>
+  <li>
+    <p><strong><code class="language-plaintext highlighter-rouge">#</code></strong> - <strong><code class="language-plaintext highlighter-rouge">요일</code></strong> 필드에만 쓰이고, 해당 월의 <strong><code class="language-plaintext highlighter-rouge">n번째 00일</code></strong>을 지정하는 데 사용된다. 예를 들어, <strong><code class="language-plaintext highlighter-rouge">요일</code></strong> 필드의 <strong><code class="language-plaintext highlighter-rouge">6#3</code></strong>은 <strong><code class="language-plaintext highlighter-rouge">매월 세 번째 금요일</code></strong>을 의미한다. (6=금요일, #3 = 해당 월의 세 번째 요일). 또한 <strong><code class="language-plaintext highlighter-rouge">2#1</code></strong> 는 <strong><code class="language-plaintext highlighter-rouge">매월 첫 번째 월요일</code></strong>를 의미한다. 그리고 <strong><code class="language-plaintext highlighter-rouge">7#5</code></strong>처럼 <strong><code class="language-plaintext highlighter-rouge">매월 다섯 번째 토요일</code></strong>인데, <strong><code class="language-plaintext highlighter-rouge">#5</code></strong>를 지정하고 해당 월에 다섯 번째 토요일이 없으면 해당 월에는 실행하지 않는다.</p>
+
+    <blockquote>
+      <p><strong><code class="language-plaintext highlighter-rouge">허용되는 문자</code></strong>와 <strong><code class="language-plaintext highlighter-rouge">월</code></strong> 및 <strong><code class="language-plaintext highlighter-rouge">요일</code></strong> 값은 대소문자를 구분하지 않는다. <strong><code class="language-plaintext highlighter-rouge">MON</code></strong>은 <strong><code class="language-plaintext highlighter-rouge">mon</code></strong>과 동일하다 .</p>
+    </blockquote>
+  </li>
+</ul>
+
+<p><br /></p>
+
+<blockquote>
+  <p><strong>참고</strong><br />
+<a href="http://www.quartz-scheduler.org/documentation/quartz-2.3.0/tutorials/crontrigger.html">http://www.quartz-scheduler.org/documentation/quartz-2.3.0/tutorials/crontrigger.html</a></p>
+</blockquote>]]></content><author><name>97kim</name></author><category term="Cron" /><category term="Cron" /><summary type="html"><![CDATA[Cron]]></summary></entry></feed>

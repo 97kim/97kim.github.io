@@ -1,0 +1,1355 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="google-translate-customization" content="108d9124921d80c3-80e20d618ff053c8-g4f02ec6f3dba68b7-c">
+  <meta property="og:image" content="https://i.postimg.cc/hG4jn2Yp/bg.jpg">
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Amazon SQS | Jung.log</title>
+<meta name="generator" content="Jekyll v4.3.3">
+<meta property="og:title" content="Amazon SQS">
+<meta name="author" content="97kim">
+<meta property="og:locale" content="ko">
+<meta name="description" content="AWS SQS">
+<meta property="og:description" content="AWS SQS">
+<link rel="canonical" href="https://97kim.github.io/jekyll-theme-yat/aws/2022/07/09/Amazon-SQS.html">
+<meta property="og:url" content="https://97kim.github.io/jekyll-theme-yat/aws/2022/07/09/Amazon-SQS.html">
+<meta property="og:site_name" content="Jung.log">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2022-07-09T00:00:00+09:00">
+<meta name="twitter:card" content="summary">
+<meta property="twitter:title" content="Amazon SQS">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"97kim"},"dateModified":"2022-07-09T00:00:00+09:00","datePublished":"2022-07-09T00:00:00+09:00","description":"AWS SQS","headline":"Amazon SQS","mainEntityOfPage":{"@type":"WebPage","@id":"https://97kim.github.io/jekyll-theme-yat/aws/2022/07/09/Amazon-SQS.html"},"url":"https://97kim.github.io/jekyll-theme-yat/aws/2022/07/09/Amazon-SQS.html"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="shortcut icon" href="/assets/images/favicon.ico">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-noto-sans@0.0.72/index.min.css">
+  <link rel="stylesheet" href="/jekyll-theme-yat/assets/css/main.css">
+  <script src="/jekyll-theme-yat/assets/js/main.js"></script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8737240624109252" crossorigin="anonymous"></script><link type="application/atom+xml" rel="alternate" href="https://97kim.github.io/jekyll-theme-yat/feed.xml" title="Jung.log">
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WRGLN20V3X"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-WRGLN20V3X');
+</script>
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/default.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js"></script>
+<!-- and it's easy to individually load additional languages -->
+<script charset="UTF-8" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/languages/go.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+// Init highlight js
+document.addEventListener('DOMContentLoaded', function(event) {
+  var els = document.querySelectorAll('pre code')
+
+  function addLangData(block) {
+    var outer = block.parentElement.parentElement.parentElement;
+    var lang = block.getAttribute('data-lang');
+    for (var i = 0; i < outer.classList.length; i++) {
+      var cls = outer.classList[i];
+      if (cls.startsWith('language-')) {
+        lang = cls;
+        break;
+      }
+    }
+    if (!lang) {
+      cls = block.getAttribute('class');
+      lang = cls ? cls.replace('hljs ', '') : '';
+    }
+    if (lang.startsWith('language-')) {
+      lang = lang.substr(9);
+    }
+    block.setAttribute('class', 'hljs ' + lang);
+    block.parentNode.setAttribute('data-lang', lang);
+  }
+
+  function addBadge(block) {
+    var enabled = ('true' || 'true').toLowerCase();
+    if (enabled == 'true') {
+      var pre = block.parentElement;
+      pre.classList.add('badge');
+    }
+  }
+
+  function handle(block) {
+    addLangData(block);
+    addBadge(block)
+    hljs.highlightBlock(block);
+  }
+
+  for (var i = 0; i < els.length; i++) {
+    var el = els[i];
+    handle(el);
+  }
+});
+</script>
+
+<style>
+  /* code language badge */
+  pre.badge::before {
+    content: attr(data-lang);
+    color: #fff;
+    background-color: #ff4e00;
+    padding: 0 .5em;
+    border-radius: 0 2px;
+    text-transform: uppercase;
+    text-align: center;
+    min-width: 32px;
+    display: inline-block;
+    position: absolute;
+    right: 0;
+  }
+
+  /* fix wrong badge display for firefox browser */
+  code > table pre::before {
+    display: none;
+  }
+</style>
+</head>
+<body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<header class="site-header site-header-transparent" role="banner">
+
+  <div class="wrapper">
+    <div class="site-header-inner">
+<span class="site-brand"><a class="site-brand-inner" rel="author" href="/jekyll-theme-yat/">
+  <img class="site-favicon" title="Jung.log" src="/assets/images/favicon.ico" onerror="this.style.display='none'">
+  Jung.log
+</a>
+</span><nav class="site-nav">
+          <input type="checkbox" id="nav-trigger" class="nav-trigger">
+          <label for="nav-trigger">
+            <span class="menu-icon">
+              <svg viewbox="0 0 18 15" width="18px" height="15px">
+                <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"></path>
+              </svg>
+            </span>
+          </label>
+
+          <div class="trigger">
+<a class="page-link" href="/jekyll-theme-yat/about.html">ABOUT</a><a class="page-link" href="/jekyll-theme-yat/archives.html">ARCHIVES</a><a class="page-link" href="/jekyll-theme-yat/categories.html">CATEGORIES</a><a class="page-link" href="/jekyll-theme-yat/tags.html">TAGS</a>
+
+
+
+
+
+
+
+
+
+<span class="page-link">
+
+
+
+<div id="google_translate_element" style="display: none;">
+</div>
+
+<span class="ct-language">
+  <ul class="list-unstyled ct-language-dropdown">
+    
+      <li>
+        <a href="#" class="lang-select" data-lang="ko">
+          
+          <img src="https://cdn.countryflags.com/thumbs/south-korea/flag-400.png" title="Korean">
+          
+        </a>
+      </li>
+    
+      <li>
+        <a href="#" class="lang-select" data-lang="en">
+          
+          <img src="https://cdn.countryflags.com/thumbs/united-states-of-america/flag-400.png" title="English">
+          
+        </a>
+      </li>
+    
+  </ul>
+</span>
+
+<script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({
+    pageLanguage: 'ko',
+    autoDisplay: false,
+    layout: google.translate.TranslateElement.InlineLayout.VERTICAL
+  }, 'google_translate_element');
+
+  // Links to cross-origin destinations are unsafe
+  var gll = document.getElementsByClassName('goog-logo-link')[0];
+  if (gll) {
+    gll.setAttribute('rel', 'noopener');
+  }
+
+  function restoreLang() {
+    var iframe = document.getElementsByClassName('goog-te-banner-frame')[0];
+    if (!iframe) return;
+
+    var innerDoc = iframe.contentDocument || iframe.contentWindow.document;
+    var restore_el = innerDoc.getElementsByTagName("button");
+
+    for (var i = 0; i < restore_el.length; i++) {
+      if (restore_el[i].id.indexOf("restore") >= 0) {
+        restore_el[i].click();
+        var close_el = innerDoc.getElementsByClassName("goog-close-link");
+        close_el[0].click();
+        return;
+      }
+    }
+  }
+
+  function triggerHtmlEvent(element, eventName) {
+    var event;
+    if (document.createEvent) {
+      event = document.createEvent('HTMLEvents');
+      event.initEvent(eventName, true, true);
+      element.dispatchEvent(event);
+    } else {
+      event = document.createEventObject();
+      event.eventType = eventName;
+      element.fireEvent('on' + event.eventType, event);
+    }
+  }
+
+  var googleCombo = document.querySelector("select.goog-te-combo");
+  var langSelect = document.querySelector('.ct-language');
+  langSelect.addEventListener('click', function(event) {
+    if (!event.target) {
+      return;
+    }
+
+    var selected = document.querySelector('.ct-language .ct-language-selected');
+    if (selected) {
+      selected.classList.remove('ct-language-selected');
+    }
+
+    var target = event.target;
+    while (target && target !== langSelect ) {
+      if (target.matches('.lang-select')) {
+        break;
+      }
+      target = target.parentElement;
+    }
+
+    if (target && target.matches('.lang-select')) {
+      var lang = target.getAttribute('data-lang');
+      if (googleCombo.value == lang) {
+        restoreLang();
+      } else {
+        target.parentElement.classList.add('ct-language-selected');
+        googleCombo.value = lang;
+        triggerHtmlEvent(googleCombo, 'change');
+      }
+    }
+
+    event.preventDefault();
+  });
+}
+</script>
+
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</span>
+</div>
+        </nav>
+</div>
+  </div>
+</header>
+
+<script>
+  function initHeader() {
+    var lastScrollY = getScrollPos().y;
+    var documentElement = document.documentElement;
+
+    function storeScrollData() {
+      var y = getScrollPos().y;documentElement.setAttribute("data-header-transparent", "");var scrollStatus = "";
+
+      if (y <= 0) {
+        scrollStatus = "top";
+      } else if ((window.innerHeight + y) >= document.body.offsetHeight) {
+        scrollStatus = "bottom";
+      } else {
+        var isScrollDown = (y - lastScrollY > 0) ? true : false;
+        scrollStatus = isScrollDown ? "down" : "up";
+      }
+
+      lastScrollY = y;
+      documentElement.setAttribute("data-scroll-status", scrollStatus);
+    }
+
+    window.addEventListener('scroll', function(e) {
+      storeScrollData();
+    });
+
+    storeScrollData();
+  }
+  document.addEventListener('DOMContentLoaded', initHeader);
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<style>
+    html .page-banner {
+      background: #000;
+    }
+  </style>
+<style>html .page-banner {
+      height:  36.8vh;
+      min-height: 38vh;
+    }
+    html[data-scroll-status="top"] .page-banner {
+      height: 100vh;
+    }
+  </style>
+<style>
+    html .page-banner .page-banner-img > *:first-child {
+      opacity: 0.618;
+    }
+
+    html[data-theme="dark"] .page-banner .page-banner-img > *:first-child {
+      opacity: 0.443724;
+    }
+  </style>
+<style>
+    html .page-banner .page-banner-inner > *:first-child > *:nth-child(1) {
+      font-size: 2.5em; font-weight: bold;
+    }
+  </style>
+<style>
+    html .page-banner .page-banner-inner > *:first-child > *:nth-child(2) {
+      color: gold
+    }
+  </style>
+<section class="page-banner">
+    <div class="page-banner-img">
+<div style="background-image: url(/jekyll-theme-yat/assets/images/sqs/sqs_bg.png)"></div>
+        <img class="img-placeholder" src="/jekyll-theme-yat/assets/images/sqs/sqs_bg.png">
+</div>
+    <div class="wrapper">
+      <div class="page-banner-inner">
+<header class="post-header">
+  <h1 class="post-title p-name" itemprop="name headline">Amazon SQS</h1>
+  <h2 class="post-subtitle">SQS 찍먹</h2>
+
+  <p class="post-meta">
+    <time class="dt-published" datetime="2022-07-09T00:00:00+09:00" itemprop="datePublished"><i class="fa fa-calendar"></i> Jul 09, 2022
+    </time>
+
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <span class="post-reading-time left-vsplit"><i class="fa fa-clock-o"></i> About 22 mins</span>
+  </p>
+<div class="post-tags">
+<a class="post-tag" href="/jekyll-theme-yat/tags.html#AWS">#AWS</a><a class="post-tag" href="/jekyll-theme-yat/tags.html#SQS">#SQS</a>
+</div></header>
+</div>
+    </div>
+  </section><script>
+  function hashLocate(hashValue) {
+    hashValue = hashValue.replace(/^.*#h-/, '');
+    hashValue = decodeURIComponent(hashValue);
+    var element = document.getElementById(hashValue);
+
+    if (!element) {
+      return;
+    }
+
+    var header = document.querySelector('header.site-header');
+    var headerRect = header.getBoundingClientRect();
+    var headerTop = Math.floor(headerRect.top);
+    var headerHeight = Math.floor(headerRect.height);
+    var scrollPos = getScrollPos();
+    var offsetY = element.offsetTop - (headerTop + headerHeight + 20);
+
+    if (offsetY == scrollPos.y) {
+      return;
+    }
+
+    if (headerTop == 0  && offsetY > scrollPos.y) {
+      offsetY += headerHeight + 2;
+    } else if (headerTop < 0  && offsetY < scrollPos.y) {
+      offsetY -= headerHeight - 2;
+    }
+
+    smoothScrollTo(offsetY);
+  }
+
+  // The first event occurred
+  window.addEventListener('load', function(event) {
+    if (window.location.hash) {
+      hashLocate(window.location.hash);
+    }
+  });
+
+  // The first event occurred
+  window.addEventListener('click', function(event) {
+    if (event.target.tagName.toLowerCase() == 'a') {
+      hashLocate(event.target.getAttribute('href'));
+    }
+  });
+</script>
+<div class="theme-toggle">
+  <input type="checkbox" id="theme-switch">
+  <label for="theme-switch">
+    <div class="toggle"></div>
+    <div class="names">
+      <p class="light">Light</p>
+      <p class="dark">Dark</p>
+    </div>
+  </label>
+</div>
+
+
+
+
+<script>
+  (function() {
+    var sw = document.getElementById('theme-switch');
+    var html = document.getElementsByTagName('html')[0];
+    var nightModeOption = ('on/off' || 'auto').toLowerCase();
+    var storage = nightModeOption === 'manual'
+        ? localStorage
+        : sessionStorage;
+    var themeData = loadThemeData();
+
+    function saveThemeData(data) {
+      storage.setItem('theme', JSON.stringify(data));
+    }
+
+    function loadThemeData() {
+      var data = storage.getItem('theme');
+      try {
+        data = JSON.parse(data ? data : '');
+      } catch(e) {
+        data = { nightShift: undefined, autoToggleAt: 0 };
+        saveThemeData(data);
+      }
+      return data;
+    }
+
+    function handleThemeToggle(nightShift) {
+      themeData.nightShift = nightShift;
+      saveThemeData(themeData);
+      html.dataset.theme = nightShift ? 'dark' : 'light';
+      setTimeout(function() {
+        sw.checked = nightShift ? true : false;
+      }, 50);
+    }
+
+    function autoThemeToggle() {
+      // Next time point of theme toggle
+      var now = new Date();
+      var toggleAt = new Date();
+      var hours = now.getHours();
+      var nightShift = hours >= 19 || hours <=7;
+
+      if (nightShift) {
+        if (hours > 7) {
+          toggleAt.setDate(toggleAt.getDate() + 1);
+        }
+        toggleAt.setHours(7);
+      } else {
+        toggleAt.setHours(19);
+      }
+
+      toggleAt.setMinutes(0);
+      toggleAt.setSeconds(0);
+      toggleAt.setMilliseconds(0)
+
+      var delay = toggleAt.getTime() - now.getTime();
+
+      // auto toggle theme mode
+      setTimeout(function() {
+        handleThemeToggle(!nightShift);
+      }, delay);
+
+      return {
+        nightShift: nightShift,
+        toggleAt: toggleAt.getTime()
+      };
+    }
+
+    // Listen the theme toggle event
+    sw.addEventListener('change', function(event) {
+      handleThemeToggle(event.target.checked);
+    });
+
+    if (nightModeOption == 'auto') {
+      var data = autoThemeToggle();
+
+      // Toggle theme by local setting
+      if (data.toggleAt > themeData.autoToggleAt) {
+        themeData.autoToggleAt = data.toggleAt;
+        handleThemeToggle(data.nightShift);
+      } else {
+        handleThemeToggle(themeData.nightShift);
+      }
+    } else if (nightModeOption == 'manual') {
+      handleThemeToggle(themeData.nightShift);
+    } else {
+      var nightShift = themeData.nightShift;
+      if (nightShift === undefined) {
+        nightShift = nightModeOption === 'on';
+      }
+      handleThemeToggle(nightShift);
+    }
+  })();
+</script>
+<div id="click-to-top" class="click-to-top">
+  <i class="fa fa-arrow-up"></i>
+</div>
+<script>
+  (function () {
+    const clickToTop = document.getElementById('click-to-top');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 100) {
+        clickToTop.classList.add('show')
+      }else {
+        clickToTop.classList.remove('show')
+      }
+    });
+    clickToTop.addEventListener('click', () => {
+      window.smoothScrollTo(0);
+    });
+  })();
+</script>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <div class="framework">
+  <section class="main">
+
+     <div class="post">
+  <section>
+
+
+
+
+
+
+
+
+
+<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+    <div class="post-content e-content" itemprop="articleBody">
+
+      <h2 id="aws-sqs">AWS SQS</h2>
+
+<p><strong>SQS</strong>는 <strong><code class="language-plaintext highlighter-rouge">Simple Queue Service</code></strong>의 약자다.<br>
+간단한 메세지를 큐 형태로 쌓아서(send) 받는(recieve) 서비스다.<br>
+이름에서 알 수 있듯 <strong>간단</strong>하게!</p>
+
+<p><strong><code class="language-plaintext highlighter-rouge">pub/sub</code></strong> 형태로 메세징 처리를 하고 싶다면 <strong><code class="language-plaintext highlighter-rouge">rabbitMQ</code></strong>나 <strong><code class="language-plaintext highlighter-rouge">JMS</code></strong>, <strong><code class="language-plaintext highlighter-rouge">Amazon MQ</code></strong>를 사용해야 한다.</p>
+
+<h3 id="큐가-필요한-이유">큐가 필요한 이유</h3>
+
+<ul>
+  <li><strong>큐 사용하지 않은 예시</strong></li>
+</ul>
+
+<p><img src="/assets/images/sqs/sqs1.png" alt="sqs1"></p>
+
+<ol>
+  <li>사용자가 주문을 한다.</li>
+  <li>서버는 해당 요청에 대한 데이터를 데이터베이스에 추가한다.</li>
+  <li>주문한 사용자에 대해 주문이 완료되었다는 메일을 발송한다.</li>
+  <li>이때 한 명씩 모두에게 이메일을 발송하는 데 2시간이 소요된다고 하자.</li>
+</ol>
+
+<blockquote>
+  <p>사용자는 2시간 동안 기다려야 되는데 좋은 서비스인가?</p>
+</blockquote>
+
+<ul>
+  <li><strong>큐 사용 예시</strong></li>
+</ul>
+
+<p><img src="/assets/images/sqs/sqs2.png" alt="sqs2"></p>
+
+<ol>
+  <li>사용자가 주문을 한다.</li>
+  <li>서버는 해당 요청에 대한 데이터를 데이터베이스에 추가한다.</li>
+  <li>사용자가 주문을 했다는 사실을 메시지로 만들어 큐에 저장한다.</li>
+  <li>사용자는 주문을 하고 그 데이터가 데이터베이스에 추가되는 시간만 기다린다.</li>
+</ol>
+
+<blockquote>
+  <p>사용자는 한 명씩 모두에게 이메일을 발송하는 시간을 기다리지 않아도 된다.</p>
+</blockquote>
+
+<ul>
+  <li>SQS를 사용하면 흐름은 아래와 같다.</li>
+</ul>
+
+<p><img src="/assets/images/sqs/sqs3.png" alt="sqs3"></p>
+
+<p><strong>참고 영상</strong></p>
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/D445NSU2Ra0" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen=""></iframe>
+
+<hr>
+
+<p><img src="/assets/images/sqs/sqs4.png" alt="sqs4"></p>
+
+<p>대기열(큐) 생성 시 나오는 화면이다.</p>
+
+<h3 id="표준-standard-queue"><strong>표준 (Standard Queue)</strong></h3>
+
+<ul>
+  <li>초당 무제한에 가까운 TPS를 지원한다. (<strong><code class="language-plaintext highlighter-rouge">Unlimited Throughput</code></strong>)</li>
+  <li>최소 1회 전달이 보장된다. 단, 중복 수신이 될 수 있다. (<strong><code class="language-plaintext highlighter-rouge">At-Least-Once Delivery</code></strong>)</li>
+  <li>100% 순서가 보장되지 않지만 최대한 순서를 보장하고자 노력한다. (<strong><code class="language-plaintext highlighter-rouge">Best-Effort-Ordering</code></strong>)</li>
+</ul>
+
+<h3 id="fifo-first-in-first-out-queue"><strong>FIFO (First In First Out Queue)</strong></h3>
+
+<ul>
+  <li>초당 300TPS 제한이 존재한다. (<strong><code class="language-plaintext highlighter-rouge">High Throughput</code></strong>)</li>
+  <li>메시지 순서를 보장한다. (<strong><code class="language-plaintext highlighter-rouge">First-In-First-Out Delivery</code></strong>)</li>
+  <li>1번의 전송, 1번의 수신이 지켜진다. 중복수신이 방지 된다. (<strong><code class="language-plaintext highlighter-rouge">Exactly-Once Processing</code></strong>)</li>
+</ul>
+
+<hr>
+
+<p><img src="/assets/images/sqs/sqs5.png" alt="sqs5"></p>
+
+<p>AWS SQS 요금이다. FIFO가 표준보다 더 비싸다.<br>
+하지만 첫 100만 번의 요청까지 무료라고 한다.</p>
+
+<p><img src="/assets/images/sqs/sqs6.png" alt="sqs6"></p>
+
+<ul>
+  <li>
+<strong>표시 제한 시간</strong>
+    <ul>
+      <li>수신한 메시지는 해당 시간동안 다른 서버에게 보이지 않는다.</li>
+      <li>서로 다른 서버가 같은 수신 메시지를 가지고 작업을 할 수 있기 때문에 중복 작업을 방지하기 위해 표시 제한 시간을 설정한다.</li>
+    </ul>
+  </li>
+  <li>
+<strong>메시지 보존 기간</strong>
+    <ul>
+      <li>메시지 보존 기간이 더 길면 메시지의 생산(produce)과 소비(consume) 간의 간격도 좀 더 길게 정할 수 있는 유연성이 제공된다.</li>
+      <li>Amazon SQS 메시지 보존 기간은 1분에서 14일 사이의 값으로 구성할 수 있다. 기본 설정은 4일이다. 메시지 보존 할당량에 도달하면 메시지가 자동으로 삭제된다.</li>
+    </ul>
+  </li>
+  <li>
+<strong>전송 지연</strong>
+    <ul>
+      <li>큐에 추가된 각 메시지의 첫 번째 전송에 대한 지연 시간이다. 일부러 첫 번째 전송을 늦추고 싶은 경우 전송 지연을 설정할 수 있다.</li>
+    </ul>
+  </li>
+  <li>
+<strong>최대 메시지 크기</strong>
+    <ul>
+      <li>최대 메시지 크기를 구성하려면 콘솔이나 <strong><code class="language-plaintext highlighter-rouge">SetQueueAttributes</code></strong> 메서드를 사용하여 <strong><code class="language-plaintext highlighter-rouge">MaximumMessageSize</code></strong> 속성을 설정한다. 이 속성은 Amazon SQS 메시지가 포함할 수 있는 바이트 수를 지정한다. 이 특성을 1,024바이트(1KB)와 262,144바이트(256KB) 사이의 값으로 설정한다.</li>
+      <li>256KB보다 큰 메시지를 전송하려면 <a href="https://github.com/awslabs/amazon-sqs-java-extended-client-lib">Java용 Amazon SQS 확장 클라이언트 라이브러리</a>를 사용한다. 이 라이브러리를 사용하면 참조가 포함된 Amazon SQS 메시지를 최대 2GB까지 Amazon S3의 메시지 페이로드로 전송할 수 있다.</li>
+    </ul>
+  </li>
+  <li>
+<strong>메시지 수신 대기 시간</strong>
+    <ul>
+      <li>폴링이 메시지를 사용할 수 있을 때까지 기다리는 최대 시간이다.</li>
+    </ul>
+  </li>
+</ul>
+
+<p><img src="/assets/images/sqs/sqs7.png" alt="sqs7"></p>
+
+<p>대기열(큐) 소유자만 전송, 수신하게 할 것인지에 대한 액세스 정책이다.</p>
+
+<p><img src="/assets/images/sqs/sqs8.png" alt="sqs8"></p>
+
+<ul>
+  <li>
+<strong>암호화</strong>
+    <ul>
+      <li>활성화하면 대기열(큐)에 들어오는 메시지들을 모두 암호화한다.</li>
+      <li>권한 있는 소비자(consumer)에게 전송되는 경우에만 메시지가 해독된다.</li>
+      <li>들어오는 메시지의 본문은 암호화하지만 대기열(큐)의 메타데이터, 메시지의 메타데이터, 대기열(큐)의 지표들은 암호화되지 않는다.</li>
+      <li>활성화하면 <strong><code class="language-plaintext highlighter-rouge">AWS KMS(Key Management Service)</code></strong>를 이용해 대기열(큐) 메시지 내용을 보호한다.</li>
+    </ul>
+  </li>
+  <li>
+<strong>배달 못한 편지 대기열</strong>
+    <ul>
+      <li>
+<strong><code class="language-plaintext highlighter-rouge">DLQ (dead-letter-queue)</code></strong> 라고 한다.</li>
+      <li>대기열(큐)의 메시지를 소비자(consumer)가 가져가서 처리하지 못하는 경우 그 횟수(receive_count)가 누적되는데, 횟수가 최대(max_receive_count)를 초과하는 경우 해당 메시지는 배달 못한 편지 대기열로 이동한다.</li>
+      <li>메시지의 타임스탬프는 변경되지 않으며 배달 못한 편지 대기열의 보존 기간은 source 대기열(큐)의 보존 기간보다 길어야 한다.<br>
+<br>
+</li>
+    </ul>
+  </li>
+</ul>
+
+<hr>
+
+<h2 id="sqs-메세지-보내기">SQS 메세지 보내기</h2>
+<p><strong>개발 환경</strong></p>
+<ul>
+  <li>AWS SQS (Standard)</li>
+  <li>Java 17</li>
+  <li>Spring Boot 2.6.5</li>
+  <li>Gradle 7.4.1</li>
+</ul>
+
+<hr>
+
+<p>build.gradle</p>
+<div class="language-groovy highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">dependencies</span> <span class="o">{</span>
+    <span class="n">implementation</span> <span class="nl">group:</span> <span class="s1">'org.springframework.cloud'</span><span class="o">,</span> <span class="nl">name:</span> <span class="s1">'spring-cloud-aws-messaging'</span><span class="o">,</span> <span class="nl">version:</span> <span class="s1">'2.2.6.RELEASE'</span>
+    <span class="n">implementation</span> <span class="nl">group:</span> <span class="s1">'org.springframework.cloud'</span><span class="o">,</span> <span class="nl">name:</span> <span class="s1">'spring-cloud-aws-autoconfigure'</span><span class="o">,</span> <span class="nl">version:</span> <span class="s1">'2.2.6.RELEASE'</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Spring Boot에서 AWS SQS 기능을 사용하려면 dependency를 추가해줘야 한다.</p>
+
+<hr>
+
+<p>application.yml</p>
+<div class="language-yml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="na">cloud</span><span class="pi">:</span>
+  <span class="na">aws</span><span class="pi">:</span>
+    <span class="na">credentials</span><span class="pi">:</span>
+      <span class="na">access-key</span><span class="pi">:</span> <span class="s">${AWS_ACCESS_KEY}</span>
+      <span class="na">secret-key</span><span class="pi">:</span> <span class="s">${AWS_SECRET_KEY}</span>
+    <span class="na">region</span><span class="pi">:</span>
+      <span class="na">static</span><span class="pi">:</span> <span class="s">${AWS_REGION}</span>
+    <span class="na">stack</span><span class="pi">:</span>
+      <span class="na">auto</span><span class="pi">:</span> <span class="kc">false</span>
+
+    <span class="c1"># 여기 아래는 AWS 자격 증명 관련 내용은 아니다.</span>
+    <span class="na">sqs</span><span class="pi">:</span>
+      <span class="na">queue</span><span class="pi">:</span>
+        <span class="na">name</span><span class="pi">:</span> <span class="s">${SQS_QUEUE_NAME}</span>
+</code></pre></div></div>
+
+<p>AWS 자격 증명 관련 내용이다.<br>
+민감한 정보는 환경 변수에 넣어 불러오게 하자.</p>
+
+<p>IntelliJ를 사용한다면 <strong><code class="language-plaintext highlighter-rouge">Run</code></strong>의 <strong><code class="language-plaintext highlighter-rouge">Edit Configuration</code></strong>에서 <strong><code class="language-plaintext highlighter-rouge">Environment variables</code></strong>에서 환경변수 설정이 가능하다.</p>
+
+<hr>
+
+<h3 id="service">Service</h3>
+
+<p>AmazonSQSSender.java</p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">interface</span> <span class="nc">AmazonSQSSender</span> <span class="o">{</span>
+    <span class="kt">void</span> <span class="nf">sendMessage</span><span class="o">(</span><span class="nc">MessageDto</span> <span class="n">message</span><span class="o">);</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<hr>
+
+<p>AmazonSQSSenderImpl.java</p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Service</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">AmazonSQSSenderImpl</span> <span class="kd">implements</span> <span class="nc">AmazonSQSSender</span> <span class="o">{</span>
+
+    <span class="kd">private</span> <span class="kd">final</span> <span class="nc">QueueMessagingTemplate</span> <span class="n">queueMessagingTemplate</span><span class="o">;</span>
+
+    <span class="nd">@Value</span><span class="o">(</span><span class="s">"${cloud.aws.sqs.queue.name}"</span><span class="o">)</span>
+    <span class="kd">private</span> <span class="nc">String</span> <span class="n">queueName</span><span class="o">;</span>
+
+    <span class="kd">public</span> <span class="nf">AmazonSQSSenderImpl</span><span class="o">(</span><span class="nc">AmazonSQS</span> <span class="n">amazonSQS</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">this</span><span class="o">.</span><span class="na">queueMessagingTemplate</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">QueueMessagingTemplate</span><span class="o">((</span><span class="nc">AmazonSQSAsync</span><span class="o">)</span> <span class="n">amazonSQS</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="kt">void</span> <span class="nf">sendMessage</span><span class="o">(</span><span class="nc">MessageDto</span> <span class="n">message</span><span class="o">)</span> <span class="o">{</span>
+        <span class="nc">Message</span><span class="o">&lt;</span><span class="nc">MessageDto</span><span class="o">&gt;</span> <span class="n">newMessage</span> <span class="o">=</span> <span class="nc">MessageBuilder</span><span class="o">.</span><span class="na">withPayload</span><span class="o">(</span><span class="n">message</span><span class="o">).</span><span class="na">build</span><span class="o">();</span>
+        <span class="n">queueMessagingTemplate</span><span class="o">.</span><span class="na">send</span><span class="o">(</span><span class="n">queueName</span><span class="o">,</span> <span class="n">newMessage</span><span class="o">);</span>
+
+        <span class="c1">// SQS FIFO 이면 아래 코드 주석 풀기</span>
+        <span class="c1">// Map&lt;String, Object&gt; headers = HashMap&lt;&gt;();</span>
+        <span class="c1">// headers.put(SqsMessageHeaders.SQS_GROUP_ID_HEADER, "message-group-id") // 메세지 그룹 ID</span>
+        <span class="c1">// headers.put(SqsMessageHeaders.SQS_DEDUPLICATION_ID_HEADER, "token") // 메세지 중복 제거 ID (선택 사항) - 메세지 중복 제거에  사용되는 토큰</span>
+        <span class="c1">// Message&lt;MessageDto&gt; newMessage = MessageBuilder.withPayload(message).copyHeaders(headers).build();</span>
+        <span class="c1">// queueMessagingTemplate.send(queueName, newMessage)</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<hr>
+
+<h3 id="controller">Controller</h3>
+
+<p>MessageAPI.java</p>
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@RequiredArgsConstructor</span>
+<span class="nd">@RestController</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">MessageAPI</span> <span class="o">{</span>
+
+    <span class="kd">private</span> <span class="kd">final</span> <span class="nc">AmazonSQSSender</span> <span class="n">messageSender</span><span class="o">;</span>
+
+    <span class="nd">@PostMapping</span><span class="o">(</span><span class="s">"/api/v2/send"</span><span class="o">)</span>
+    <span class="kd">public</span> <span class="nc">String</span> <span class="nf">sendMessage</span><span class="o">(</span><span class="nd">@RequestBody</span> <span class="nc">MessageDto</span> <span class="n">message</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">messageSender</span><span class="o">.</span><span class="na">sendMessage</span><span class="o">(</span><span class="n">message</span><span class="o">);</span>
+        <span class="k">return</span> <span class="s">"success"</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<hr>
+
+<h3 id="dto">Dto</h3>
+
+<p>MessageDto.java</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="n">record</span> <span class="nf">MessageDto</span><span class="o">(</span><span class="nc">MessageType</span> <span class="n">type</span><span class="o">,</span> <span class="nc">String</span> <span class="n">message</span><span class="o">)</span> <span class="o">{</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<blockquote>
+  <p>record는 Java 14 버전부터 사용이 가능하다.</p>
+</blockquote>
+
+<hr>
+
+<p>MessageType.java</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">public</span> <span class="kd">enum</span> <span class="nc">MessageType</span> <span class="o">{</span>
+    <span class="no">ORDER</span><span class="o">,</span> <span class="no">CAMPAIGN</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<hr>
+
+<p>SQS 콘솔</p>
+
+<p><img src="/assets/images/sqs/sqs9.png" alt="sqs9"></p>
+
+<h3 id="postman">Postman</h3>
+
+<p><img src="/assets/images/sqs/sqs10.png" alt="sqs10"></p>
+
+<p>Postman으로 요청을 보냈고 success와 함께 200 OK!</p>
+
+<hr>
+
+<p><img src="/assets/images/sqs/sqs11.png" alt="sqs11"></p>
+
+<p>요청에 성공하면 사용 가능한 메시지가 1 추가 된다.<br>
+메시지 폴링을 눌러보자</p>
+
+<hr>
+
+<p><img src="/assets/images/sqs/sqs12.png" alt="sqs12"></p>
+
+<p>아래 메시지에 하나가 떴다.</p>
+
+<hr>
+
+<p><img src="/assets/images/sqs/sqs13.png" alt="sqs13"></p>
+
+<p>눌러보면 정상적으로 수신이 잘 된 것을 확인할 수 있다.<br>
+수신한 메시지를 통해 그 다음 비즈니스 로직을 타게 한다면 SQS를 유용하게 사용할 수 있을 것만 같다!</p>
+
+<hr>
+
+<h2 id="sqs-lambda-trigger">SQS Lambda Trigger</h2>
+
+<blockquote>
+  <p><a href="https://www.44bits.io/ko/keyword/aws-lambda">Lambda</a>는 AWS에서 제공하는 서버리스 컴퓨팅 서비스다.
+서버리스 컴퓨팅은 애플리케이션을 실행하기 위한 별도의 서버 설정 없이 곧바로 코드를 실행해주는 서비스를 의미하며, 고정 비용 없이 사용 시간에 대해서만 비용이 발생한다. 서버 설정 없이 사용할 수 있다고 하여 서버리스 컴퓨팅이라고 한다.</p>
+</blockquote>
+
+<p>SQS 대기열(Queue)을 생성하면 기본적으로 Lambda 트리거는 없다.</p>
+
+<p><img src="/assets/images/sqs/sqs14.png" alt="sqs14"></p>
+
+<p>Lambda 함수를 생성하고 연결시킨다면 수신하는 메시지에 대한 처리를 할 수 있을 것이다.<br>
+일단 Lambda를 생성해보자.</p>
+
+<p><img src="/assets/images/sqs/sqs15.png" alt="sqs15"></p>
+
+<p>블루프린트에서 SQS를 검색하면 SQS에서 메시지 폴링하는 것에 대한 샘플 코드가 있다. 이것을 기반으로 만들어보자.<br>
+구성 버튼을 누르면 함수 이름, 역할 이름 등 정하는 부분이 있는데 편한대로 입력한다.</p>
+
+<p><img src="/assets/images/sqs/sqs16.png" alt="sqs16"></p>
+
+<p>SQS 대기열(Queue)에는 우리가 만들었던 SQS 대기열(Queue)를 선택하고 생성한다.<br>
+테스트 이벤트 구성은 기본적인 세팅으로 진행한다.</p>
+
+<p>Lambda 함수를 만들고 들어가보면 아래와 같은 창이 보인다.
+코드 소스에 우리의 비즈니스 로직을 넣으면 반영이 될 것이다.</p>
+
+<p>샘플 코드는 아래와 같다.</p>
+
+<div class="language-javascript highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">Loading function</span><span class="dl">'</span><span class="p">);</span>
+
+<span class="nx">exports</span><span class="p">.</span><span class="nx">handler</span> <span class="o">=</span> <span class="k">async </span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="o">=&gt;</span> <span class="p">{</span>
+    <span class="c1">//console.log('Received event:', JSON.stringify(event, null, 2));</span>
+    <span class="k">for </span><span class="p">(</span><span class="kd">const</span> <span class="p">{</span> <span class="nx">messageId</span><span class="p">,</span> <span class="nx">body</span> <span class="p">}</span> <span class="k">of</span> <span class="nx">event</span><span class="p">.</span><span class="nx">Records</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nf">log</span><span class="p">(</span><span class="dl">'</span><span class="s1">SQS message %s: %j</span><span class="dl">'</span><span class="p">,</span> <span class="nx">messageId</span><span class="p">,</span> <span class="nx">body</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="k">return</span> <span class="s2">`Successfully processed </span><span class="p">${</span><span class="nx">event</span><span class="p">.</span><span class="nx">Records</span><span class="p">.</span><span class="nx">length</span><span class="p">}</span><span class="s2"> messages.`</span><span class="p">;</span>
+<span class="p">};</span>
+</code></pre></div></div>
+
+<p><img src="https://velog.velcdn.com/images/rudwnd33/post/5006534d-f2dc-478b-8a49-9ddeb135b05c/image.png" alt=""></p>
+
+<p>Test라는 주황색 버튼은 테스트 이벤트 구성에서 설정한 형식의 JSON으로 요청이 오면 아래 코드가 실행되게 테스트 해볼 수 있는 버튼이다.</p>
+
+<blockquote>
+  <p>참고로 아래의 런타임 설정에서 Node.js 이외에도 다른 언어를 선택할 수 있다.
+<img src="https://velog.velcdn.com/images/rudwnd33/post/7cb8df4f-5e0e-4d98-8eaf-cf6c71567920/image.png" alt=""></p>
+</blockquote>
+
+<p><img src="https://velog.velcdn.com/images/rudwnd33/post/e5d8ab85-bed6-425f-a570-5a15e379ac42/image.png" alt=""></p>
+
+<p>테스트 버튼을 누르면 테스트 용도의 JSON 데이터를 잘 읽어오는 것을 확인할 수 있다.<br>
+이제 저장을 하고 실제 우리가 요청 보내는 데이터로 테스트 해보자.</p>
+
+<p>저장 후 Deploy 버튼을 클릭한다.</p>
+
+<p><img src="https://velog.velcdn.com/images/rudwnd33/post/587cb868-cca6-4397-8758-ffec49191497/image.png" alt=""></p>
+
+<p>그리고 Lambda의 구성으로 가서 SQS 트리거를 활성화시킨다.</p>
+
+<p>다시 Postman으로 요청을 보낸다.</p>
+
+<p><img src="https://velog.velcdn.com/images/rudwnd33/post/3a0de279-21fe-42bb-b36c-cd8ce8b0af0a/image.png" alt=""></p>
+
+<p>요청에 성공했다.</p>
+
+<p>로그를 확인해보자. AWS CloudWatch에서 로그를 확인할 수 있다.</p>
+
+<p><img src="https://velog.velcdn.com/images/rudwnd33/post/a16aa3f8-60c9-4399-87e1-9ce1073a6768/image.png" alt=""></p>
+
+<p>Lambda 함수가 잘 실행되었다.</p>
+
+<blockquote>
+  <p>Postman에서 api 호출 → 서버가 람다 호출  → 람다에서 응답 → AWS CloudWatch에서 확인 가능</p>
+</blockquote>
+
+<p>SQS 대기열(Queue)에 메시지가 전송이 되어서 성공적으로 대기열에 쌓이면 Polling 과정을 Lambda가 해준다.</p>
+
+<p><img src="https://velog.velcdn.com/images/rudwnd33/post/097abd43-9603-4b24-8cdd-2405f556784e/image.png" alt=""></p>
+
+<p>찍먹 끝!</p>
+
+<p><img src="/assets/images/sqs/sqs_bg.png" alt="sqs_bg"></p>
+
+<p><br></p>
+<blockquote>
+  <p><strong>참고</strong><br>
+<a href="https://lannstark.tistory.com/88">AWS SQS 들이파기</a><br>
+<a href="https://mand2.github.io/til/send-messages-to-sqs-by-java/">Java 형식으로 AWS SQS에 메세지 보내기</a><br>
+<a href="https://uchupura.tistory.com/109">[AWS] spring-cloud-aws-messaging을 이용한 FIFO 유형의 AWS SQS 연동하기</a><br>
+<a href="https://bebong.tistory.com/entry/SQS-with-Spring">SQS with Spring</a></p>
+</blockquote>
+
+
+    </div>
+
+</article>
+<div class="post-nav">
+<a class="previous" href="/jekyll-theme-yat/etc/2022/07/05/%EB%B8%94%EB%A1%9C%EA%B7%B8-%EC%A0%95%EC%B0%A9.html" title="블로그 정착">블로그 정착</a><a class="next" href="/jekyll-theme-yat/cron/2022/07/10/Cron-Expression.html" title="Cron Expression">Cron Expression</a>
+</div>
+<div class="post-related">
+      <div>Related Articles</div>
+      <ul>
+        <li><a class="post-link" href="/jekyll-theme-yat/posts/review/codenbutter-auto-message" title="Cron Expression">쇼핑몰 매출이 올라가는 자동메시지 팝업</a></li>
+<li><a class="post-link" href="/jekyll-theme-yat/posts/review/web-builder" title="Cron Expression">B2B 마케팅에도 필수! 코딩 없이 웹 사이트를 만들 수 있는 툴 4가지...</a></li>
+<li><a class="post-link" href="/jekyll-theme-yat/dev/2022/08/28/Querydsl2.html" title="Cron Expression">Querydsl 조회 쿼리</a></li>
+<li><a class="post-link" href="/jekyll-theme-yat/dev/2022/08/28/Querydsl.html" title="Cron Expression">Querydsl</a></li>
+</ul>
+    </div>
+<div class="post-comments">
+<script async crossorigin="anonymous" issue-term="title" label="comments" onload="initUtterancesTheme()" repo="97kim/blog-comments" src="https://utteranc.es/client.js" theme="github-light">
+</script><script>
+  const setUtterancesTheme = (dataTheme) => {
+    const iframe = document.querySelector('.utterances-frame');
+    if (iframe) {
+      const utterancesTheme = dataTheme === 'dark' ? 'github-dark' : 'github-light'
+      const message = {
+        type: 'set-theme',
+        theme: utterancesTheme
+      };
+      iframe.contentWindow.postMessage(message, 'https://utteranc.es');
+    }
+  }
+
+  // init theme
+  const initUtterancesTheme = () => {
+    const iframe = document.querySelector('.utterances-frame');
+    if (!iframe) return
+    iframe.onload = () => {
+      setUtterancesTheme(document.documentElement.getAttribute('data-theme'))
+    }
+  }
+
+  // dynamic change
+  const observer = new MutationObserver((mutationsList, observer) => {
+    for (let mutation of mutationsList) {
+      if (mutation.type === 'attributes' && mutation.attributeName === 'data-theme') {
+        setUtterancesTheme(document.documentElement.getAttribute('data-theme'))
+      }
+    }
+  });
+  observer.observe(document.documentElement, {attributes: true, childList: false, subtree: false});
+</script>
+</div></section>
+</div>
+
+
+  </section>
+  <section class="sidebar" style="margin-left: 15px;">
+    <!-- Get sidebar items --></section>
+</div>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/jekyll-theme-yat/"></data>
+
+  <div class="wrapper">
+    <div class="site-footer-inner">
+<div>Jung.log <span class="copyleft">©</span> 2022 97kim</div>
+      <div>Powered by <a title="Jekyll is a simple, blog-aware, static site
+      generator." href="https://jekyllrb.com/">Jekyll</a> &amp; <a title="Yat, yet
+      another theme." href="https://github.com/jeffreytse/jekyll-theme-yat">Yat Theme</a>.</div>
+      <div class="footer-col rss-subscribe">Subscribe <a href="/jekyll-theme-yat/feed.xml">via RSS</a>
+</div>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,1437 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="google-translate-customization" content="108d9124921d80c3-80e20d618ff053c8-g4f02ec6f3dba68b7-c">
+  <meta property="og:image" content="https://i.postimg.cc/hG4jn2Yp/bg.jpg">
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>VPC | Jung.log</title>
+<meta name="generator" content="Jekyll v4.3.3">
+<meta property="og:title" content="VPC">
+<meta name="author" content="97kim">
+<meta property="og:locale" content="ko">
+<meta name="description" content="AWS를 사용하면서 알아야 할 VPC에 대해 적어보려고 한다.">
+<meta property="og:description" content="AWS를 사용하면서 알아야 할 VPC에 대해 적어보려고 한다.">
+<link rel="canonical" href="https://97kim.github.io/jekyll-theme-yat/dev/2022/12/24/VPC.html">
+<meta property="og:url" content="https://97kim.github.io/jekyll-theme-yat/dev/2022/12/24/VPC.html">
+<meta property="og:site_name" content="Jung.log">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2022-12-24T00:00:00+09:00">
+<meta name="twitter:card" content="summary">
+<meta property="twitter:title" content="VPC">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"97kim"},"dateModified":"2022-12-24T00:00:00+09:00","datePublished":"2022-12-24T00:00:00+09:00","description":"AWS를 사용하면서 알아야 할 VPC에 대해 적어보려고 한다.","headline":"VPC","mainEntityOfPage":{"@type":"WebPage","@id":"https://97kim.github.io/jekyll-theme-yat/dev/2022/12/24/VPC.html"},"url":"https://97kim.github.io/jekyll-theme-yat/dev/2022/12/24/VPC.html"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="shortcut icon" href="/assets/images/favicon.ico">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-noto-sans@0.0.72/index.min.css">
+  <link rel="stylesheet" href="/jekyll-theme-yat/assets/css/main.css">
+  <script src="/jekyll-theme-yat/assets/js/main.js"></script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8737240624109252" crossorigin="anonymous"></script><link type="application/atom+xml" rel="alternate" href="https://97kim.github.io/jekyll-theme-yat/feed.xml" title="Jung.log">
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WRGLN20V3X"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-WRGLN20V3X');
+</script>
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/default.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js"></script>
+<!-- and it's easy to individually load additional languages -->
+<script charset="UTF-8" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/languages/go.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+// Init highlight js
+document.addEventListener('DOMContentLoaded', function(event) {
+  var els = document.querySelectorAll('pre code')
+
+  function addLangData(block) {
+    var outer = block.parentElement.parentElement.parentElement;
+    var lang = block.getAttribute('data-lang');
+    for (var i = 0; i < outer.classList.length; i++) {
+      var cls = outer.classList[i];
+      if (cls.startsWith('language-')) {
+        lang = cls;
+        break;
+      }
+    }
+    if (!lang) {
+      cls = block.getAttribute('class');
+      lang = cls ? cls.replace('hljs ', '') : '';
+    }
+    if (lang.startsWith('language-')) {
+      lang = lang.substr(9);
+    }
+    block.setAttribute('class', 'hljs ' + lang);
+    block.parentNode.setAttribute('data-lang', lang);
+  }
+
+  function addBadge(block) {
+    var enabled = ('true' || 'true').toLowerCase();
+    if (enabled == 'true') {
+      var pre = block.parentElement;
+      pre.classList.add('badge');
+    }
+  }
+
+  function handle(block) {
+    addLangData(block);
+    addBadge(block)
+    hljs.highlightBlock(block);
+  }
+
+  for (var i = 0; i < els.length; i++) {
+    var el = els[i];
+    handle(el);
+  }
+});
+</script>
+
+<style>
+  /* code language badge */
+  pre.badge::before {
+    content: attr(data-lang);
+    color: #fff;
+    background-color: #ff4e00;
+    padding: 0 .5em;
+    border-radius: 0 2px;
+    text-transform: uppercase;
+    text-align: center;
+    min-width: 32px;
+    display: inline-block;
+    position: absolute;
+    right: 0;
+  }
+
+  /* fix wrong badge display for firefox browser */
+  code > table pre::before {
+    display: none;
+  }
+</style>
+</head>
+<body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<header class="site-header site-header-transparent" role="banner">
+
+  <div class="wrapper">
+    <div class="site-header-inner">
+<span class="site-brand"><a class="site-brand-inner" rel="author" href="/jekyll-theme-yat/">
+  <img class="site-favicon" title="Jung.log" src="/assets/images/favicon.ico" onerror="this.style.display='none'">
+  Jung.log
+</a>
+</span><nav class="site-nav">
+          <input type="checkbox" id="nav-trigger" class="nav-trigger">
+          <label for="nav-trigger">
+            <span class="menu-icon">
+              <svg viewbox="0 0 18 15" width="18px" height="15px">
+                <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"></path>
+              </svg>
+            </span>
+          </label>
+
+          <div class="trigger">
+<a class="page-link" href="/jekyll-theme-yat/about.html">ABOUT</a><a class="page-link" href="/jekyll-theme-yat/archives.html">ARCHIVES</a><a class="page-link" href="/jekyll-theme-yat/categories.html">CATEGORIES</a><a class="page-link" href="/jekyll-theme-yat/tags.html">TAGS</a>
+
+
+
+
+
+
+
+
+
+<span class="page-link">
+
+
+
+<div id="google_translate_element" style="display: none;">
+</div>
+
+<span class="ct-language">
+  <ul class="list-unstyled ct-language-dropdown">
+    
+      <li>
+        <a href="#" class="lang-select" data-lang="ko">
+          
+          <img src="https://cdn.countryflags.com/thumbs/south-korea/flag-400.png" title="Korean">
+          
+        </a>
+      </li>
+    
+      <li>
+        <a href="#" class="lang-select" data-lang="en">
+          
+          <img src="https://cdn.countryflags.com/thumbs/united-states-of-america/flag-400.png" title="English">
+          
+        </a>
+      </li>
+    
+  </ul>
+</span>
+
+<script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({
+    pageLanguage: 'ko',
+    autoDisplay: false,
+    layout: google.translate.TranslateElement.InlineLayout.VERTICAL
+  }, 'google_translate_element');
+
+  // Links to cross-origin destinations are unsafe
+  var gll = document.getElementsByClassName('goog-logo-link')[0];
+  if (gll) {
+    gll.setAttribute('rel', 'noopener');
+  }
+
+  function restoreLang() {
+    var iframe = document.getElementsByClassName('goog-te-banner-frame')[0];
+    if (!iframe) return;
+
+    var innerDoc = iframe.contentDocument || iframe.contentWindow.document;
+    var restore_el = innerDoc.getElementsByTagName("button");
+
+    for (var i = 0; i < restore_el.length; i++) {
+      if (restore_el[i].id.indexOf("restore") >= 0) {
+        restore_el[i].click();
+        var close_el = innerDoc.getElementsByClassName("goog-close-link");
+        close_el[0].click();
+        return;
+      }
+    }
+  }
+
+  function triggerHtmlEvent(element, eventName) {
+    var event;
+    if (document.createEvent) {
+      event = document.createEvent('HTMLEvents');
+      event.initEvent(eventName, true, true);
+      element.dispatchEvent(event);
+    } else {
+      event = document.createEventObject();
+      event.eventType = eventName;
+      element.fireEvent('on' + event.eventType, event);
+    }
+  }
+
+  var googleCombo = document.querySelector("select.goog-te-combo");
+  var langSelect = document.querySelector('.ct-language');
+  langSelect.addEventListener('click', function(event) {
+    if (!event.target) {
+      return;
+    }
+
+    var selected = document.querySelector('.ct-language .ct-language-selected');
+    if (selected) {
+      selected.classList.remove('ct-language-selected');
+    }
+
+    var target = event.target;
+    while (target && target !== langSelect ) {
+      if (target.matches('.lang-select')) {
+        break;
+      }
+      target = target.parentElement;
+    }
+
+    if (target && target.matches('.lang-select')) {
+      var lang = target.getAttribute('data-lang');
+      if (googleCombo.value == lang) {
+        restoreLang();
+      } else {
+        target.parentElement.classList.add('ct-language-selected');
+        googleCombo.value = lang;
+        triggerHtmlEvent(googleCombo, 'change');
+      }
+    }
+
+    event.preventDefault();
+  });
+}
+</script>
+
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</span>
+</div>
+        </nav>
+</div>
+  </div>
+</header>
+
+<script>
+  function initHeader() {
+    var lastScrollY = getScrollPos().y;
+    var documentElement = document.documentElement;
+
+    function storeScrollData() {
+      var y = getScrollPos().y;documentElement.setAttribute("data-header-transparent", "");var scrollStatus = "";
+
+      if (y <= 0) {
+        scrollStatus = "top";
+      } else if ((window.innerHeight + y) >= document.body.offsetHeight) {
+        scrollStatus = "bottom";
+      } else {
+        var isScrollDown = (y - lastScrollY > 0) ? true : false;
+        scrollStatus = isScrollDown ? "down" : "up";
+      }
+
+      lastScrollY = y;
+      documentElement.setAttribute("data-scroll-status", scrollStatus);
+    }
+
+    window.addEventListener('scroll', function(e) {
+      storeScrollData();
+    });
+
+    storeScrollData();
+  }
+  document.addEventListener('DOMContentLoaded', initHeader);
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<style>
+    html .page-banner {
+      background: #000;
+    }
+  </style>
+<style>html .page-banner {
+      height:  18.4vh;
+      min-height: 38vh;
+    }
+    html[data-scroll-status="top"] .page-banner {
+      height: 50vh;
+    }
+  </style>
+<style>
+    html .page-banner .page-banner-img > *:first-child {
+      opacity: 0.618;
+    }
+
+    html[data-theme="dark"] .page-banner .page-banner-img > *:first-child {
+      opacity: 0.443724;
+    }
+  </style>
+<style>
+    html .page-banner .page-banner-inner > *:first-child > *:nth-child(1) {
+      font-size: 2.5em; font-weight: bold;
+    }
+  </style>
+<style>
+    html .page-banner .page-banner-inner > *:first-child > *:nth-child(2) {
+      color: gold
+    }
+  </style>
+<section class="page-banner">
+    <div class="page-banner-img">
+<div style="background-image: url(/jekyll-theme-yat/)"></div>
+        <img class="img-placeholder" src="/jekyll-theme-yat/">
+</div>
+    <div class="wrapper">
+      <div class="page-banner-inner">
+<header class="post-header">
+  <h1 class="post-title p-name" itemprop="name headline">VPC</h1>
+  <h2 class="post-subtitle">AWS 시리즈</h2>
+
+  <p class="post-meta">
+    <time class="dt-published" datetime="2022-12-24T00:00:00+09:00" itemprop="datePublished"><i class="fa fa-calendar"></i> Dec 24, 2022
+    </time>
+
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <span class="post-reading-time left-vsplit"><i class="fa fa-clock-o"></i> About 47 mins</span>
+  </p>
+<div class="post-tags">
+<a class="post-tag" href="/jekyll-theme-yat/tags.html#AWS">#AWS</a><a class="post-tag" href="/jekyll-theme-yat/tags.html#VPC">#VPC</a>
+</div></header>
+</div>
+    </div>
+  </section><script>
+  function hashLocate(hashValue) {
+    hashValue = hashValue.replace(/^.*#h-/, '');
+    hashValue = decodeURIComponent(hashValue);
+    var element = document.getElementById(hashValue);
+
+    if (!element) {
+      return;
+    }
+
+    var header = document.querySelector('header.site-header');
+    var headerRect = header.getBoundingClientRect();
+    var headerTop = Math.floor(headerRect.top);
+    var headerHeight = Math.floor(headerRect.height);
+    var scrollPos = getScrollPos();
+    var offsetY = element.offsetTop - (headerTop + headerHeight + 20);
+
+    if (offsetY == scrollPos.y) {
+      return;
+    }
+
+    if (headerTop == 0  && offsetY > scrollPos.y) {
+      offsetY += headerHeight + 2;
+    } else if (headerTop < 0  && offsetY < scrollPos.y) {
+      offsetY -= headerHeight - 2;
+    }
+
+    smoothScrollTo(offsetY);
+  }
+
+  // The first event occurred
+  window.addEventListener('load', function(event) {
+    if (window.location.hash) {
+      hashLocate(window.location.hash);
+    }
+  });
+
+  // The first event occurred
+  window.addEventListener('click', function(event) {
+    if (event.target.tagName.toLowerCase() == 'a') {
+      hashLocate(event.target.getAttribute('href'));
+    }
+  });
+</script>
+<div class="theme-toggle">
+  <input type="checkbox" id="theme-switch">
+  <label for="theme-switch">
+    <div class="toggle"></div>
+    <div class="names">
+      <p class="light">Light</p>
+      <p class="dark">Dark</p>
+    </div>
+  </label>
+</div>
+
+
+
+
+<script>
+  (function() {
+    var sw = document.getElementById('theme-switch');
+    var html = document.getElementsByTagName('html')[0];
+    var nightModeOption = ('on/off' || 'auto').toLowerCase();
+    var storage = nightModeOption === 'manual'
+        ? localStorage
+        : sessionStorage;
+    var themeData = loadThemeData();
+
+    function saveThemeData(data) {
+      storage.setItem('theme', JSON.stringify(data));
+    }
+
+    function loadThemeData() {
+      var data = storage.getItem('theme');
+      try {
+        data = JSON.parse(data ? data : '');
+      } catch(e) {
+        data = { nightShift: undefined, autoToggleAt: 0 };
+        saveThemeData(data);
+      }
+      return data;
+    }
+
+    function handleThemeToggle(nightShift) {
+      themeData.nightShift = nightShift;
+      saveThemeData(themeData);
+      html.dataset.theme = nightShift ? 'dark' : 'light';
+      setTimeout(function() {
+        sw.checked = nightShift ? true : false;
+      }, 50);
+    }
+
+    function autoThemeToggle() {
+      // Next time point of theme toggle
+      var now = new Date();
+      var toggleAt = new Date();
+      var hours = now.getHours();
+      var nightShift = hours >= 19 || hours <=7;
+
+      if (nightShift) {
+        if (hours > 7) {
+          toggleAt.setDate(toggleAt.getDate() + 1);
+        }
+        toggleAt.setHours(7);
+      } else {
+        toggleAt.setHours(19);
+      }
+
+      toggleAt.setMinutes(0);
+      toggleAt.setSeconds(0);
+      toggleAt.setMilliseconds(0)
+
+      var delay = toggleAt.getTime() - now.getTime();
+
+      // auto toggle theme mode
+      setTimeout(function() {
+        handleThemeToggle(!nightShift);
+      }, delay);
+
+      return {
+        nightShift: nightShift,
+        toggleAt: toggleAt.getTime()
+      };
+    }
+
+    // Listen the theme toggle event
+    sw.addEventListener('change', function(event) {
+      handleThemeToggle(event.target.checked);
+    });
+
+    if (nightModeOption == 'auto') {
+      var data = autoThemeToggle();
+
+      // Toggle theme by local setting
+      if (data.toggleAt > themeData.autoToggleAt) {
+        themeData.autoToggleAt = data.toggleAt;
+        handleThemeToggle(data.nightShift);
+      } else {
+        handleThemeToggle(themeData.nightShift);
+      }
+    } else if (nightModeOption == 'manual') {
+      handleThemeToggle(themeData.nightShift);
+    } else {
+      var nightShift = themeData.nightShift;
+      if (nightShift === undefined) {
+        nightShift = nightModeOption === 'on';
+      }
+      handleThemeToggle(nightShift);
+    }
+  })();
+</script>
+<div id="click-to-top" class="click-to-top">
+  <i class="fa fa-arrow-up"></i>
+</div>
+<script>
+  (function () {
+    const clickToTop = document.getElementById('click-to-top');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 100) {
+        clickToTop.classList.add('show')
+      }else {
+        clickToTop.classList.remove('show')
+      }
+    });
+    clickToTop.addEventListener('click', () => {
+      window.smoothScrollTo(0);
+    });
+  })();
+</script>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <div class="framework">
+  <section class="main">
+
+     <div class="post">
+  <section>
+
+
+
+
+
+
+
+
+
+<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+    <div class="post-content e-content" itemprop="articleBody">
+
+      <p>AWS를 사용하면서 알아야 할 VPC에 대해 적어보려고 한다.</p>
+
+<h2 id="vpc-virtual-private-cloud"><span style="color: #f77;">VPC (Virtual Private Cloud)</span></h2>
+<p>VPC는 사용자가 정의하는 가상의 네트워크다. VPC를 통해 인스턴스가 속하는 네트워크를 구분하여 각 네트워크에 맞는 설정을 부여할 수 있다. AWS에서 VPC에 대한 설정을 따로 하지 않아도 기본 VPC로 설정 되지만, 예를 들어 VPC 없이 인스턴스를 생성한다면 아래와 같이 인스턴스끼리 구분 없이 복잡하게 연결되어 있어 시스템의 복잡도를 높이고 하나의 인스턴스만 추가 되어도 모든 인스턴스를 수정해야 할 것이다.</p>
+
+<p><br></p>
+
+<p><strong>VPC가 없는 구조</strong></p>
+
+<p><img src="https://images.velog.io/images/rudwnd33/post/fe69feb5-378c-466c-baf6-7885121d4a4d/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA%202021-10-31%20%E1%84%8B%E1%85%A9%E1%84%8C%E1%85%A5%E1%86%AB%202.41.08.png" alt=""></p>
+
+<p><strong>VPC를 적용한 구조</strong>
+<img src="https://images.velog.io/images/rudwnd33/post/d5411f30-36dd-4749-b2d4-dbbf38591c09/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA%202021-10-31%20%E1%84%8B%E1%85%A9%E1%84%8C%E1%85%A5%E1%86%AB%202.53.32.png" alt=""></p>
+
+<h3 id="vpc의-핵심-개념"><span style="color: #f77;">VPC의 핵심 개념</span></h3>
+
+<p><strong>Virtual Private Cloud(VPC)</strong> — 사용자의 AWS 계정 전용 가상 네트워크</p>
+
+<p><strong>서브넷</strong> — VPC의 IP 주소 범위</p>
+
+<p><strong>라우팅 테이블</strong> — 네트워크 트래픽을 전달할 위치를 결정하는 데 사용하는 라우팅이라는 이름의 규칙 집합</p>
+
+<p><strong>인터넷 게이트웨이</strong> — VPC의 리소스와 인터넷 간의 통신을 활성화하기 위해 VPC에 연결하는 게이트웨이</p>
+
+<p><strong>VPC 엔드포인트</strong> - 인터넷 게이트웨이, NAT 디바이스, VPN 연결 또는 AWS Direct Connect 연결을 필요로 하지 않고 <a href="https://docs.aws.amazon.com/ko_kr/vpc/latest/userguide/endpoint-services-overview.html">AWS PrivateLink 및 VPC 엔드포인트 서비스</a>에 VPC를 비공개로 연결할 수 있다. VPC의 인스턴스는 서비스의 리소스와 통신하는 데 퍼블릭 IP 주소를 필요로 하지 않는다. VPC와 기타 서비스 간의 트래픽은 Amazon 네트워크를 벗어나지 않는다.</p>
+
+<p><strong>CIDR 블록</strong> — 클래스 없는 도메인 간 라우팅이다. 인터넷 프로토콜 주소 할당 및 라우팅 집계 방법이다. 자세한 내용은 <a href="https://ko.wikipedia.org/wiki/%EC%82%AC%EC%9D%B4%EB%8D%94_(%EB%84%A4%ED%8A%B8%EC%9B%8C%ED%82%B9)">이곳에서</a> 확인하기.</p>
+
+<p><br>
+VPC는 사용자의 AWS 계정 전용 가상 네트워크다. VPC는 AWS 클라우드에서 다른 가상 네트워크와 논리적으로 분리되어 있다. EC2 인스턴스 같은 AWS 리소스를 VPC에서 실행할 수 있다. IP 주소 범위와 VPC 범위를 설정하고 서브넷을 추가하고 보안 그룹을 연결한 다음 라우팅 테이블을 구성한다.</p>
+
+<p>서브넷은 VPC의 IP 주소 범위다. 지정된 서브넷으로 AWS 리소스를 시작할 수 있다. 인터넷에 연결되어야 하는 리소스에는 퍼블릭 서브넷을 사용하고, 인터넷에 연결되지 않는 리소스에는 프라이빗 서브넷을 사용하는 것이 좋다.</p>
+
+<p>각 서브넷에서 AWS 리소스를 보호하기 위해 보안 그룹 및 네트워크 액세스 제어 목록(ACL, Access Control List)을 포함한 다중 보안 계층을 사용할 수 있다.</p>
+
+<p>VPC를 구축하기 위해서는 VPC의 IP 범위를 RFC1918이라는 사설 IP 대역에 맞추어 구축해야 한다. <a href="http://www.codns.com/b/B05-104">사설 IP</a>는 인터넷에서 공인된 IP 주소를 사용하지 않고, 사적인 용도로 임의 사용하는 IP 주소다.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th>VPC에서 사용하는 사설 IP 대역</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>10.0.0.0 - 10.255.255.255 (10/8 prefix)</td>
+    </tr>
+    <tr>
+      <td>172.16.0.0 - 172.31.255.255 (172.16/12 prefix)</td>
+    </tr>
+    <tr>
+      <td>192.168.0.0 - 192.168.255.255 (192.168/16 prefix)</td>
+    </tr>
+  </tbody>
+</table>
+
+<blockquote>
+  <p><strong>참고</strong> <br>
+<a href="https://docs.aws.amazon.com/ko_kr/vpc/latest/userguide/how-it-works.html">Amazon VPC 작동 방식 - Amazon Virtual Private Cloud</a> <br>
+<a href="https://medium.com/harrythegreat/aws-%EA%B0%80%EC%9E%A5%EC%89%BD%EA%B2%8C-vpc-%EA%B0%9C%EB%85%90%EC%9E%A1%EA%B8%B0-71eef95a7098">Great, Harry The. “[AWS] 가장쉽게 VPC 개념잡기.” Medium, 해리의 유목코딩, 14 Feb. 2020</a></p>
+</blockquote>
+
+<p><br></p>
+
+<h3 id="서브넷-subnet"><span style="color: #f77;">서브넷 (Subnet)</span></h3>
+<p>서브넷이란 하나의 IP 네트워크 주소를 지역적으로 나누어 여러 개의 서로 연결된 지역 네트워크로 사용할 수 있도록 하는 방법이다. (네트워크의 논리적인 분할)</p>
+
+<h4 id="a-class">A Class</h4>
+<p>A클래스의 첫번째 옥텟의 비트가 0으로 고정된다.</p>
+
+<p><span style="color: #f77;">0</span>xxx xxxx. xxxx xxxx. xxxx xxxx. xxxx xxxx</p>
+
+<p>그렇기 때문에 표현할 수 있는 범위는 아래와 같다.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>0000 0000.0000 0000.0000 0000.0000 0000 ~ 0111 1110.1111 1111.1111 1111.1111 1111
+</code></pre></div></div>
+
+<p>그래서 십진수로 표현하면 0.0.0.0 ~ 127.255.255.255이다.
+이 IP 클래스는 <strong>대규모 네트워크</strong>에 적합하다.
+<strong>네트워크 주소</strong>는 처음 8비트까지이고, 나머지 24비트는 <strong>호스트 주소</strong>를 의미한다.</p>
+
+<h4 id="b-class">B Class</h4>
+<p>B클래스는 첫번째 옥텟의 두번째 비트까지 10으로 고정된다.</p>
+
+<p><span style="color: #f77;">10</span>xx xxxx. xxxx xxxx. xxxx xxxx. xxxx xxxx</p>
+
+<p>그래서 표현할 수 있는 범위는 아래와 같다.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1000 0000. 0000 0000. 0000 0000. 0000 0000 ~ 1011 1111. 1111 1111. 1111 1111
+</code></pre></div></div>
+
+<p>그래서 십진수로 표현하면 128.0.0.0 ~ 191.255.255.255이다.
+<strong>네트워크 주소</strong>는 처음 16비트까지이고, 나머지 16비트는 <strong>호스트 주소</strong>를 의미한다.</p>
+
+<h4 id="c-class">C Class</h4>
+<p>C클래스는 첫번째 옥텟의 세번째 비트까지 110으로 고정된다.</p>
+
+<p><span style="color: #f77;">110</span>x xxxx. xxxx xxxx. xxxx xxxx. xxxx xxxx</p>
+
+<p>그래서 표현할 수 있는 범위는 아래와 같다.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1100 0000. 0000 0000. 0000 0000. 0000 0000 ~ 1101 1111. 1111 1111. 1111 1111. 1111 1111
+</code></pre></div></div>
+
+<p>그래서 십진수로 표현하면 192.0.0.0 ~ 223.255.255.255이다.
+<strong>네트워크 주소</strong>는 처음 24비트까지이고, 나머지 8비트는 <strong>호스트 주소</strong>를 의미한다.</p>
+
+<h4 id="d-class">D Class</h4>
+<p>D클래스는 첫번째 옥텟의 네번째 비트가 1110으로 고정된다.</p>
+
+<p><span style="color: #f77;">1110</span> xxxx. xxxx xxxx. xxxx xxxx. xxxx xxxx</p>
+
+<p>그래서 표현할 수 있는 범위는 아래와 같다.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1110 0000. 0000 0000. 0000 0000. 0000 0000 ~ 1110 1111. 1111 1111. 1111 1111. 1111 1111
+</code></pre></div></div>
+
+<p>그래서 십진수로 표현하면 224.0.0.0 ~ 239.255.255.255이다.
+<strong>멀티캐스트용 대역</strong>으로 IP주소에 할당되지 않는다.</p>
+
+<h4 id="e-class">E Class</h4>
+
+<p>E클래스는 첫번째 옥텟의 네번째 비트까지 1111으로 고정된다.</p>
+
+<p><span style="color: #f77;">1111</span> xxxx. xxxx xxxx. xxxx xxxx. xxxx xxxx</p>
+
+<p>그래서 표현할 수 있는 범위는 아래와 같다.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1111 0000. 0000 0000. 0000 0000. 0000 0000 ~ 1111 1111. 1111 1111. 1111 1111. 1111 1111
+</code></pre></div></div>
+
+<p>그래서 십진수로 표현하면 240.0.0.0 ~ 255.255.255.255이다.
+<strong>예약된 주소 대역</strong>으로 IP주소에 할당되지 않는다.</p>
+
+<p><span style="text-decoration: underline;">D클래스와 E클래스는 특정 용도로 사용하기 때문에 실제 IP주소에 할당되지 않는다.</span></p>
+
+<p>클래스 등급이 낮아지면서 호스트 주소 부분이 점점 줄어들고 있는것을 알 수 있다.</p>
+
+<p><strong>이 중 특정 주소 대역은 사설 IP로 사용된다.</strong></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>VPC에서 사용하는 사설 IP 대역</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>10.0.0.0 - 10.255.255.255 (10/8 prefix)</td>
+    </tr>
+    <tr>
+      <td>172.16.0.0 - 172.31.255.255 (172.16/12 prefix)</td>
+    </tr>
+    <tr>
+      <td>192.168.0.0 - 192.168.255.255 (192.168/16 prefix)</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>(아까 위에서 설명한 사설 IP 대역이랑 같다.)</p>
+
+<blockquote>
+  <p>각 클래스로 나눠진 네트워크를 운영중인 서비스의 규모에 맞게 분할하여 사용하기 위한 기술이다. 따라서 이런 기술을 통해서 A Class 네트워크와 같은 매우 큰 네트워크를 작게 나눠서 사용하면서, <strong>낭비되는 IP주소 자원을 최소화</strong>하려는 것이 주된 목적이다.</p>
+</blockquote>
+
+<blockquote>
+  <p><strong>참고</strong> <br>
+<a href="https://hyoje420.tistory.com/32">Heyhyo. “[Network]서브넷(Subnet).” Hyo Note, TISTORY, 31 Aug. 2018,</a> <br>
+<a href="https://yoonix.tistory.com/11">heyoon2j. “Subnet 이란?” { BLog: “heyoon2j” }, TISTORY, 7 Dec. 2019</a> <br>
+<a href="https://reakwon.tistory.com/69">Reakwon. “[네트워크] IP 클래스와 서브넷마스크, 서브넷마스크 계산방법.” REAKWON, TISTORY, 19 May 2020</a></p>
+</blockquote>
+
+<p><br></p>
+
+<h3 id="서브넷-마스크-subnet-mask"><span style="color: #f77;">서브넷 마스크 (Subnet Mask)</span></h3>
+<p>네트워크 범위를 제한하거나 네트워크 범위를 알기 위한 마스크다. IP 주소에 대한 네트워크 아이디와 호스트 아이디를 구분하기 위해서 사용된다.</p>
+
+<p>C클래스 대역을 사용해서 호스트를 255개를 수용할 수 있는 것도 너무 많이 남을 때가 있다. 또는 B클래스 대역을 C클래스 대역으로 쓰고 싶을 때가 있다. 네트워크 주소를 조금 더 효율적으로 할당하고자 나온 것이 서브넷 마스크다. 서브넷 마스크로 만들어진 네트워크를 서브넷이라고 한다.</p>
+
+<p>128.255.11.11는 B클래스 주소다. 128.255까지가 네트워크 주소이고 나머지 2옥텟이 호스트 주소다.</p>
+
+<blockquote>
+  <p>💡 128.255.11.11을 255.255.255.0이라는 서브넷 마스크를 씌우면 어떻게 될까 🤔</p>
+</blockquote>
+
+<p>서브넷 마스크는 비트로 보는 것이 편하다.</p>
+
+<p>255.255.255.0 ➡️ <span style="color: #f77;">1111 1111.1111 1111.1111 1111.</span><span style="color: #7ae;">0000 0000</span></p>
+
+<p>여기서 서브넷 마스크 비트가 1인 것은 전부 <span style="color: #f77;">네트워크 주소</span>가 되고, 반대로 서브넷마스크 비트가 0인 것은 <span style="color: #7ae;">호스트 주소</span>가 된다.</p>
+
+<p>⏬ 서브넷 마스크 적용 ⏬</p>
+
+<p>128.255.11.11 ➡️ <span style="color: #f77;">1000 0000.1111 1111.0000 1011.</span><span style="color: #7ae;">0000 1011</span></p>
+
+<p>따라서 255.255.255.0이라는 서브넷 마스크를 씌우면 128.255.11이 <span style="color: #f77;">네트워크 주소</span>가 되고 나머지 11이 <span style="color: #7ae;">호스트 주소</span>가 된다. 네트워크 주소: 128.255.11.0, 호스트 주소: 0.0.0.11</p>
+
+<blockquote>
+  <p>서브넷마스크의 표기방식은 주소/서브넷마스크 주소 또는 주소/비트수로 표현할 수 있다. 128.255.11.11/255.255.255.0 또는 128.255.11.11/24로 표현이 가능하다.</p>
+</blockquote>
+
+<hr>
+
+<blockquote>
+  <p>💡 128.255.11.11을 255.255.255.224의 서브넷마스크를 적용하면 어떻게 될까 🤔</p>
+</blockquote>
+
+<p>비트로 풀어보면</p>
+
+<p>255.255.255.224 ➡️ <span style="color: #f77;">1111 1111.1111 1111.1111 1111.111</span><span style="color: #7ae;">0 0000</span></p>
+
+<p>⏬ 서브넷 마스크 적용 ⏬</p>
+
+<p>128.255.11.11 ➡️ <span style="color: #f77;">1000 0000.1111 1111.0000 1011.000</span><span style="color: #7ae;">0 1011</span></p>
+
+<p>하위 5비트 <span style="color: #7ae;">0 0000</span>을 호스트 주소로 적용시킬 수 있으니까(서브넷마스크 비트가 <span style="color: #7ae;">0</span>인 것이 <span style="color: #7ae;">호스트 주소</span>) 128.255.11.0 ~ 128.255.11.31 까지가 같은 네트워크고, 128.255.11.11은 이 네트워크에 속하는 것을 알 수 있다. 128.255.11.0은 네트워크 주소, 128.255.11.31은 브로드캐스트 주소기 때문에 실제 사용 가능한 호스트 개수는 2^5-2 = 30개다.</p>
+
+<blockquote>
+  <ul>
+    <li>
+<strong>네트워크 주소</strong>: 해당 네트워크의 첫번째 IP주소로, 하나의 네트워크를 통칭한다. IP주소와 서브넷마스크의 AND 연산을 통해 구할 수 있다.</li>
+    <li>
+<strong>호스트 주소</strong>: 특정한 하나의 네트워크 내에서 서로를 구분하기 위한 주소다.</li>
+    <li>
+<strong>브로드캐스트 주소</strong>: 해당 네트워크에 속하는 모든 IP 주소 가운데 맨 마지막 IP주소로, 네트워크에 있는 모든 클라이언트들에게 데이터를 보내기 위함이다.</li>
+  </ul>
+</blockquote>
+
+<p>사실 A, B, C클래스 대역은 각각 255.0.0.0, 255.255.0.0, 255.255.255.0의 서브넷마스크가 적용되었다.
+이것을 <strong>default subnet mask</strong>라고 한다.</p>
+
+<blockquote>
+  <p><strong>참고</strong> <br>
+<a href="https://reakwon.tistory.com/69">Reakwon. “[네트워크] IP 클래스와 서브넷마스크, 서브넷마스크 계산방법.” REAKWON, TISTORY, 19 May 2020</a></p>
+</blockquote>
+
+<p><br></p>
+
+<h3 id="라우팅-테이블"><span style="color: #f77;">라우팅 테이블</span></h3>
+
+<blockquote>
+  <p><strong>라우팅 테이블(Routing Table)</strong>은 컴퓨터 네트워크에서 목적지 주소를 목적지에 도달하기 위한 네트워크 노선으로 변환시키는 목적으로 사용된다. 각 라우터의 라우팅 테이블은 모든 목적지 정보에 대해 해당 목적지에 도달하기 위해서 거쳐야 할 다음 라우터의 정보를 가지고 있다.</p>
+</blockquote>
+
+<p>VPC 내에는 서브넷이 있으며 각 서브넷은 각각 다른 네트워크 대역을 가지고 있다. 각각의 서브넷은 서로 다른 네트워크 영역이기 때문에 하나의 서브넷이 다른 서브넷으로 가기 위해서는 라우팅(Routing)이 필요하다.</p>
+
+<p><img src="https://images.velog.io/images/rudwnd33/post/c2037775-0e35-471f-8f86-8a23367e7bc3/case-3.png" alt=""></p>
+
+<blockquote>
+  <p><strong>이미지 출처</strong> <br>
+<a href="https://docs.aws.amazon.com/ko_kr/vpc/latest/userguide/VPC_Route_Tables.html">VPC의 라우팅 테이블 - Amazon Virtual Private Cloud</a></p>
+</blockquote>
+
+<blockquote>
+  <p>모든 라우팅 테이블에는 VPC 내부 통신을 위한 로컬 라우팅이 포함되어 있다. 이 라우팅은 기본적으로 모든 라우팅 테이블에 추가된다. VPC에 하나 이상의 IPv4 CIDR블록이 연결되어 있는 경우, 라우팅 테이블에 각 IPv4 CIDR 블록의 로컬 경로가 포함된다. IPv6 CIDR 블록을 VPC와 연결한 경우, 라우팅 테이블에 IPv6 CIDR 블록의 로컬 경로가 포함된다. 서브넷 라우팅 테이블이나 기본 라우팅 테이블에서 이러한 라우팅을 수정하거나 삭제할 수 없다.</p>
+</blockquote>
+
+<p>VPC 내부(모든 서브넷)에 대해서는 라우팅이 자동으로 생성된다. 별도의 설정 없이 하나의 서브넷에서 다른 서브넷으로 통신이 가능하다는 말이다. 이는 사용자가 따로 설정할 필요가 없고, 보이지 않는 암시적 라우터인 VPC Router를 통해 가능하다. 서브넷 내의 모든 리소스는 자신이 소속된 서브넷이 아닌 다른 서브넷으로 향하고자 할 때 VPC Router를 거쳐야 한다.</p>
+
+<blockquote>
+  <p>VPC에는 암시적 라우터가 있으며 라우팅 테이블을 사용하여 네트워크 트래픽이 전달되는 위치를 제어한다. VPC의 각 서브넷을 라우팅 테이블에 연결해야 한다. 테이블에서는 서브넷에 대한 라우팅을 제어한다 (서브넷 라우팅 테이블). 서브넷을 특정 라우팅 테이블과 명시적으로 연결할 수 있다. 그렇지 않으면 서브넷이 기본 라우팅 테이블과 암시적으로 연결된다. 서브넷은 한 번에 하나의 라우팅 테이블에만 연결할 수 있지만 여러 서브넷을 동일한 서브넷 라우팅 테이블에 연결할 수도 있다.</p>
+</blockquote>
+
+<p><img src="https://images.velog.io/images/rudwnd33/post/1dd3b445-5af0-4917-b0b2-0353c8d02298/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA%202021-10-31%20%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE%204.06.56.png" alt=""></p>
+
+<p><img src="https://images.velog.io/images/rudwnd33/post/c2b4593c-2a63-4ba5-a263-21bbf29c15a8/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA%202021-10-31%20%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE%204.07.11.png" alt=""></p>
+
+<p>위 사진에서 서브넷의 라우팅을 보여주고 있다. 해당 서브넷에 로컬 라우팅이 지정되어 있는 것을 확인할 수 있다. 나머지 서브넷에도 사진과 같은 라우팅 테이블을 보유하고 있기 때문에 VPC 내 서브넷에 할당된 리소스라면 어느 서브넷이든 다른 서브넷의 리소스와 자유롭게 통신이 가능하다.</p>
+
+<p>또한 라우팅 테이블은 로컬 라우팅 뿐만 아니라 서브넷에 소속된 리소스(EC2, RDS 등)가 외부 인터넷망으로 나갈 수 있는 라우팅을 가질 수 있다. 이를 <strong>인터넷 게이트웨이(Internet Gateway)</strong>라고 한다. 그림에서 igw-***으로 나와있는 것이 바로 인터넷 게이트웨이다.</p>
+
+<blockquote>
+  <p><strong>참고</strong> <br>
+<a href="https://docs.aws.amazon.com/ko_kr/vpc/latest/userguide/VPC_Route_Tables.html">VPC의 라우팅 테이블 - Amazon Virtual Private Cloud.</a> <br>
+<a href="https://aws-hyoh.tistory.com/53">환영 도움되는 네트워크 엔지니어. “VPC와 Network 쉽게 이해하기 #2.” 네트워크 엔지니어 환영의 AWS 기술블로그, TISTORY, 1 Sept. 2021</a></p>
+</blockquote>
+
+<p><br></p>
+
+<h3 id="인터넷-게이트웨이"><span style="color: #f77;">인터넷 게이트웨이</span></h3>
+<blockquote>
+  <p>인터넷 게이트웨이는 수평 확장되고 가용성이 높은 중복 VPC 구성 요소로, VPC와 인터넷 간에 통신할 수 있게 해준다. 인터넷 게이트웨이에는 인터넷 라우팅 가능 트래픽에 대한 VPC 라우팅 테이블에 대상을 제공하고, 퍼블릭 IPv4 주소가 할당된 인스턴스에 대해 NAT(네트워크 주소 변환)를 수행하는 두 가지 목적이 있다.</p>
+</blockquote>
+
+<p>이름에서 알 수 있듯 서브넷 내 리소스(EC2, RDS 등)가 인터넷과 통신하고자 할 때 반드시 거쳐야 하는 관문이 인터넷 게이트웨이다. 인터넷 게이트웨이 없이는 외부 인터넷으로 들어갈 방법은 없다!
+인터넷 게이트웨이만 생성하면 외부 인터넷과 통신할 수 있는 것은 아니고 VPC에서 리소스가 외부 인터넷과 통신하고자 할 경우 갖춰야 할 조건은 아래와 같다.</p>
+
+<blockquote>
+  <ol>
+    <li>인터넷과 통신하고자 하는 리소스가 공인 IP를 보유할 것</li>
+    <li>리소스가 소속된 서브넷의 라우팅 테이블에 0.0.0.0/0 목적지로 갖는 인터넷 게이트웨이가 있을 것</li>
+    <li>네트워크 ACL과 보안 그룹 규칙에서 허용할 것</li>
+  </ol>
+</blockquote>
+
+<p><img src="https://images.velog.io/images/rudwnd33/post/33f0fc6e-6c4b-4288-8308-d94126fdfebe/vpc-share-internet-gateway-example.png" alt=""></p>
+
+<blockquote>
+  <p><strong>이미지 출처</strong> <br>
+<a href="https://docs.aws.amazon.com/ko_kr/vpc/latest/userguide/example-vpc-share.html">Amazon Virtual Private Cloud - Docs.aws.amazon.com</a></p>
+</blockquote>
+
+<p>AWS에서는 공인 인터넷과 통신 가능한 서브넷을 <strong>Public Subnet</strong>, 공인 인터넷이 차단된 사설 IP만 할당된 서브넷은 <strong>Private Subnet</strong>이라고 한다.</p>
+
+<p><img src="https://images.velog.io/images/rudwnd33/post/b430a039-bc45-4374-9b5d-68b02c494fc0/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA%202021-10-31%20%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE%204.37.29.png" alt=""></p>
+
+<p>Name이 -인 3개의 서브넷을 가진 라우팅 테이블의 라우팅 설정은 아래와 같다.</p>
+
+<p><img src="https://images.velog.io/images/rudwnd33/post/0b5322b3-4fe4-48dc-87a4-33c773b18575/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA%202021-10-31%20%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE%204.37.41.png" alt=""></p>
+
+<p>인터넷 게이트웨이가 설정되어 있으므로 이 라우팅 테이블은 Public 서브넷에 관한 라우팅 테이블이다.</p>
+
+<p>Name이 my-route01인 하나의 서브넷을 가진 라우팅 테이블의 라우팅 설정은 아래와 같다.</p>
+
+<p><img src="https://images.velog.io/images/rudwnd33/post/71fbbe41-2581-451d-b8fb-4e45b8560977/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA%202021-10-31%20%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE%204.46.24.png" alt=""></p>
+
+<p>여기서는 인터넷 게이트웨이 대신 NAT 게이트를 설정했다.</p>
+
+<p>NAT 게이트웨이가 설정되어 있으므로 이 라우팅 테이블은 Private 서브넷에 관한 라우팅 테이블이다</p>
+
+<blockquote>
+  <p><strong>참고</strong> <br>
+<a href="https://aws-hyoh.tistory.com/53">환영 도움되는 네트워크 엔지니어. “VPC와 Network 쉽게 이해하기 #2.” 네트워크 엔지니어 환영의 AWS 기술블로그, TISTORY, 1 Sept. 2021</a></p>
+</blockquote>
+
+<p><br></p>
+
+<h3 id="nat-게이트웨이"><span style="color: #f77;">NAT 게이트웨이</span></h3>
+<blockquote>
+  <p><strong>NAT 게이트웨이</strong>는 NAT(네트워크 주소 변환) 서비스다.
+프라이빗 서브넷의 인스턴스가 VPC 외부의 서비스에 연결할 수 있지만 외부 서비스에서 이러한 인스턴스와의 연결을 시작할 수 없도록 NAT 게이트웨이를 사용할 수 있다.</p>
+</blockquote>
+
+<p>NAT(Network Address Translation): 비공인 네트워크(사설 IP 네트워크)에 속한 여러 개의 호스트가 하나의 공인 IP 주소를 사용하여 인터넷에 접속하는 방법</p>
+
+<p>NAT 게이트웨이를 만들 때 다음 연결 유형 중 하나를 지정한다.</p>
+
+<ul>
+  <li>
+    <p><strong>퍼블릭</strong> - (기본값) 프라이빗 서브넷의 인스턴스는 퍼블릭 NAT 게이트웨이를 통해 인터넷에 연결할 수 있지만 인터넷에서 원치 않는 인바운드 연결을 수신할 수 없다. 퍼블릭 서브넷에서 퍼블릭 NAT 게이트웨이를 생성하고 생성 시 탄력적 IP 주소를 NAT 게이트웨이와 연결해야 한다. 트래픽을 NAT 게이트웨이에서 VPC용 인터넷 게이트웨이로 라우팅한다. 또는 퍼블릭 NAT 게이트웨이를 사용하여 다른 VPC 또는 온프레미스 네트워크에 연결할 수 있다. 이 경우 NAT 게이트웨이에서 Transit Gateway 또는 가상 프라이빗 게이트웨이를 통해 트래픽을 라우팅한다.</p>
+  </li>
+  <li>
+    <p><strong>프라이빗</strong> - 프라이빗 서브넷의 인스턴스는 프라이빗 NAT 게이트웨이를 통해 다른 VPC 또는 온프레미스 네트워크에 연결할 수 있다. 트래픽을 NAT 게이트웨이에서 Transit Gateway 또는 가상 프라이빗 게이트웨이를 통해 트래픽을 라우팅할 수 있다. 탄력적 IP 주소를 프라이빗 NAT 게이트웨이에 연결할 수 없다. 프라이빗 NAT 게이트웨이를 사용하여 VPC에 인터넷 게이트웨이를 연결할 수 있지만 프라이빗 NAT 게이트웨이에서 인터넷 게이트웨이로 트래픽을 라우팅하는 경우 인터넷 게이트웨이가 트래픽을 삭제한다.</p>
+  </li>
+</ul>
+
+<p>NAT 게이트웨이는 인스턴스의 소스 IP 주소를 NAT 게이트웨이의 IP 주소로 바꾼다. 퍼블릭 NAT 게이트웨이의 경우 이것은 NAT 게이트웨이의 탄력적 IP 주소다. 프라이빗 NAT 게이트웨이의 경우 이것은 NAT 게이트웨이의 프라이빗 IP 주소다. 인스턴스에 응답 트래픽을 전송할 때 NAT 디바이스는 주소를 원래 소스 IPv4 주소로 다시 변환한다.</p>
+
+<p>나는 서브넷 c를 Private 서브넷으로 설정하고 서브넷 c의 라우팅 설정에서 NAT 게이트웨이를 지정했다. 이 NAT 게이트웨이는 퍼블릭 유형이고 생성할 때 탄력적 IP 주소도 할당했다. 그리고 VPC에서 Private 서브넷 c가 아닌 나머지 3개의 Public 서브넷에서 서브넷 a를 선택해 NAT 게이트웨이를 생성했다.</p>
+
+<blockquote>
+  <p><strong>참고</strong> <br>
+<a href="https://docs.aws.amazon.com/ko_kr/vpc/latest/userguide/vpc-nat-gateway.html">Nat 게이트웨이 - Amazon Virtual Private Cloud</a></p>
+</blockquote>
+
+<p><br></p>
+
+<h3 id="보안그룹"><span style="color: #f77;">보안그룹</span></h3>
+<p>보안 그룹은 연결된 리소스에 도달하고 나갈 수 있는 트래픽을 제어한다. 예를 들어 보안 그룹을 EC2 인스턴스와 연결하면 인스턴스에 대한 인바운드 및 아웃바운드 트래픽을 제어한다.
+VPC를 생성할 경우 VPC는 기본 보안 그룹과 함께 제공된다. 각 VPC 대해 추가 보안 그룹을 생성할 수 있다. 보안 그룹은 해당 보안 그룹이 생성된 VPC의 리소스에만 연결할 수 있다. 각 보안 그룹에 대해 프로토콜 및 포트 번호를 기반으로 트래픽을 제어하는 규칙을 추가한다. 인바운드 트래픽과 아웃바운드 트래픽에 대한 규칙 집합은 별개다. 인바운드 규칙으로 외부에서 우리의 인스턴스로 들어오는 요청을 제한할 수 있고, 아웃바운드 규칙으로 우리의 인스턴스에서 외부로 나가는 요청을 제한할 수 있다.</p>
+
+<p>아래 사진은 예전에 AWS로 프로젝트를 할 때 사용했던 보안 그룹 설정 캡쳐 내용이다. <del>다 가려져 있긴 하지만..</del></p>
+
+<p><img src="https://images.velog.io/images/rudwnd33/post/da4075ae-5e75-49be-ba49-8ae85ea26805/%E1%84%89%E1%85%B3%E1%84%8F%E1%85%B3%E1%84%85%E1%85%B5%E1%86%AB%E1%84%89%E1%85%A3%E1%86%BA%202021-12-22%20%E1%84%8B%E1%85%A9%E1%84%92%E1%85%AE%2010.33.09.png" alt=""></p>
+
+<h4 id="보안-그룹-규칙">보안 그룹 규칙</h4>
+<ul>
+  <li>
+    <p>프로토콜: 허용할 프로토콜이다. 가장 일반적인 프로토콜은 6(TCP), 17(UDP) 및 1(ICMP).</p>
+  </li>
+  <li>
+    <p>포트 범위: TCP, UDP 또는 사용자 지정 프로토콜의 경우 허용할 포트의 범위다. 단일 포트 번호(예: 22) 또는 포트 번호의 범위(예: 7000-8000)를 지정할 수 있다.</p>
+  </li>
+  <li>
+    <p>ICMP 유형 및 코드: ICMP 프로토콜의 경우, 설정할 ICMP 유형과 코드다. 예시: ICMP 에코 요청에 대해 유형 8을 사용하고, ICMPv6 에코 요청에 대해 유형 128을 설정한다.</p>
+  </li>
+  <li>
+    <p>소스 또는 대상: 허용할 트래픽에 대한 소스(인바운드 규칙) 또는 대상(아웃바운드 규칙)이다.</p>
+
+    <ul>
+      <li>
+        <p>단일 IPv4 주소. /32 접두사 길이를 사용해야 한다. 예: 203.0.113.1/32.</p>
+      </li>
+      <li>
+        <p>단일 IPv6 주소. /128 접두사 길이를 사용해야 한다. 예: 2001:db8:1234:1a00::123/128.</p>
+      </li>
+      <li>
+        <p>CIDR 블록 표기법으로 표시된 IPv4 주소의 범위다. 예: 203.0.113.0/24.</p>
+      </li>
+      <li>
+        <p>CIDR 블록 표기법으로 표시된 IPv6 주소의 범위다. 예: 2001:db8:1234:1a00::/64.</p>
+      </li>
+      <li>
+        <p>접두사 목록의 ID. 예: pl-1234abc1234abc123. 자세한 정보는 관리형 접두사 목록을 사용하여 CIDR 블록 그룹화을 참조하십시오.</p>
+      </li>
+      <li>
+        <p>보안 그룹의 ID다(여기에서는 지정된 보안 그룹이라고 함). 예를 들어, 현재 보안 그룹, 동일한 VPC의 보안 그룹 또는 피어링된 VPC에 대한 보안 그룹이 해당됩니다. 이렇게 하면 지정된 보안 그룹과 연결된 리소스의 프라이빗 IP 주소를 기반으로 하는 트래픽이 허용됩니다. 이 작업은 지정된 보안 그룹의 규칙을 현재 보안 그룹에 추가하지 않는다.</p>
+      </li>
+    </ul>
+  </li>
+  <li>
+    <p>(선택 사항) 설명: 나중에 쉽게 식별할 수 있도록 규칙에 대한 설명을 입력하는 곳이다. 설명 길이는 최대 255자다. 허용되는 문자는 <code class="language-plaintext highlighter-rouge">a-z, A-Z, 0-9, 공백 및 ._-:/()#,@[]+=;{}!$*</code>.</p>
+  </li>
+</ul>
+
+<p><br></p>
+
+<h3 id="pem"><span style="color: #f77;">PEM</span></h3>
+<p>PEM(Privacy Enhanced Mail)은 Base64로 인코딩된 ASCII 텍스트 파일이다.
+원래는 Secure Email에 사용되는 인코딩 포맷이었는데 Email 쪽에서는 잘 쓰이지 않고 인증서 또는 키 값을 저장하는 데 많이 사용된다.
+바이너리 파일을 전송할 때 손상될 수 있으므로 텍스트 파일로 변환한 것이고, 어떤 바이너리 파일을 PEM으로 변환했는지 구분하기 위해 파일의 맨 앞에 대시(-) 를 5 개 넣고 BEGIN 파일 유형을 넣고 다시 대시(-)를 5개 뒤에 END 파일 유형 구문을 사용한다. (<code class="language-plaintext highlighter-rouge">-----BEGIN ???-----</code>, <code class="language-plaintext highlighter-rouge">-----END ???-----</code>) 담고 있는 내용이 무엇인지에 따라 <code class="language-plaintext highlighter-rouge">???</code> 위치에 <code class="language-plaintext highlighter-rouge">CERTIFICATE</code>, <code class="language-plaintext highlighter-rouge">RSA PRIVATE KEY 등</code>의 키워드가 들어있다.</p>
+
+<blockquote>
+  <p><strong>참고</strong> <br>
+<a href="https://www.letmecompile.com/certificate-file-format-extensions-comparison">https://www.letmecompile.com/certificate-file-format-extensions-comparison</a></p>
+</blockquote>
+
+<p><br></p>
+
+<h3 id="ssh"><span style="color: #f77;">SSH</span></h3>
+<p>SSH는 Secure Shell의 줄임말로, 원격 호스트에 접속하기 위해 사용되는 보안 프로토콜이다.
+<br>
+기존 원격 접속은 <code class="language-plaintext highlighter-rouge">텔넷(Telnet)</code>이라는 방식을 사용했는데, 암호화를 제공하지 않기 때문에 보안상 취약하다. 실제로 <code class="language-plaintext highlighter-rouge">WireShark</code> 같은 패킷 분석 프로그램을 이용하면 누구나 쉽게 원격 접속 과정에서 옮겨지는 비밀번호나 파일 내용 등의 데이터를 탈취할 수 있다. 때문에 이를 암호화하는 SSH가 등장했고, 현재 원격 접속 보안을 위한 필수적인 요소로 자리잡고 있다. 그리고 클라우드 서비스에서 제공하는 서버는 기본적으로 원격 접속을 해서 접근하고 사용한다. 그래서 AWS 같은 CSP(Cloud Service Provider)에서 서버 생성시 필수적으로 SSH 보안 과정을 거친다.
+<br>
+터미널에서 AWS EC2로 접속할 때 사용하는 SSH 방식을 알기 전 암호화에 대해서 간단하게 알아보자.
+암호화에는 단방향 암호화, 양방향 암호화가 있다.</p>
+<ul>
+  <li>단방향 암호화: 암호화 후 복호화 할 수 없다.</li>
+  <li>양방향 암호화: 암호화, 복호화 둘 다 가능하다.
+    <ul>
+      <li>대칭키 암호화(비밀키 암호화): 암호화 할 때 사용하는 키와 복호화 할 때 사용하는 키가 같다.</li>
+      <li>비대칭키 암호화(공개키 암호화): 암호화 할 때 사용하는 키와 복호화 할 때 사용하는 키가 다르다. 비밀키로 암호화 하면 공개키로 복호화 할 수 있고, 공개키로 암호화 하면 비밀키로 복호화 할 수 있다.</li>
+    </ul>
+  </li>
+</ul>
+
+<p>EC2를 생성할 때 키페어를 등록하라고 한다. 키페어를 생성했을 때 우리의 컴퓨터에 다운로드 되는 PEM 파일이 바로 개인키다. 그렇다면 공개키는 어디에 있을까? 공개키는 EC2 인스턴스 안에서 확인할 수 있다. EC2 인스턴스의 <code class="language-plaintext highlighter-rouge">~/.ssh/authorized_keys</code> 파일에 공개키 목록이 있는데 해당 파일에 우리가 받은 PEM 파일(개인키)와 매칭되는 공개키가 포함되어 있다. 그래서 우리는 이 PEM 파일로 ssh 명령어를 통해 EC2 인스턴스에 접속할 수 있다. <br><br> 참고로 우리가 EC2로 SSH를 통해 해당 서버에 접속을 하면 내 컴퓨터의 <code class="language-plaintext highlighter-rouge">~/.ssh/known_hosts</code> 파일에는 해당 서버의 공개키가 자동으로 등록이 된다.
+<br>
+SSH 공개키 인증 방식은 크게 위와 같지만 SSH 통신에 대한 자세한 내용은 다음 글에서 확인할 수 있다.</p>
+
+<blockquote>
+  <p><strong>참고</strong> <br>
+<a href="https://library.gabia.com/contents/infrahosting/9002">https://library.gabia.com/contents/infrahosting/9002</a></p>
+</blockquote>
+
+<p><br></p>
+
+<h3 id="ec2-터미널로-연결">EC2 터미널로 연결</h3>
+<p>EC2를 생성할 때 키 페어를 생성하는 화면이 나오는데 해당 파일은 유출되어서는 안 된다. 특별히 보안에 신경쓰도록 노력하자.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>chmod 400 [파일경로/파일명].pem(.cer)
+</code></pre></div></div>
+<p>나에게만 읽기 권한이 있게 한다.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>ssh -i [파일경로/파일명].pem(.cer) [계정명]@[퍼블릭 IPv4 또는 DNS주소]
+</code></pre></div></div>
+
+<p><strong>계정명</strong>:</p>
+<ul>
+  <li>Amazon Linux2 또는 Amazon Linux AMI ➡️ ec2-user</li>
+  <li>Ubuntu AMI ➡️ ubuntu</li>
+  <li>CentOS AMI ➡️ centos</li>
+  <li>Debian AMI ➡️ admin</li>
+  <li>Fedora AMI ➡️ ec2-user 또는 fedora</li>
+  <li>RHEL AMI ➡️ ec2-user 또는 root</li>
+  <li>SUSE AMI ➡️ ec2-user 또는 root</li>
+</ul>
+
+<p><br></p>
+
+<h3 id="aws-rds-proxy"><span style="color: #f77;">AWS RDS Proxy</span></h3>
+<p>RDS Proxy를 사용하여 Amazon RDS DB 인스턴스와 Amazon Aurora DB 클러스터에 대한 연결 관리를 간소화할 수 있다.</p>
+
+<p>RDS Proxy는 클라이언트 애플리케이션과 데이터베이스 사이의 네트워크 트래픽을 처리한다. 데이터베이스 프로토콜을 이해하여 능동적으로 수행한다. 그런 다음 애플리케이션의 SQL 작업과 데이터베이스의 결과 집합을 기반으로 동작을 조정한다.</p>
+
+<p>RDS Proxy는 데이터베이스의 커넥션 관리를 위한 메모리 및 CPU 오버헤드를 줄인다. 애플리케이션이 많은 연결을 동시에 열 때 데이터베이스에 필요한 메모리 및 CPU 리소스가 더 적다. 또한 오랫동안 유휴 상태를 유지하는 커넥션을 닫았다가 다시 여는 데 애플리케이션의 로직이 필요하지 않다. 마찬가지로, 데이터베이스 문제의 경우 커넥션을 다시 설정하는 데 더 적은 애플리케이션 로직이 필요하다.</p>
+
+<p>Amazon RDS Proxy를 사용하면 애플리케이션이 데이터베이스 커넥션을 풀링하고 공유하도록 허용하여 확장 기능을 향상시킬 수 있다. RDS Proxy는 애플리케이션 커넥션을 유지하면서 예비 DB 인스턴스에 자동으로 연결하여 데이터베이스 장애에 대한 애플리케이션의 복원력을 높인다. RDS Proxy를 사용하면 데이터베이스에 대해 AWS Identity and Access Management(IAM) 인증을 사용하고 AWS Secrets Manager에 자격 증명을 안전하게 저장한다.</p>
+
+<p>RDS Proxy를 사용하면 발생할 수 있는 예기치 않은 데이터베이스 트래픽 급증을 처리할 수 있다. RDS Proxy는 데이터베이스 커넥션 풀을 설정하고 이 풀에서 커넥션을 재사용한다. 이 접근 방식은 매번 새 데이터베이스 커넥션을 여는 데서 오는 메모리 및 CPU 오버헤드 를 방지한다. 초과 구독으로부터 데이터베이스를 보호하기 위해 생성되는 데이터베이스 커넥션 수를 제어할 수 있다.</p>
+
+<blockquote>
+  <p><strong>참고</strong> <br>
+<a href="https://docs.aws.amazon.com/ko_kr/AmazonRDS/latest/UserGuide/rds-proxy.howitworks.html">RDS Proxy 개념 및 용어 - Docs.aws.amazon.com.</a> <br>
+<a href="https://docs.aws.amazon.com/ko_kr/AmazonRDS/latest/UserGuide/rds-proxy.html">Amazon RDS 프록시 사용 - Docs.aws.amazon.com.</a></p>
+</blockquote>
+
+
+    </div>
+
+</article>
+<div class="post-nav">
+<a class="previous" href="/jekyll-theme-yat/dev/2022/08/28/Querydsl2.html" title="Querydsl 조회 쿼리">Querydsl 조회 쿼리</a><a class="next" href="/jekyll-theme-yat/dev/2023/01/08/SSH.html" title="SSH">SSH</a>
+</div>
+<div class="post-related">
+      <div>Related Articles</div>
+      <ul>
+        <li><a class="post-link" href="/jekyll-theme-yat/posts/review/codenbutter" title="SSH">개발을 하지 않아도 노코드솔루션으로 5분만에 팝업을 넣을 수 있다?</a></li>
+<li><a class="post-link" href="/jekyll-theme-yat/dev/2022/12/24/VPC.html" title="SSH">VPC</a></li>
+<li><a class="post-link" href="/jekyll-theme-yat/dev/2022/08/28/Querydsl2.html" title="SSH">Querydsl 조회 쿼리</a></li>
+<li><a class="post-link" href="/jekyll-theme-yat/dev/2023/01/14/SSH-%ED%84%B0%EB%84%90%EB%A7%81.html" title="SSH">SSH 터널링</a></li>
+</ul>
+    </div>
+<div class="post-comments">
+<script async crossorigin="anonymous" issue-term="title" label="comments" onload="initUtterancesTheme()" repo="97kim/blog-comments" src="https://utteranc.es/client.js" theme="github-light">
+</script><script>
+  const setUtterancesTheme = (dataTheme) => {
+    const iframe = document.querySelector('.utterances-frame');
+    if (iframe) {
+      const utterancesTheme = dataTheme === 'dark' ? 'github-dark' : 'github-light'
+      const message = {
+        type: 'set-theme',
+        theme: utterancesTheme
+      };
+      iframe.contentWindow.postMessage(message, 'https://utteranc.es');
+    }
+  }
+
+  // init theme
+  const initUtterancesTheme = () => {
+    const iframe = document.querySelector('.utterances-frame');
+    if (!iframe) return
+    iframe.onload = () => {
+      setUtterancesTheme(document.documentElement.getAttribute('data-theme'))
+    }
+  }
+
+  // dynamic change
+  const observer = new MutationObserver((mutationsList, observer) => {
+    for (let mutation of mutationsList) {
+      if (mutation.type === 'attributes' && mutation.attributeName === 'data-theme') {
+        setUtterancesTheme(document.documentElement.getAttribute('data-theme'))
+      }
+    }
+  });
+  observer.observe(document.documentElement, {attributes: true, childList: false, subtree: false});
+</script>
+</div></section>
+</div>
+
+
+  </section>
+  <section class="sidebar" style="margin-left: 15px;">
+    <!-- Get sidebar items --></section>
+</div>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/jekyll-theme-yat/"></data>
+
+  <div class="wrapper">
+    <div class="site-footer-inner">
+<div>Jung.log <span class="copyleft">©</span> 2022 97kim</div>
+      <div>Powered by <a title="Jekyll is a simple, blog-aware, static site
+      generator." href="https://jekyllrb.com/">Jekyll</a> &amp; <a title="Yat, yet
+      another theme." href="https://github.com/jeffreytse/jekyll-theme-yat">Yat Theme</a>.</div>
+      <div class="footer-col rss-subscribe">Subscribe <a href="/jekyll-theme-yat/feed.xml">via RSS</a>
+</div>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

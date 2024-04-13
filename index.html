@@ -1,0 +1,1739 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="google-translate-customization" content="108d9124921d80c3-80e20d618ff053c8-g4f02ec6f3dba68b7-c">
+  <meta property="og:image" content="https://i.postimg.cc/hG4jn2Yp/bg.jpg">
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>Jung.log | Tech Blog</title>
+<meta name="generator" content="Jekyll v4.3.3">
+<meta property="og:title" content="Jung.log">
+<meta name="author" content="97kim">
+<meta property="og:locale" content="ko">
+<meta name="description" content="Tech Blog">
+<meta property="og:description" content="Tech Blog">
+<link rel="canonical" href="https://97kim.github.io/jekyll-theme-yat/">
+<meta property="og:url" content="https://97kim.github.io/jekyll-theme-yat/">
+<meta property="og:site_name" content="Jung.log">
+<meta property="og:type" content="website">
+<link rel="next" href="https://97kim.github.io/jekyll-theme-yat/page2">
+<meta name="twitter:card" content="summary">
+<meta property="twitter:title" content="Jung.log">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"WebSite","author":{"@type":"Person","name":"97kim"},"description":"Tech Blog","headline":"Jung.log","name":"Jung.log","url":"https://97kim.github.io/jekyll-theme-yat/"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="shortcut icon" href="/assets/images/favicon.ico">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-noto-sans@0.0.72/index.min.css">
+  <link rel="stylesheet" href="/jekyll-theme-yat/assets/css/main.css">
+  <script src="/jekyll-theme-yat/assets/js/main.js"></script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8737240624109252" crossorigin="anonymous"></script><link type="application/atom+xml" rel="alternate" href="https://97kim.github.io/jekyll-theme-yat/feed.xml" title="Jung.log">
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WRGLN20V3X"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-WRGLN20V3X');
+</script>
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/default.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js"></script>
+<!-- and it's easy to individually load additional languages -->
+<script charset="UTF-8" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/languages/go.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+// Init highlight js
+document.addEventListener('DOMContentLoaded', function(event) {
+  var els = document.querySelectorAll('pre code')
+
+  function addLangData(block) {
+    var outer = block.parentElement.parentElement.parentElement;
+    var lang = block.getAttribute('data-lang');
+    for (var i = 0; i < outer.classList.length; i++) {
+      var cls = outer.classList[i];
+      if (cls.startsWith('language-')) {
+        lang = cls;
+        break;
+      }
+    }
+    if (!lang) {
+      cls = block.getAttribute('class');
+      lang = cls ? cls.replace('hljs ', '') : '';
+    }
+    if (lang.startsWith('language-')) {
+      lang = lang.substr(9);
+    }
+    block.setAttribute('class', 'hljs ' + lang);
+    block.parentNode.setAttribute('data-lang', lang);
+  }
+
+  function addBadge(block) {
+    var enabled = ('true' || 'true').toLowerCase();
+    if (enabled == 'true') {
+      var pre = block.parentElement;
+      pre.classList.add('badge');
+    }
+  }
+
+  function handle(block) {
+    addLangData(block);
+    addBadge(block)
+    hljs.highlightBlock(block);
+  }
+
+  for (var i = 0; i < els.length; i++) {
+    var el = els[i];
+    handle(el);
+  }
+});
+</script>
+
+<style>
+  /* code language badge */
+  pre.badge::before {
+    content: attr(data-lang);
+    color: #fff;
+    background-color: #ff4e00;
+    padding: 0 .5em;
+    border-radius: 0 2px;
+    text-transform: uppercase;
+    text-align: center;
+    min-width: 32px;
+    display: inline-block;
+    position: absolute;
+    right: 0;
+  }
+
+  /* fix wrong badge display for firefox browser */
+  code > table pre::before {
+    display: none;
+  }
+</style>
+</head>
+<body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<header class="site-header site-header-transparent" role="banner">
+
+  <div class="wrapper">
+    <div class="site-header-inner">
+<span class="site-brand"><a class="site-brand-inner" rel="author" href="/jekyll-theme-yat/">
+  <img class="site-favicon" title="Jung.log" src="/assets/images/favicon.ico" onerror="this.style.display='none'">
+  Jung.log
+</a>
+</span><nav class="site-nav">
+          <input type="checkbox" id="nav-trigger" class="nav-trigger">
+          <label for="nav-trigger">
+            <span class="menu-icon">
+              <svg viewbox="0 0 18 15" width="18px" height="15px">
+                <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"></path>
+              </svg>
+            </span>
+          </label>
+
+          <div class="trigger">
+<a class="page-link" href="/jekyll-theme-yat/about.html">ABOUT</a><a class="page-link" href="/jekyll-theme-yat/archives.html">ARCHIVES</a><a class="page-link" href="/jekyll-theme-yat/categories.html">CATEGORIES</a><a class="page-link" href="/jekyll-theme-yat/tags.html">TAGS</a>
+
+
+
+
+
+
+
+
+
+<span class="page-link">
+
+
+
+<div id="google_translate_element" style="display: none;">
+</div>
+
+<span class="ct-language">
+  <ul class="list-unstyled ct-language-dropdown">
+    
+      <li>
+        <a href="#" class="lang-select" data-lang="ko">
+          
+          <img src="https://cdn.countryflags.com/thumbs/south-korea/flag-400.png" title="Korean">
+          
+        </a>
+      </li>
+    
+      <li>
+        <a href="#" class="lang-select" data-lang="en">
+          
+          <img src="https://cdn.countryflags.com/thumbs/united-states-of-america/flag-400.png" title="English">
+          
+        </a>
+      </li>
+    
+  </ul>
+</span>
+
+<script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({
+    pageLanguage: 'ko',
+    autoDisplay: false,
+    layout: google.translate.TranslateElement.InlineLayout.VERTICAL
+  }, 'google_translate_element');
+
+  // Links to cross-origin destinations are unsafe
+  var gll = document.getElementsByClassName('goog-logo-link')[0];
+  if (gll) {
+    gll.setAttribute('rel', 'noopener');
+  }
+
+  function restoreLang() {
+    var iframe = document.getElementsByClassName('goog-te-banner-frame')[0];
+    if (!iframe) return;
+
+    var innerDoc = iframe.contentDocument || iframe.contentWindow.document;
+    var restore_el = innerDoc.getElementsByTagName("button");
+
+    for (var i = 0; i < restore_el.length; i++) {
+      if (restore_el[i].id.indexOf("restore") >= 0) {
+        restore_el[i].click();
+        var close_el = innerDoc.getElementsByClassName("goog-close-link");
+        close_el[0].click();
+        return;
+      }
+    }
+  }
+
+  function triggerHtmlEvent(element, eventName) {
+    var event;
+    if (document.createEvent) {
+      event = document.createEvent('HTMLEvents');
+      event.initEvent(eventName, true, true);
+      element.dispatchEvent(event);
+    } else {
+      event = document.createEventObject();
+      event.eventType = eventName;
+      element.fireEvent('on' + event.eventType, event);
+    }
+  }
+
+  var googleCombo = document.querySelector("select.goog-te-combo");
+  var langSelect = document.querySelector('.ct-language');
+  langSelect.addEventListener('click', function(event) {
+    if (!event.target) {
+      return;
+    }
+
+    var selected = document.querySelector('.ct-language .ct-language-selected');
+    if (selected) {
+      selected.classList.remove('ct-language-selected');
+    }
+
+    var target = event.target;
+    while (target && target !== langSelect ) {
+      if (target.matches('.lang-select')) {
+        break;
+      }
+      target = target.parentElement;
+    }
+
+    if (target && target.matches('.lang-select')) {
+      var lang = target.getAttribute('data-lang');
+      if (googleCombo.value == lang) {
+        restoreLang();
+      } else {
+        target.parentElement.classList.add('ct-language-selected');
+        googleCombo.value = lang;
+        triggerHtmlEvent(googleCombo, 'change');
+      }
+    }
+
+    event.preventDefault();
+  });
+}
+</script>
+
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</span>
+</div>
+        </nav>
+</div>
+  </div>
+</header>
+
+<script>
+  function initHeader() {
+    var lastScrollY = getScrollPos().y;
+    var documentElement = document.documentElement;
+
+    function storeScrollData() {
+      var y = getScrollPos().y;documentElement.setAttribute("data-header-transparent", "");var scrollStatus = "";
+
+      if (y <= 0) {
+        scrollStatus = "top";
+      } else if ((window.innerHeight + y) >= document.body.offsetHeight) {
+        scrollStatus = "bottom";
+      } else {
+        var isScrollDown = (y - lastScrollY > 0) ? true : false;
+        scrollStatus = isScrollDown ? "down" : "up";
+      }
+
+      lastScrollY = y;
+      documentElement.setAttribute("data-scroll-status", scrollStatus);
+    }
+
+    window.addEventListener('scroll', function(e) {
+      storeScrollData();
+    });
+
+    storeScrollData();
+  }
+  document.addEventListener('DOMContentLoaded', initHeader);
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<section class="page-banner">
+    <div class="page-banner-img">
+<div style="background-image: url(/jekyll-theme-yat/assets/images/banners/bg.jpg)"></div>
+        <img class="img-placeholder" src="/jekyll-theme-yat/assets/images/banners/bg.jpg">
+</div>
+    <div class="wrapper">
+      <div class="page-banner-inner"><div class="page-banner-default">
+            <h1 class="page-banner-heading">
+              Jung's Tech Blog
+            </h1>
+            <h2 class="page-banner-subheading">
+              기억하려면 기록부터
+            </h2>
+          </div></div>
+    </div>
+  </section><script>
+  function hashLocate(hashValue) {
+    hashValue = hashValue.replace(/^.*#h-/, '');
+    hashValue = decodeURIComponent(hashValue);
+    var element = document.getElementById(hashValue);
+
+    if (!element) {
+      return;
+    }
+
+    var header = document.querySelector('header.site-header');
+    var headerRect = header.getBoundingClientRect();
+    var headerTop = Math.floor(headerRect.top);
+    var headerHeight = Math.floor(headerRect.height);
+    var scrollPos = getScrollPos();
+    var offsetY = element.offsetTop - (headerTop + headerHeight + 20);
+
+    if (offsetY == scrollPos.y) {
+      return;
+    }
+
+    if (headerTop == 0  && offsetY > scrollPos.y) {
+      offsetY += headerHeight + 2;
+    } else if (headerTop < 0  && offsetY < scrollPos.y) {
+      offsetY -= headerHeight - 2;
+    }
+
+    smoothScrollTo(offsetY);
+  }
+
+  // The first event occurred
+  window.addEventListener('load', function(event) {
+    if (window.location.hash) {
+      hashLocate(window.location.hash);
+    }
+  });
+
+  // The first event occurred
+  window.addEventListener('click', function(event) {
+    if (event.target.tagName.toLowerCase() == 'a') {
+      hashLocate(event.target.getAttribute('href'));
+    }
+  });
+</script>
+<div class="theme-toggle">
+  <input type="checkbox" id="theme-switch">
+  <label for="theme-switch">
+    <div class="toggle"></div>
+    <div class="names">
+      <p class="light">Light</p>
+      <p class="dark">Dark</p>
+    </div>
+  </label>
+</div>
+
+
+
+
+<script>
+  (function() {
+    var sw = document.getElementById('theme-switch');
+    var html = document.getElementsByTagName('html')[0];
+    var nightModeOption = ('on/off' || 'auto').toLowerCase();
+    var storage = nightModeOption === 'manual'
+        ? localStorage
+        : sessionStorage;
+    var themeData = loadThemeData();
+
+    function saveThemeData(data) {
+      storage.setItem('theme', JSON.stringify(data));
+    }
+
+    function loadThemeData() {
+      var data = storage.getItem('theme');
+      try {
+        data = JSON.parse(data ? data : '');
+      } catch(e) {
+        data = { nightShift: undefined, autoToggleAt: 0 };
+        saveThemeData(data);
+      }
+      return data;
+    }
+
+    function handleThemeToggle(nightShift) {
+      themeData.nightShift = nightShift;
+      saveThemeData(themeData);
+      html.dataset.theme = nightShift ? 'dark' : 'light';
+      setTimeout(function() {
+        sw.checked = nightShift ? true : false;
+      }, 50);
+    }
+
+    function autoThemeToggle() {
+      // Next time point of theme toggle
+      var now = new Date();
+      var toggleAt = new Date();
+      var hours = now.getHours();
+      var nightShift = hours >= 19 || hours <=7;
+
+      if (nightShift) {
+        if (hours > 7) {
+          toggleAt.setDate(toggleAt.getDate() + 1);
+        }
+        toggleAt.setHours(7);
+      } else {
+        toggleAt.setHours(19);
+      }
+
+      toggleAt.setMinutes(0);
+      toggleAt.setSeconds(0);
+      toggleAt.setMilliseconds(0)
+
+      var delay = toggleAt.getTime() - now.getTime();
+
+      // auto toggle theme mode
+      setTimeout(function() {
+        handleThemeToggle(!nightShift);
+      }, delay);
+
+      return {
+        nightShift: nightShift,
+        toggleAt: toggleAt.getTime()
+      };
+    }
+
+    // Listen the theme toggle event
+    sw.addEventListener('change', function(event) {
+      handleThemeToggle(event.target.checked);
+    });
+
+    if (nightModeOption == 'auto') {
+      var data = autoThemeToggle();
+
+      // Toggle theme by local setting
+      if (data.toggleAt > themeData.autoToggleAt) {
+        themeData.autoToggleAt = data.toggleAt;
+        handleThemeToggle(data.nightShift);
+      } else {
+        handleThemeToggle(themeData.nightShift);
+      }
+    } else if (nightModeOption == 'manual') {
+      handleThemeToggle(themeData.nightShift);
+    } else {
+      var nightShift = themeData.nightShift;
+      if (nightShift === undefined) {
+        nightShift = nightModeOption === 'on';
+      }
+      handleThemeToggle(nightShift);
+    }
+  })();
+</script>
+<div id="click-to-top" class="click-to-top">
+  <i class="fa fa-arrow-up"></i>
+</div>
+<script>
+  (function () {
+    const clickToTop = document.getElementById('click-to-top');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 100) {
+        clickToTop.classList.add('show')
+      }else {
+        clickToTop.classList.remove('show')
+      }
+    });
+    clickToTop.addEventListener('click', () => {
+      window.smoothScrollTo(0);
+    });
+  })();
+</script>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <div class="framework">
+  <section class="main">
+
+     <div class="articles">
+  
+
+  
+
+
+  <div class="pagination">
+  <!-- Post list links -->
+  <ul class="post-list">
+<li>
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h2 class="post-title">
+        <a class="post-link" href="/jekyll-theme-yat/posts/review/codenbutter-auto-message">
+          쇼핑몰 매출이 올라가는 자동메시지 팝업
+        </a>
+      </h2>
+      <div class="post-meta">
+        <span class="post-date"><i class="fa fa-calendar"></i> Oct 14, 2023</span>
+        <span class="post-reading-time left-vsplit"><i class="fa fa-clock-o"></i> About 5 mins</span>
+      </div>
+      <a class="post-excerpt" href="/jekyll-theme-yat/posts/review/codenbutter-auto-message">
+        <p>
+        쇼핑몰 매출이 올라가는 자동메시지 팝업
+
+쇼핑몰을 운영 중이라면 눈여겨 봐야 할 중요한 요소 중 하나는 자동메시지입니다. 특정 상황에 카카오톡, 문자, 이메일을 고객들에게 보내는 것이 중요한 것처럼 자동메시지 팝업도 중요합니다. 팝업은 어떤 내용을 담고 있는지도 중요하지만 위치와 어떤 타이밍에 나타나는지도 아주 중요합니다. 상단 바... <span class="read_more">Read More</span>
+        </p>
+      </a>
+      <div class="post-tags">
+<a class="post-tag" href="/jekyll-theme-yat/tags.html#%EB%85%B8%EC%BD%94%EB%93%9C%EC%86%94%EB%A3%A8%EC%85%98">#노코드솔루션</a><a class="post-tag" href="/jekyll-theme-yat/tags.html#%EC%BD%94%EB%93%9C%EC%95%A4%EB%B2%84%ED%84%B0">#코드앤버터</a><a class="post-tag" href="/jekyll-theme-yat/tags.html#%EC%9E%90%EB%8F%99%EB%A9%94%EC%8B%9C%EC%A7%80">#자동메시지</a>
+</div>
+    </li>
+<li>
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h2 class="post-title">
+        <a class="post-link" href="/jekyll-theme-yat/posts/review/web-builder">
+          B2B 마케팅에도 필수! 코딩 없이 웹 사이트를 만들 수 있는 툴 4가지 소개
+        </a>
+      </h2>
+      <div class="post-meta">
+        <span class="post-date"><i class="fa fa-calendar"></i> Oct 13, 2023</span>
+        <span class="post-reading-time left-vsplit"><i class="fa fa-clock-o"></i> About 11 mins</span>
+      </div>
+      <a class="post-excerpt" href="/jekyll-theme-yat/posts/review/web-builder">
+        <p>
+        B2B 마케팅에도 필수! 코딩 없이 웹 사이트를 만들 수 있는 툴 4가지 소개
+
+우선 B2B 라는 용어를 알아야 하는데요. B2B(Business-to-Business)는 기업과 기업 사이의 거래를 기반으로 한 비즈니스 모델을 의미합니다. B2B와 반대되는 개념으로는 하나의 기업이 고객을 상대하는 B2C(Business-to-C... <span class="read_more">Read More</span>
+        </p>
+      </a>
+      <div class="post-tags">
+<a class="post-tag" href="/jekyll-theme-yat/tags.html#%EB%85%B8%EC%BD%94%EB%93%9C%EC%86%94%EB%A3%A8%EC%85%98">#노코드솔루션</a><a class="post-tag" href="/jekyll-theme-yat/tags.html#%EC%BD%94%EB%93%9C%EC%95%A4%EB%B2%84%ED%84%B0">#코드앤버터</a><a class="post-tag" href="/jekyll-theme-yat/tags.html#B2B%EB%A7%88%EC%BC%80%ED%8C%85">#B2B마케팅</a>
+</div>
+    </li>
+<li>
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h2 class="post-title">
+        <a class="post-link" href="/jekyll-theme-yat/posts/review/codenbutter">
+          개발을 하지 않아도 노코드솔루션으로 5분만에 팝업을 넣을 수 있다?
+        </a>
+      </h2>
+      <div class="post-meta">
+        <span class="post-date"><i class="fa fa-calendar"></i> Oct 12, 2023</span>
+        <span class="post-reading-time left-vsplit"><i class="fa fa-clock-o"></i> About 7 mins</span>
+      </div>
+      <a class="post-excerpt" href="/jekyll-theme-yat/posts/review/codenbutter">
+        <p>
+        개발을 하지 않아도 노코드솔루션으로 5분만에 팝업을 넣을 수 있다?
+
+
+
+
+
+
+요즘 대부분의 웹 사이트를 보면 사이트 진입 시 팝업이 존재합니다. 공지사항이나 이벤트가 있을 때 고객들에게 해당 정보를 제공하기 위해 노출시키곤 합니다. 예시로 가져온 사진을 보면 코오롱몰이나 쿠팡의 메인 페이지에서도 팝업을 확인할 수 있습니다. 이런 팝... <span class="read_more">Read More</span>
+        </p>
+      </a>
+      <div class="post-tags">
+<a class="post-tag" href="/jekyll-theme-yat/tags.html#%EB%85%B8%EC%BD%94%EB%93%9C%EC%86%94%EB%A3%A8%EC%85%98">#노코드솔루션</a><a class="post-tag" href="/jekyll-theme-yat/tags.html#%EC%BD%94%EB%93%9C%EC%95%A4%EB%B2%84%ED%84%B0">#코드앤버터</a>
+</div>
+    </li>
+<li>
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h2 class="post-title">
+        <a class="post-link" href="/jekyll-theme-yat/dev/2023/01/14/SSH-%ED%84%B0%EB%84%90%EB%A7%81.html">
+          SSH 터널링
+        </a>
+      </h2>
+      <div class="post-meta">
+        <span class="post-date"><i class="fa fa-calendar"></i> Jan 14, 2023</span>
+        <span class="post-reading-time left-vsplit"><i class="fa fa-clock-o"></i> About 4 mins</span>
+      </div>
+      <a class="post-excerpt" href="/jekyll-theme-yat/dev/2023/01/14/SSH-%ED%84%B0%EB%84%90%EB%A7%81.html">
+        <p>
+        SSH 터널링
+SSH 터널링이란 SSH 클라이언트와 SSH 서버 사이에 마치 터널이 뚫린 것처럼 연결이 되어 데이터를 주고 받을 수 있는 것이다. 여기에 포트 포워딩이란 기술이 더해진다. SSH의 TCP/22번 포트가 방화벽에 의해 막히지만 않는다면 방화벽을 우회할 수 있다. 
+SSH 터널링 방식... <span class="read_more">Read More</span>
+        </p>
+      </a>
+      <div class="post-tags">
+<a class="post-tag" href="/jekyll-theme-yat/tags.html#CS">#CS</a><a class="post-tag" href="/jekyll-theme-yat/tags.html#SSH">#SSH</a><a class="post-tag" href="/jekyll-theme-yat/tags.html#Tunneling">#Tunneling</a>
+</div>
+    </li>
+<li>
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h2 class="post-title">
+        <a class="post-link" href="/jekyll-theme-yat/dev/2023/01/08/SSH.html">
+          SSH
+        </a>
+      </h2>
+      <div class="post-meta">
+        <span class="post-date"><i class="fa fa-calendar"></i> Jan 08, 2023</span>
+        <span class="post-reading-time left-vsplit"><i class="fa fa-clock-o"></i> About 12 mins</span>
+      </div>
+      <a class="post-excerpt" href="/jekyll-theme-yat/dev/2023/01/08/SSH.html">
+        <p>
+        SSH
+
+이미지 출처: https://www.ssh.com/academy/ssh/protocol#how-does-the-ssh-protocol-work
+
+
+
+SSH는 Secure Shell의 줄임말로, 원격 호스트에 접속하기 위해 사용되는 보안 프로토콜이다.
+
+기존 원격 접속은 텔넷(Telnet)이라는 방식을 사용했... <span class="read_more">Read More</span>
+        </p>
+      </a>
+      <div class="post-tags">
+<a class="post-tag" href="/jekyll-theme-yat/tags.html#CS">#CS</a><a class="post-tag" href="/jekyll-theme-yat/tags.html#SSH">#SSH</a>
+</div>
+    </li>
+<li>
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h2 class="post-title">
+        <a class="post-link" href="/jekyll-theme-yat/dev/2022/12/24/VPC.html">
+          VPC
+        </a>
+      </h2>
+      <div class="post-meta">
+        <span class="post-date"><i class="fa fa-calendar"></i> Dec 24, 2022</span>
+        <span class="post-reading-time left-vsplit"><i class="fa fa-clock-o"></i> About 47 mins</span>
+      </div>
+      <a class="post-excerpt" href="/jekyll-theme-yat/dev/2022/12/24/VPC.html">
+        <p>
+        AWS를 사용하면서 알아야 할 VPC에 대해 적어보려고 한다.
+
+VPC (Virtual Private Cloud)
+VPC는 사용자가 정의하는 가상의 네트워크다. VPC를 통해 인스턴스가 속하는 네트워크를 구분하여 각 네트워크에 맞는 설정을 부여할 수 있다. AWS에서 VPC에 대한 설정을 따로 하지 않아도 기본 VPC로... <span class="read_more">Read More</span>
+        </p>
+      </a>
+      <div class="post-tags">
+<a class="post-tag" href="/jekyll-theme-yat/tags.html#AWS">#AWS</a><a class="post-tag" href="/jekyll-theme-yat/tags.html#VPC">#VPC</a>
+</div>
+    </li>
+<li>
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h2 class="post-title">
+        <a class="post-link" href="/jekyll-theme-yat/dev/2022/08/28/Querydsl2.html">
+          Querydsl 조회 쿼리
+        </a>
+      </h2>
+      <div class="post-meta">
+        <span class="post-date"><i class="fa fa-calendar"></i> Aug 28, 2022</span>
+        <span class="post-reading-time left-vsplit"><i class="fa fa-clock-o"></i> About 15 mins</span>
+      </div>
+      <a class="post-excerpt" href="/jekyll-theme-yat/dev/2022/08/28/Querydsl2.html">
+        <p>
+        Person(Entity)
+@Entity
+class Person(
+
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    var id: Long? = null,
+
+    @Column(name = "name")
+    var name: String? = ... <span class="read_more">Read More</span>
+        </p>
+      </a>
+      <div class="post-tags"><a class="post-tag" href="/jekyll-theme-yat/tags.html#Querydsl">#Querydsl</a></div>
+    </li>
+<li>
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h2 class="post-title">
+        <a class="post-link" href="/jekyll-theme-yat/dev/2022/08/28/Querydsl.html">
+          Querydsl
+        </a>
+      </h2>
+      <div class="post-meta">
+        <span class="post-date"><i class="fa fa-calendar"></i> Aug 28, 2022</span>
+        <span class="post-reading-time left-vsplit"><i class="fa fa-clock-o"></i> About 7 mins</span>
+      </div>
+      <a class="post-excerpt" href="/jekyll-theme-yat/dev/2022/08/28/Querydsl.html">
+        <p>
+        Querydsl
+
+Spring을 사용하는 백엔드 개발자라면 Querydsl이라는 키워드를 많이 들어봤을 것이다. JPA를 사용하면 데이터베이스의 테이블을 Java 코드로 Entity를 만들어 관리하게 된다. Spring에서는 Spring Data JPA를 활용해서 기본적인 CRUD를 사용할 수 있지만 조금만 복... <span class="read_more">Read More</span>
+        </p>
+      </a>
+      <div class="post-tags"><a class="post-tag" href="/jekyll-theme-yat/tags.html#Querydsl">#Querydsl</a></div>
+    </li>
+<li>
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h2 class="post-title">
+        <a class="post-link" href="/jekyll-theme-yat/dev/2022/08/13/Mapstruct.html">
+          MapStruct
+        </a>
+      </h2>
+      <div class="post-meta">
+        <span class="post-date"><i class="fa fa-calendar"></i> Aug 13, 2022</span>
+        <span class="post-reading-time left-vsplit"><i class="fa fa-clock-o"></i> About 59 mins</span>
+      </div>
+      <a class="post-excerpt" href="/jekyll-theme-yat/dev/2022/08/13/Mapstruct.html">
+        <p>
+        MapStruct는 자바에서 서로 다른 객체 간 매핑에 대한 코드를 간편하게 자동으로 생성해주는 라이브러리다. Annotaion Processor를 사용해 컴파일 시 구현체를 생성한다.
+
+객체 간 매핑에 대한 라이브러리로 ModelMapper도 있지만 MapStruct는 컴파일 시 매핑 코드를 생성하기 때문에 아래와 같은 장점이 있다.
+... <span class="read_more">Read More</span>
+        </p>
+      </a>
+      <div class="post-tags"><a class="post-tag" href="/jekyll-theme-yat/tags.html#MapStruct">#MapStruct</a></div>
+    </li>
+<li>
+      
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h2 class="post-title">
+        <a class="post-link" href="/jekyll-theme-yat/cron/2022/07/10/Cron-Expression.html">
+          Cron Expression
+        </a>
+      </h2>
+      <div class="post-meta">
+        <span class="post-date"><i class="fa fa-calendar"></i> Jul 10, 2022</span>
+        <span class="post-reading-time left-vsplit"><i class="fa fa-clock-o"></i> About 7 mins</span>
+      </div>
+      <a class="post-excerpt" href="/jekyll-theme-yat/cron/2022/07/10/Cron-Expression.html">
+        <p>
+        Cron
+
+cron은 UNIX에서 오랫동안 사용된 잡 스케줄러다. 작업을 고정된 시간, 날짜, 간격에 주기적으로 실행할 수 있도록 기능을 제공한다.
+
+Format
+
+cron 표현식은 공백(띄어쓰기)으로 구분 된 6개 또는 7개의 필드로 구성된 문자열이다.
+
+
+  
+    
+      필드 구분
+      필수
+      허용 값
+   ... <span class="read_more">Read More</span>
+        </p>
+      </a>
+      <div class="post-tags"><a class="post-tag" href="/jekyll-theme-yat/tags.html#Cron">#Cron</a></div>
+    </li>
+</ul>
+
+  <!-- Pagination links -->
+
+
+  <div class="paginator">
+    <span class="previous">
+    
+      <span>Prev</span>
+    
+    </span>
+
+    <span class="indicator"> 1/2</span>
+
+    <span class="next">
+    
+      <a href="/jekyll-theme-yat/page2">Next</a>
+    
+    </span>
+  </div>
+
+</div>
+</div>
+
+
+  </section>
+  <section class="sidebar" style="margin-left: 15px;">
+    <!-- Get sidebar items -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="common-list">
+  <ul>
+    <li>
+      <a href="/jekyll-theme-yat/index.html">
+        All<span>12</span>
+      </a>
+    </li>
+
+    
+      <li>
+        <a href="/jekyll-theme-yat/categories.html#h-AWS">
+          AWS <span>1</span>
+        </a>
+      </li>
+    
+      <li>
+        <a href="/jekyll-theme-yat/categories.html#h-Cron">
+          Cron <span>1</span>
+        </a>
+      </li>
+    
+      <li>
+        <a href="/jekyll-theme-yat/categories.html#h-dev">
+          dev <span>6</span>
+        </a>
+      </li>
+    
+      <li>
+        <a href="/jekyll-theme-yat/categories.html#h-etc">
+          etc <span>1</span>
+        </a>
+      </li>
+    
+      <li>
+        <a href="/jekyll-theme-yat/categories.html#h-%ED%9B%84%EA%B8%B0">
+          후기 <span>3</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+
+</section>
+</div>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/jekyll-theme-yat/"></data>
+
+  <div class="wrapper">
+    <div class="site-footer-inner">
+<div>Jung.log <span class="copyleft">©</span> 2022 97kim</div>
+      <div>Powered by <a title="Jekyll is a simple, blog-aware, static site
+      generator." href="https://jekyllrb.com/">Jekyll</a> &amp; <a title="Yat, yet
+      another theme." href="https://github.com/jeffreytse/jekyll-theme-yat">Yat Theme</a>.</div>
+      <div class="footer-col rss-subscribe">Subscribe <a href="/jekyll-theme-yat/feed.xml">via RSS</a>
+</div>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

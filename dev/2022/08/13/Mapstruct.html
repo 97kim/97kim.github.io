@@ -1,0 +1,1679 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="google-translate-customization" content="108d9124921d80c3-80e20d618ff053c8-g4f02ec6f3dba68b7-c">
+  <meta property="og:image" content="https://i.postimg.cc/hG4jn2Yp/bg.jpg">
+<!-- Begin Jekyll SEO tag v2.8.0 -->
+<title>MapStruct | Jung.log</title>
+<meta name="generator" content="Jekyll v4.3.3">
+<meta property="og:title" content="MapStruct">
+<meta name="author" content="97kim">
+<meta property="og:locale" content="ko">
+<meta name="description" content="MapStruct는 자바에서 서로 다른 객체 간 매핑에 대한 코드를 간편하게 자동으로 생성해주는 라이브러리다. Annotaion Processor를 사용해 컴파일 시 구현체를 생성한다.">
+<meta property="og:description" content="MapStruct는 자바에서 서로 다른 객체 간 매핑에 대한 코드를 간편하게 자동으로 생성해주는 라이브러리다. Annotaion Processor를 사용해 컴파일 시 구현체를 생성한다.">
+<link rel="canonical" href="https://97kim.github.io/jekyll-theme-yat/dev/2022/08/13/Mapstruct.html">
+<meta property="og:url" content="https://97kim.github.io/jekyll-theme-yat/dev/2022/08/13/Mapstruct.html">
+<meta property="og:site_name" content="Jung.log">
+<meta property="og:type" content="article">
+<meta property="article:published_time" content="2022-08-13T00:00:00+09:00">
+<meta name="twitter:card" content="summary">
+<meta property="twitter:title" content="MapStruct">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"BlogPosting","author":{"@type":"Person","name":"97kim"},"dateModified":"2022-08-13T00:00:00+09:00","datePublished":"2022-08-13T00:00:00+09:00","description":"MapStruct는 자바에서 서로 다른 객체 간 매핑에 대한 코드를 간편하게 자동으로 생성해주는 라이브러리다. Annotaion Processor를 사용해 컴파일 시 구현체를 생성한다.","headline":"MapStruct","mainEntityOfPage":{"@type":"WebPage","@id":"https://97kim.github.io/jekyll-theme-yat/dev/2022/08/13/Mapstruct.html"},"url":"https://97kim.github.io/jekyll-theme-yat/dev/2022/08/13/Mapstruct.html"}</script>
+<!-- End Jekyll SEO tag -->
+<link rel="shortcut icon" href="/assets/images/favicon.ico">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/typeface-noto-sans@0.0.72/index.min.css">
+  <link rel="stylesheet" href="/jekyll-theme-yat/assets/css/main.css">
+  <script src="/jekyll-theme-yat/assets/js/main.js"></script>
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8737240624109252" crossorigin="anonymous"></script><link type="application/atom+xml" rel="alternate" href="https://97kim.github.io/jekyll-theme-yat/feed.xml" title="Jung.log">
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-WRGLN20V3X"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-WRGLN20V3X');
+</script>
+<link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/default.min.css">
+<script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js"></script>
+<!-- and it's easy to individually load additional languages -->
+<script charset="UTF-8" src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/languages/go.min.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script>
+// Init highlight js
+document.addEventListener('DOMContentLoaded', function(event) {
+  var els = document.querySelectorAll('pre code')
+
+  function addLangData(block) {
+    var outer = block.parentElement.parentElement.parentElement;
+    var lang = block.getAttribute('data-lang');
+    for (var i = 0; i < outer.classList.length; i++) {
+      var cls = outer.classList[i];
+      if (cls.startsWith('language-')) {
+        lang = cls;
+        break;
+      }
+    }
+    if (!lang) {
+      cls = block.getAttribute('class');
+      lang = cls ? cls.replace('hljs ', '') : '';
+    }
+    if (lang.startsWith('language-')) {
+      lang = lang.substr(9);
+    }
+    block.setAttribute('class', 'hljs ' + lang);
+    block.parentNode.setAttribute('data-lang', lang);
+  }
+
+  function addBadge(block) {
+    var enabled = ('true' || 'true').toLowerCase();
+    if (enabled == 'true') {
+      var pre = block.parentElement;
+      pre.classList.add('badge');
+    }
+  }
+
+  function handle(block) {
+    addLangData(block);
+    addBadge(block)
+    hljs.highlightBlock(block);
+  }
+
+  for (var i = 0; i < els.length; i++) {
+    var el = els[i];
+    handle(el);
+  }
+});
+</script>
+
+<style>
+  /* code language badge */
+  pre.badge::before {
+    content: attr(data-lang);
+    color: #fff;
+    background-color: #ff4e00;
+    padding: 0 .5em;
+    border-radius: 0 2px;
+    text-transform: uppercase;
+    text-align: center;
+    min-width: 32px;
+    display: inline-block;
+    position: absolute;
+    right: 0;
+  }
+
+  /* fix wrong badge display for firefox browser */
+  code > table pre::before {
+    display: none;
+  }
+</style>
+</head>
+<body>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<header class="site-header site-header-transparent" role="banner">
+
+  <div class="wrapper">
+    <div class="site-header-inner">
+<span class="site-brand"><a class="site-brand-inner" rel="author" href="/jekyll-theme-yat/">
+  <img class="site-favicon" title="Jung.log" src="/assets/images/favicon.ico" onerror="this.style.display='none'">
+  Jung.log
+</a>
+</span><nav class="site-nav">
+          <input type="checkbox" id="nav-trigger" class="nav-trigger">
+          <label for="nav-trigger">
+            <span class="menu-icon">
+              <svg viewbox="0 0 18 15" width="18px" height="15px">
+                <path d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.032C17.335,0,18,0.665,18,1.484L18,1.484z M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.032C17.335,6.031,18,6.696,18,7.516L18,7.516z M18,13.516C18,14.335,17.335,15,16.516,15H1.484 C0.665,15,0,14.335,0,13.516l0,0c0-0.82,0.665-1.483,1.484-1.483h15.032C17.335,12.031,18,12.695,18,13.516L18,13.516z"></path>
+              </svg>
+            </span>
+          </label>
+
+          <div class="trigger">
+<a class="page-link" href="/jekyll-theme-yat/about.html">ABOUT</a><a class="page-link" href="/jekyll-theme-yat/archives.html">ARCHIVES</a><a class="page-link" href="/jekyll-theme-yat/categories.html">CATEGORIES</a><a class="page-link" href="/jekyll-theme-yat/tags.html">TAGS</a>
+
+
+
+
+
+
+
+
+
+<span class="page-link">
+
+
+
+<div id="google_translate_element" style="display: none;">
+</div>
+
+<span class="ct-language">
+  <ul class="list-unstyled ct-language-dropdown">
+    
+      <li>
+        <a href="#" class="lang-select" data-lang="ko">
+          
+          <img src="https://cdn.countryflags.com/thumbs/south-korea/flag-400.png" title="Korean">
+          
+        </a>
+      </li>
+    
+      <li>
+        <a href="#" class="lang-select" data-lang="en">
+          
+          <img src="https://cdn.countryflags.com/thumbs/united-states-of-america/flag-400.png" title="English">
+          
+        </a>
+      </li>
+    
+  </ul>
+</span>
+
+<script type="text/javascript">
+function googleTranslateElementInit() {
+  new google.translate.TranslateElement({
+    pageLanguage: 'ko',
+    autoDisplay: false,
+    layout: google.translate.TranslateElement.InlineLayout.VERTICAL
+  }, 'google_translate_element');
+
+  // Links to cross-origin destinations are unsafe
+  var gll = document.getElementsByClassName('goog-logo-link')[0];
+  if (gll) {
+    gll.setAttribute('rel', 'noopener');
+  }
+
+  function restoreLang() {
+    var iframe = document.getElementsByClassName('goog-te-banner-frame')[0];
+    if (!iframe) return;
+
+    var innerDoc = iframe.contentDocument || iframe.contentWindow.document;
+    var restore_el = innerDoc.getElementsByTagName("button");
+
+    for (var i = 0; i < restore_el.length; i++) {
+      if (restore_el[i].id.indexOf("restore") >= 0) {
+        restore_el[i].click();
+        var close_el = innerDoc.getElementsByClassName("goog-close-link");
+        close_el[0].click();
+        return;
+      }
+    }
+  }
+
+  function triggerHtmlEvent(element, eventName) {
+    var event;
+    if (document.createEvent) {
+      event = document.createEvent('HTMLEvents');
+      event.initEvent(eventName, true, true);
+      element.dispatchEvent(event);
+    } else {
+      event = document.createEventObject();
+      event.eventType = eventName;
+      element.fireEvent('on' + event.eventType, event);
+    }
+  }
+
+  var googleCombo = document.querySelector("select.goog-te-combo");
+  var langSelect = document.querySelector('.ct-language');
+  langSelect.addEventListener('click', function(event) {
+    if (!event.target) {
+      return;
+    }
+
+    var selected = document.querySelector('.ct-language .ct-language-selected');
+    if (selected) {
+      selected.classList.remove('ct-language-selected');
+    }
+
+    var target = event.target;
+    while (target && target !== langSelect ) {
+      if (target.matches('.lang-select')) {
+        break;
+      }
+      target = target.parentElement;
+    }
+
+    if (target && target.matches('.lang-select')) {
+      var lang = target.getAttribute('data-lang');
+      if (googleCombo.value == lang) {
+        restoreLang();
+      } else {
+        target.parentElement.classList.add('ct-language-selected');
+        googleCombo.value = lang;
+        triggerHtmlEvent(googleCombo, 'change');
+      }
+    }
+
+    event.preventDefault();
+  });
+}
+</script>
+
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
+</span>
+</div>
+        </nav>
+</div>
+  </div>
+</header>
+
+<script>
+  function initHeader() {
+    var lastScrollY = getScrollPos().y;
+    var documentElement = document.documentElement;
+
+    function storeScrollData() {
+      var y = getScrollPos().y;documentElement.setAttribute("data-header-transparent", "");var scrollStatus = "";
+
+      if (y <= 0) {
+        scrollStatus = "top";
+      } else if ((window.innerHeight + y) >= document.body.offsetHeight) {
+        scrollStatus = "bottom";
+      } else {
+        var isScrollDown = (y - lastScrollY > 0) ? true : false;
+        scrollStatus = isScrollDown ? "down" : "up";
+      }
+
+      lastScrollY = y;
+      documentElement.setAttribute("data-scroll-status", scrollStatus);
+    }
+
+    window.addEventListener('scroll', function(e) {
+      storeScrollData();
+    });
+
+    storeScrollData();
+  }
+  document.addEventListener('DOMContentLoaded', initHeader);
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<style>
+    html .page-banner {
+      background: #000;
+    }
+  </style>
+<style>html .page-banner {
+      height:  36.8vh;
+      min-height: 38vh;
+    }
+    html[data-scroll-status="top"] .page-banner {
+      height: 100vh;
+    }
+  </style>
+<style>
+    html .page-banner .page-banner-img > *:first-child {
+      opacity: 0.618;
+    }
+
+    html[data-theme="dark"] .page-banner .page-banner-img > *:first-child {
+      opacity: 0.443724;
+    }
+  </style>
+<style>
+    html .page-banner .page-banner-inner > *:first-child > *:nth-child(1) {
+      font-size: 2.5em; font-weight: bold;
+    }
+  </style>
+<style>
+    html .page-banner .page-banner-inner > *:first-child > *:nth-child(2) {
+      color: gold
+    }
+  </style>
+<section class="page-banner">
+    <div class="page-banner-img">
+<div style="background-image: url(/jekyll-theme-yat/assets/images/mapstruct/mapstruct_bg.png)"></div>
+        <img class="img-placeholder" src="/jekyll-theme-yat/assets/images/mapstruct/mapstruct_bg.png">
+</div>
+    <div class="wrapper">
+      <div class="page-banner-inner">
+<header class="post-header">
+  <h1 class="post-title p-name" itemprop="name headline">MapStruct</h1>
+  <h2 class="post-subtitle">MapStruct란</h2>
+
+  <p class="post-meta">
+    <time class="dt-published" datetime="2022-08-13T00:00:00+09:00" itemprop="datePublished"><i class="fa fa-calendar"></i> Aug 13, 2022
+    </time>
+
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <span class="post-reading-time left-vsplit"><i class="fa fa-clock-o"></i> About 59 mins</span>
+  </p>
+<div class="post-tags"><a class="post-tag" href="/jekyll-theme-yat/tags.html#MapStruct">#MapStruct</a></div></header>
+</div>
+    </div>
+  </section><script>
+  function hashLocate(hashValue) {
+    hashValue = hashValue.replace(/^.*#h-/, '');
+    hashValue = decodeURIComponent(hashValue);
+    var element = document.getElementById(hashValue);
+
+    if (!element) {
+      return;
+    }
+
+    var header = document.querySelector('header.site-header');
+    var headerRect = header.getBoundingClientRect();
+    var headerTop = Math.floor(headerRect.top);
+    var headerHeight = Math.floor(headerRect.height);
+    var scrollPos = getScrollPos();
+    var offsetY = element.offsetTop - (headerTop + headerHeight + 20);
+
+    if (offsetY == scrollPos.y) {
+      return;
+    }
+
+    if (headerTop == 0  && offsetY > scrollPos.y) {
+      offsetY += headerHeight + 2;
+    } else if (headerTop < 0  && offsetY < scrollPos.y) {
+      offsetY -= headerHeight - 2;
+    }
+
+    smoothScrollTo(offsetY);
+  }
+
+  // The first event occurred
+  window.addEventListener('load', function(event) {
+    if (window.location.hash) {
+      hashLocate(window.location.hash);
+    }
+  });
+
+  // The first event occurred
+  window.addEventListener('click', function(event) {
+    if (event.target.tagName.toLowerCase() == 'a') {
+      hashLocate(event.target.getAttribute('href'));
+    }
+  });
+</script>
+<div class="theme-toggle">
+  <input type="checkbox" id="theme-switch">
+  <label for="theme-switch">
+    <div class="toggle"></div>
+    <div class="names">
+      <p class="light">Light</p>
+      <p class="dark">Dark</p>
+    </div>
+  </label>
+</div>
+
+
+
+
+<script>
+  (function() {
+    var sw = document.getElementById('theme-switch');
+    var html = document.getElementsByTagName('html')[0];
+    var nightModeOption = ('on/off' || 'auto').toLowerCase();
+    var storage = nightModeOption === 'manual'
+        ? localStorage
+        : sessionStorage;
+    var themeData = loadThemeData();
+
+    function saveThemeData(data) {
+      storage.setItem('theme', JSON.stringify(data));
+    }
+
+    function loadThemeData() {
+      var data = storage.getItem('theme');
+      try {
+        data = JSON.parse(data ? data : '');
+      } catch(e) {
+        data = { nightShift: undefined, autoToggleAt: 0 };
+        saveThemeData(data);
+      }
+      return data;
+    }
+
+    function handleThemeToggle(nightShift) {
+      themeData.nightShift = nightShift;
+      saveThemeData(themeData);
+      html.dataset.theme = nightShift ? 'dark' : 'light';
+      setTimeout(function() {
+        sw.checked = nightShift ? true : false;
+      }, 50);
+    }
+
+    function autoThemeToggle() {
+      // Next time point of theme toggle
+      var now = new Date();
+      var toggleAt = new Date();
+      var hours = now.getHours();
+      var nightShift = hours >= 19 || hours <=7;
+
+      if (nightShift) {
+        if (hours > 7) {
+          toggleAt.setDate(toggleAt.getDate() + 1);
+        }
+        toggleAt.setHours(7);
+      } else {
+        toggleAt.setHours(19);
+      }
+
+      toggleAt.setMinutes(0);
+      toggleAt.setSeconds(0);
+      toggleAt.setMilliseconds(0)
+
+      var delay = toggleAt.getTime() - now.getTime();
+
+      // auto toggle theme mode
+      setTimeout(function() {
+        handleThemeToggle(!nightShift);
+      }, delay);
+
+      return {
+        nightShift: nightShift,
+        toggleAt: toggleAt.getTime()
+      };
+    }
+
+    // Listen the theme toggle event
+    sw.addEventListener('change', function(event) {
+      handleThemeToggle(event.target.checked);
+    });
+
+    if (nightModeOption == 'auto') {
+      var data = autoThemeToggle();
+
+      // Toggle theme by local setting
+      if (data.toggleAt > themeData.autoToggleAt) {
+        themeData.autoToggleAt = data.toggleAt;
+        handleThemeToggle(data.nightShift);
+      } else {
+        handleThemeToggle(themeData.nightShift);
+      }
+    } else if (nightModeOption == 'manual') {
+      handleThemeToggle(themeData.nightShift);
+    } else {
+      var nightShift = themeData.nightShift;
+      if (nightShift === undefined) {
+        nightShift = nightModeOption === 'on';
+      }
+      handleThemeToggle(nightShift);
+    }
+  })();
+</script>
+<div id="click-to-top" class="click-to-top">
+  <i class="fa fa-arrow-up"></i>
+</div>
+<script>
+  (function () {
+    const clickToTop = document.getElementById('click-to-top');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 100) {
+        clickToTop.classList.add('show')
+      }else {
+        clickToTop.classList.remove('show')
+      }
+    });
+    clickToTop.addEventListener('click', () => {
+      window.smoothScrollTo(0);
+    });
+  })();
+</script>
+<main class="page-content" aria-label="Content">
+      <div class="wrapper">
+        <div class="framework">
+  <section class="main">
+
+     <div class="post">
+  <section>
+
+
+
+
+
+
+
+
+
+<article class="post h-entry" itemscope itemtype="http://schema.org/BlogPosting">
+
+    <div class="post-content e-content" itemprop="articleBody">
+
+      <p>MapStruct는 자바에서 서로 다른 객체 간 매핑에 대한 코드를 간편하게 자동으로 생성해주는 라이브러리다. Annotaion Processor를 사용해 컴파일 시 구현체를 생성한다.</p>
+
+<p>객체 간 매핑에 대한 라이브러리로 ModelMapper도 있지만 MapStruct는 컴파일 시 매핑 코드를 생성하기 때문에 아래와 같은 장점이 있다.</p>
+
+<ol>
+  <li>Reflection을 사용하지 않아 속도가 빠르다.
+    <ul>
+      <li>Reflection: 구체적인 클래스 타입을 알지 못해도 해당 클래스의 정보(메서드, 타입, 변수 등)에 접근할 수 있게 해주는 것</li>
+    </ul>
+  </li>
+  <li>컴파일 시점에 매핑 코드를 생성하기 때문에 에러가 발생하면 확인이 가능하다.</li>
+  <li>자동으로 생성된 구현체 코드를 직접 확인할 수 있다.</li>
+</ol>
+
+<p>이 글에서는 DTO를 Entity로, Entity를 DTO로 변환하는 예제를 통해 설명하려고 한다.</p>
+
+<h3 id="개발-환경">개발 환경</h3>
+<ul>
+  <li>Kotlin / Spring Boot</li>
+  <li>Gradle (Kotlin dsl)</li>
+</ul>
+
+<h3 id="buildgradlekts-설정">build.gradle.kts 설정</h3>
+<pre><code class="language-kotlin_dsl">...
+
+plugins {
+    kotlin("jvm") version "1.6.21"
+    kotlin("kapt") version "1.6.21"
+}
+
+...
+
+dependencies {
+    implementation("org.mapstruct:mapstruct:1.5.2.Final")
+    kapt("org.mapstruct:mapstruct-processor:1.5.2.Final")
+}
+
+...
+</code></pre>
+
+<p><code class="language-plaintext highlighter-rouge">build.gradle</code>을 Groovy DSL 대신 Kotlin DSL을 사용했기 때문에 <code class="language-plaintext highlighter-rouge">.kts</code>라는 확장자가 추가로 붙는다. 그리고 Kotlin DSL을 사용하면 Annotation Processor 대신 kapt라는 플러그인을 사용해야 한다.</p>
+
+<p>만약 Groovy DSL을 사용한다면 위 코드의 <code class="language-plaintext highlighter-rouge">kapt()</code> 대신 <code class="language-plaintext highlighter-rouge">annotationProcessor()</code>를 넣으면 된다.</p>
+
+<h3 id="personentity">Person(Entity)</h3>
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Entity</span>
+<span class="kd">class</span> <span class="nc">Person</span><span class="p">(</span>
+
+    <span class="nd">@Id</span>
+    <span class="nd">@Column</span><span class="p">(</span><span class="n">name</span> <span class="p">=</span> <span class="s">"person_id"</span><span class="p">)</span>
+    <span class="kd">var</span> <span class="py">id</span><span class="p">:</span> <span class="nc">Long</span><span class="p">?</span> <span class="p">=</span> <span class="k">null</span><span class="p">,</span>
+
+    <span class="nd">@Column</span><span class="p">(</span><span class="n">name</span> <span class="p">=</span> <span class="s">"name"</span><span class="p">)</span>
+    <span class="kd">var</span> <span class="py">name</span><span class="p">:</span> <span class="nc">String</span><span class="p">?</span> <span class="p">=</span> <span class="k">null</span><span class="p">,</span>
+
+    <span class="nd">@Column</span><span class="p">(</span><span class="n">name</span> <span class="p">=</span> <span class="s">"age"</span><span class="p">)</span>
+    <span class="kd">var</span> <span class="py">age</span><span class="p">:</span> <span class="nc">Int</span><span class="p">?</span> <span class="p">=</span> <span class="k">null</span><span class="p">,</span>
+
+    <span class="nd">@Column</span><span class="p">(</span><span class="n">name</span> <span class="p">=</span> <span class="s">"phone_number"</span><span class="p">)</span>
+    <span class="kd">var</span> <span class="py">phoneNumber</span><span class="p">:</span> <span class="nc">String</span><span class="p">?</span> <span class="p">=</span> <span class="k">null</span><span class="p">,</span>
+
+    <span class="nd">@Column</span><span class="p">(</span><span class="n">name</span> <span class="p">=</span> <span class="s">"birth"</span><span class="p">)</span>
+    <span class="kd">var</span> <span class="py">birth</span><span class="p">:</span> <span class="nc">LocalDate</span><span class="p">?</span> <span class="p">=</span> <span class="k">null</span>
+<span class="p">)</span>
+</code></pre></div></div>
+
+<h3 id="persondtodto">PersonDTO(DTO)</h3>
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">data class</span> <span class="nc">PersonDTO</span><span class="p">(</span>
+
+    <span class="kd">var</span> <span class="py">id</span><span class="p">:</span> <span class="nc">Long</span><span class="p">?</span> <span class="p">=</span> <span class="k">null</span><span class="p">,</span>
+
+    <span class="kd">var</span> <span class="py">name</span><span class="p">:</span> <span class="nc">String</span><span class="p">?</span> <span class="p">=</span> <span class="k">null</span><span class="p">,</span>
+
+    <span class="kd">var</span> <span class="py">age</span><span class="p">:</span> <span class="nc">Int</span><span class="p">?</span> <span class="p">=</span> <span class="k">null</span><span class="p">,</span>
+
+    <span class="kd">var</span> <span class="py">phoneNumber</span><span class="p">:</span> <span class="nc">String</span><span class="p">?</span> <span class="p">=</span> <span class="k">null</span><span class="p">,</span>
+
+    <span class="kd">var</span> <span class="py">birth</span><span class="p">:</span> <span class="nc">LocalDate</span><span class="p">?</span> <span class="p">=</span> <span class="k">null</span>
+<span class="p">)</span>
+</code></pre></div></div>
+
+<p>기본적으로 Person이라는 Entity와 DTO를 생성했다.</p>
+
+<p>라이브러리를 사용하지 않고 Entity와 DTO의 변환을 해야 한다면 아래와 같이 코드를 짤 수 있다.</p>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">fun</span> <span class="nf">toPersonDTO</span><span class="p">(</span><span class="n">entity</span><span class="p">:</span> <span class="nc">Person</span><span class="p">):</span> <span class="nc">PersonDTO</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nc">PersonDTO</span><span class="p">(</span>
+            <span class="n">id</span> <span class="p">=</span> <span class="n">entity</span><span class="p">.</span><span class="n">id</span><span class="p">,</span>
+            <span class="n">name</span> <span class="p">=</span> <span class="n">entity</span><span class="p">.</span><span class="n">name</span><span class="p">,</span>
+            <span class="n">age</span> <span class="p">=</span> <span class="n">entity</span><span class="p">.</span><span class="n">age</span><span class="p">,</span>
+            <span class="n">phoneNumber</span> <span class="p">=</span> <span class="n">entity</span><span class="p">.</span><span class="n">phoneNumber</span><span class="p">,</span>
+            <span class="n">birth</span> <span class="p">=</span> <span class="n">entity</span><span class="p">.</span><span class="n">birth</span>
+        <span class="p">)</span>
+    <span class="p">}</span>
+
+<span class="k">fun</span> <span class="nf">toPerson</span><span class="p">(</span><span class="n">dto</span><span class="p">:</span> <span class="nc">PersonDTO</span><span class="p">):</span> <span class="nc">Person</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="nc">Person</span><span class="p">(</span>
+            <span class="n">id</span> <span class="p">=</span> <span class="n">dto</span><span class="p">.</span><span class="n">id</span><span class="p">,</span>
+            <span class="n">name</span> <span class="p">=</span> <span class="n">dto</span><span class="p">.</span><span class="n">name</span><span class="p">,</span>
+            <span class="n">age</span> <span class="p">=</span> <span class="n">dto</span><span class="p">.</span><span class="n">age</span><span class="p">,</span>
+            <span class="n">phoneNumber</span> <span class="p">=</span> <span class="n">dto</span><span class="p">.</span><span class="n">phoneNumber</span><span class="p">,</span>
+            <span class="n">birth</span> <span class="p">=</span> <span class="n">dto</span><span class="p">.</span><span class="n">birth</span>
+        <span class="p">)</span>
+    <span class="p">}</span>
+</code></pre></div></div>
+
+<p>위 코드를 보면 간단해서 하나씩 만들어도 상관 없을 것 같다는 생각이 들 수 있지만 필드가 늘어나면 늘어날수록 개발자의 피로가 증가할 것이다.</p>
+
+<p>MapStruct를 사용하면 아래와 같이 사용할 수 있다.</p>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Component</span>
+<span class="nd">@Mapper</span><span class="p">(</span><span class="n">componentModel</span> <span class="p">=</span> <span class="s">"spring"</span><span class="p">)</span>
+<span class="kd">interface</span> <span class="nc">PersonMapper</span> <span class="p">{</span>
+
+    <span class="k">fun</span> <span class="nf">toPerson</span><span class="p">(</span><span class="n">dto</span><span class="p">:</span> <span class="nc">PersonDTO</span><span class="p">):</span> <span class="nc">Person</span>
+
+    <span class="k">fun</span> <span class="nf">toPersonDTO</span><span class="p">(</span><span class="n">entity</span><span class="p">:</span> <span class="nc">Person</span><span class="p">):</span> <span class="nc">PersonDTO</span>
+
+    <span class="k">fun</span> <span class="nf">toPersons</span><span class="p">(</span><span class="n">dtoList</span><span class="p">:</span> <span class="nc">MutableList</span><span class="p">&lt;</span><span class="nc">PersonDTO</span><span class="p">&gt;):</span> <span class="nc">MutableList</span><span class="p">&lt;</span><span class="nc">Person</span><span class="p">&gt;</span>
+
+    <span class="k">fun</span> <span class="nf">toPersonDTOs</span><span class="p">(</span><span class="n">entityList</span><span class="p">:</span> <span class="nc">MutableList</span><span class="p">&lt;</span><span class="nc">Person</span><span class="p">&gt;):</span> <span class="nc">MutableList</span><span class="p">&lt;</span><span class="nc">PersonDTO</span><span class="p">&gt;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>우선 Mapper 파일은 class가 아니라 interface다.
+해당 인터페이스의 구현체는 컴파일 시 생성된다.</p>
+
+<ul>
+  <li>(Kotlin/Spring, kapt 기준) <code class="language-plaintext highlighter-rouge">/build/generated/source/kapt/main/...</code> 경로에 구현체가 생성이 된다.</li>
+</ul>
+
+<p><img src="/assets/images/mapstruct/mapstruct1.png" alt="mapstruct1"></p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Generated</span><span class="o">(</span>
+    <span class="n">value</span> <span class="o">=</span> <span class="s">"org.mapstruct.ap.MappingProcessor"</span><span class="o">,</span>
+    <span class="n">date</span> <span class="o">=</span> <span class="s">"2022-08-13T21:53:06+0900"</span><span class="o">,</span>
+    <span class="n">comments</span> <span class="o">=</span> <span class="s">"version: 1.5.2.Final, compiler: IncrementalProcessingEnvironment from kotlin-annotation-processing-gradle-1.6.21.jar, environment: Java 17.0.2 (Oracle Corporation)"</span>
+<span class="o">)</span>
+<span class="nd">@Component</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">PersonMapperImpl</span> <span class="kd">implements</span> <span class="nc">PersonMapper</span> <span class="o">{</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="nc">Person</span> <span class="nf">toPerson</span><span class="o">(</span><span class="nc">PersonDTO</span> <span class="n">dto</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span> <span class="n">dto</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">)</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
+        <span class="o">}</span>
+
+        <span class="nc">Person</span> <span class="n">person</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Person</span><span class="o">();</span>
+
+        <span class="n">person</span><span class="o">.</span><span class="na">setId</span><span class="o">(</span> <span class="n">dto</span><span class="o">.</span><span class="na">getId</span><span class="o">()</span> <span class="o">);</span>
+        <span class="n">person</span><span class="o">.</span><span class="na">setName</span><span class="o">(</span> <span class="n">dto</span><span class="o">.</span><span class="na">getName</span><span class="o">()</span> <span class="o">);</span>
+        <span class="n">person</span><span class="o">.</span><span class="na">setAge</span><span class="o">(</span> <span class="n">dto</span><span class="o">.</span><span class="na">getAge</span><span class="o">()</span> <span class="o">);</span>
+        <span class="n">person</span><span class="o">.</span><span class="na">setPhoneNumber</span><span class="o">(</span> <span class="n">dto</span><span class="o">.</span><span class="na">getPhoneNumber</span><span class="o">()</span> <span class="o">);</span>
+        <span class="n">person</span><span class="o">.</span><span class="na">setBirth</span><span class="o">(</span> <span class="n">dto</span><span class="o">.</span><span class="na">getBirth</span><span class="o">()</span> <span class="o">);</span>
+
+        <span class="k">return</span> <span class="n">person</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="nc">PersonDTO</span> <span class="nf">toPersonDTO</span><span class="o">(</span><span class="nc">Person</span> <span class="n">entity</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span> <span class="n">entity</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">)</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
+        <span class="o">}</span>
+
+        <span class="nc">PersonDTO</span> <span class="n">personDTO</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">PersonDTO</span><span class="o">();</span>
+
+        <span class="n">personDTO</span><span class="o">.</span><span class="na">setId</span><span class="o">(</span> <span class="n">entity</span><span class="o">.</span><span class="na">getId</span><span class="o">()</span> <span class="o">);</span>
+        <span class="n">personDTO</span><span class="o">.</span><span class="na">setName</span><span class="o">(</span> <span class="n">entity</span><span class="o">.</span><span class="na">getName</span><span class="o">()</span> <span class="o">);</span>
+        <span class="n">personDTO</span><span class="o">.</span><span class="na">setAge</span><span class="o">(</span> <span class="n">entity</span><span class="o">.</span><span class="na">getAge</span><span class="o">()</span> <span class="o">);</span>
+        <span class="n">personDTO</span><span class="o">.</span><span class="na">setPhoneNumber</span><span class="o">(</span> <span class="n">entity</span><span class="o">.</span><span class="na">getPhoneNumber</span><span class="o">()</span> <span class="o">);</span>
+        <span class="n">personDTO</span><span class="o">.</span><span class="na">setBirth</span><span class="o">(</span> <span class="n">entity</span><span class="o">.</span><span class="na">getBirth</span><span class="o">()</span> <span class="o">);</span>
+
+        <span class="k">return</span> <span class="n">personDTO</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Person</span><span class="o">&gt;</span> <span class="nf">toPersons</span><span class="o">(</span><span class="nc">List</span><span class="o">&lt;</span><span class="nc">PersonDTO</span><span class="o">&gt;</span> <span class="n">dtoList</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span> <span class="n">dtoList</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">)</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
+        <span class="o">}</span>
+
+        <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Person</span><span class="o">&gt;</span> <span class="n">list</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;</span><span class="nc">Person</span><span class="o">&gt;(</span> <span class="n">dtoList</span><span class="o">.</span><span class="na">size</span><span class="o">()</span> <span class="o">);</span>
+        <span class="k">for</span> <span class="o">(</span> <span class="nc">PersonDTO</span> <span class="n">personDTO</span> <span class="o">:</span> <span class="n">dtoList</span> <span class="o">)</span> <span class="o">{</span>
+            <span class="n">list</span><span class="o">.</span><span class="na">add</span><span class="o">(</span> <span class="n">toPerson</span><span class="o">(</span> <span class="n">personDTO</span> <span class="o">)</span> <span class="o">);</span>
+        <span class="o">}</span>
+
+        <span class="k">return</span> <span class="n">list</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">PersonDTO</span><span class="o">&gt;</span> <span class="nf">toPersonDTOs</span><span class="o">(</span><span class="nc">List</span><span class="o">&lt;</span><span class="nc">Person</span><span class="o">&gt;</span> <span class="n">entityList</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span> <span class="n">entityList</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">)</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
+        <span class="o">}</span>
+
+        <span class="nc">List</span><span class="o">&lt;</span><span class="nc">PersonDTO</span><span class="o">&gt;</span> <span class="n">list</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;</span><span class="nc">PersonDTO</span><span class="o">&gt;(</span> <span class="n">entityList</span><span class="o">.</span><span class="na">size</span><span class="o">()</span> <span class="o">);</span>
+        <span class="k">for</span> <span class="o">(</span> <span class="nc">Person</span> <span class="n">person</span> <span class="o">:</span> <span class="n">entityList</span> <span class="o">)</span> <span class="o">{</span>
+            <span class="n">list</span><span class="o">.</span><span class="na">add</span><span class="o">(</span> <span class="n">toPersonDTO</span><span class="o">(</span> <span class="n">person</span> <span class="o">)</span> <span class="o">);</span>
+        <span class="o">}</span>
+
+        <span class="k">return</span> <span class="n">list</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>구현체가 잘 생성됐다. Kotlin으로 인터페이스를 만들었지만 구현체는 Java로 생성이 된다. 생성이 잘 됐으면 아래 코드처럼 활용할 수 있다.</p>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">val</span> <span class="py">person</span> <span class="p">=</span> <span class="nc">Person</span><span class="p">(</span>
+            <span class="n">id</span> <span class="p">=</span> <span class="mi">1L</span><span class="p">,</span>
+            <span class="n">name</span> <span class="p">=</span>  <span class="s">"name"</span><span class="p">,</span>
+            <span class="n">age</span> <span class="p">=</span>  <span class="mi">20</span><span class="p">,</span>
+            <span class="n">phoneNumber</span> <span class="p">=</span> <span class="s">"01012341234"</span><span class="p">,</span>
+            <span class="n">birth</span> <span class="p">=</span> <span class="nc">LocalDate</span><span class="p">.</span><span class="nf">of</span><span class="p">(</span><span class="mi">2003</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="kd">val</span> <span class="py">personDTO</span> <span class="p">=</span> <span class="n">personMapper</span><span class="p">.</span><span class="nf">toPersonDTO</span><span class="p">(</span><span class="n">person</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>테스트 코드로 확인해보자.</p>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Test</span>
+<span class="k">fun</span> <span class="nf">test</span><span class="p">()</span> <span class="p">{</span>
+
+    <span class="c1">// given</span>
+    <span class="kd">val</span> <span class="py">person</span> <span class="p">=</span> <span class="nc">Person</span><span class="p">(</span>
+        <span class="n">id</span> <span class="p">=</span> <span class="mi">1L</span><span class="p">,</span>
+        <span class="n">name</span> <span class="p">=</span>  <span class="s">"name"</span><span class="p">,</span>
+        <span class="n">age</span> <span class="p">=</span>  <span class="mi">20</span><span class="p">,</span>
+        <span class="n">phoneNumber</span> <span class="p">=</span> <span class="s">"01012341234"</span><span class="p">,</span>
+        <span class="n">birth</span> <span class="p">=</span> <span class="nc">LocalDate</span><span class="p">.</span><span class="nf">of</span><span class="p">(</span><span class="mi">2003</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+    <span class="p">)</span>
+
+    <span class="c1">// when</span>
+    <span class="kd">val</span> <span class="py">personDTO</span> <span class="p">=</span> <span class="n">personMapper</span><span class="p">.</span><span class="nf">toPersonDTO</span><span class="p">(</span><span class="n">person</span><span class="p">)</span>
+
+    <span class="c1">// then</span>
+    <span class="nf">assertThat</span><span class="p">(</span><span class="n">person</span><span class="p">.</span><span class="n">id</span><span class="p">).</span><span class="nf">isEqualTo</span><span class="p">(</span><span class="n">personDTO</span><span class="p">.</span><span class="n">id</span><span class="p">)</span>
+    <span class="nf">assertThat</span><span class="p">(</span><span class="n">person</span><span class="p">.</span><span class="n">name</span><span class="p">).</span><span class="nf">isEqualTo</span><span class="p">(</span><span class="n">personDTO</span><span class="p">.</span><span class="n">name</span><span class="p">)</span>
+    <span class="nf">assertThat</span><span class="p">(</span><span class="n">person</span><span class="p">.</span><span class="n">age</span><span class="p">).</span><span class="nf">isEqualTo</span><span class="p">(</span><span class="n">personDTO</span><span class="p">.</span><span class="n">age</span><span class="p">)</span>
+    <span class="nf">assertThat</span><span class="p">(</span><span class="n">person</span><span class="p">.</span><span class="n">phoneNumber</span><span class="p">).</span><span class="nf">isEqualTo</span><span class="p">(</span><span class="n">personDTO</span><span class="p">.</span><span class="n">phoneNumber</span><span class="p">)</span>
+    <span class="nf">assertThat</span><span class="p">(</span><span class="n">person</span><span class="p">.</span><span class="n">birth</span><span class="p">).</span><span class="nf">isEqualTo</span><span class="p">(</span><span class="n">personDTO</span><span class="p">.</span><span class="n">birth</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><img src="/assets/images/mapstruct/mapstruct2.png" alt="mapstruct2"></p>
+
+<p>위 방법은 MapStruct의 기본적인 기능이다.
+매핑시켜야할 Entity와 DTO가 많다면 Mapper를 만들고 함수도 계속 따로 만들어야 될까?</p>
+
+<p>이럴 때는 공통으로 사용할 인터페이스를 만들어 상속받으면 된다.</p>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cm">/**
+ * @param D is Dto type
+ * @param E is Entity type
+ */</span>
+<span class="kd">interface</span> <span class="nc">EntityMapper</span><span class="p">&lt;</span><span class="nc">D</span><span class="p">,</span> <span class="nc">E</span><span class="p">&gt;</span> <span class="p">{</span>
+
+    <span class="k">fun</span> <span class="nf">toEntity</span><span class="p">(</span><span class="n">dto</span><span class="p">:</span> <span class="nc">D</span><span class="p">):</span> <span class="nc">E</span>
+
+    <span class="k">fun</span> <span class="nf">toDto</span><span class="p">(</span><span class="n">entity</span><span class="p">:</span> <span class="nc">E</span><span class="p">):</span> <span class="nc">D</span>
+
+    <span class="k">fun</span> <span class="nf">toEntity</span><span class="p">(</span><span class="n">dtoList</span><span class="p">:</span> <span class="nc">MutableList</span><span class="p">&lt;</span><span class="nc">D</span><span class="p">&gt;):</span> <span class="nc">MutableList</span><span class="p">&lt;</span><span class="nc">E</span><span class="p">&gt;</span>
+
+    <span class="k">fun</span> <span class="nf">toDto</span><span class="p">(</span><span class="n">entityList</span><span class="p">:</span> <span class="nc">MutableList</span><span class="p">&lt;</span><span class="nc">E</span><span class="p">&gt;):</span> <span class="nc">MutableList</span><span class="p">&lt;</span><span class="nc">D</span><span class="p">&gt;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>EntityMapper 인터페이스를 만들고 Generic을 사용해 DTO와 Entity 타입을 지정한다.</p>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Component</span>
+<span class="nd">@Mapper</span><span class="p">(</span><span class="n">componentModel</span> <span class="p">=</span> <span class="s">"spring"</span><span class="p">)</span>
+<span class="kd">interface</span> <span class="nc">PersonMapper</span><span class="p">:</span> <span class="nc">EntityMapper</span><span class="p">&lt;</span><span class="nc">PersonDTO</span><span class="p">,</span> <span class="nc">Person</span><span class="p">&gt;</span>
+</code></pre></div></div>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Component</span>
+<span class="nd">@Mapper</span><span class="p">(</span><span class="n">componentModel</span> <span class="p">=</span> <span class="s">"spring"</span><span class="p">)</span>
+<span class="kd">interface</span> <span class="nc">CarMapper</span><span class="p">:</span> <span class="nc">EntityMapper</span><span class="p">&lt;</span><span class="nc">CarDTO</span><span class="p">,</span> <span class="nc">Car</span><span class="p">&gt;</span>
+</code></pre></div></div>
+
+<p>이렇게 사용하면 함수를 계속 안 만들어도 되고 굉장히 간결해졌다.</p>
+
+<p>컴파일을 해서 구현체도 확인해보자.</p>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Component</span>
+<span class="k">public</span> <span class="kd">class</span> <span class="nc">PersonMapperImpl</span> <span class="n">implements</span> <span class="nc">PersonMapper</span> <span class="p">{</span>
+
+    <span class="nd">@Override</span>
+    <span class="k">public</span> <span class="nc">Person</span> <span class="nf">toEntity</span><span class="p">(</span><span class="nc">PersonDTO</span> <span class="n">dto</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span> <span class="n">dto</span> <span class="p">==</span> <span class="k">null</span> <span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="k">null</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="nc">Person</span> <span class="n">person</span> <span class="p">=</span> <span class="n">new</span> <span class="nc">Person</span><span class="p">();</span>
+
+        <span class="n">person</span><span class="p">.</span><span class="nf">setId</span><span class="p">(</span> <span class="n">dto</span><span class="p">.</span><span class="nf">getId</span><span class="p">()</span> <span class="p">);</span>
+        <span class="n">person</span><span class="p">.</span><span class="nf">setName</span><span class="p">(</span> <span class="n">dto</span><span class="p">.</span><span class="nf">getName</span><span class="p">()</span> <span class="p">);</span>
+        <span class="n">person</span><span class="p">.</span><span class="nf">setAge</span><span class="p">(</span> <span class="n">dto</span><span class="p">.</span><span class="nf">getAge</span><span class="p">()</span> <span class="p">);</span>
+        <span class="n">person</span><span class="p">.</span><span class="nf">setPhoneNumber</span><span class="p">(</span> <span class="n">dto</span><span class="p">.</span><span class="nf">getPhoneNumber</span><span class="p">()</span> <span class="p">);</span>
+        <span class="n">person</span><span class="p">.</span><span class="nf">setBirth</span><span class="p">(</span> <span class="n">dto</span><span class="p">.</span><span class="nf">getBirth</span><span class="p">()</span> <span class="p">);</span>
+
+        <span class="k">return</span> <span class="n">person</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="k">public</span> <span class="nc">PersonDTO</span> <span class="nf">toDto</span><span class="p">(</span><span class="nc">Person</span> <span class="n">entity</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span> <span class="n">entity</span> <span class="p">==</span> <span class="k">null</span> <span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="k">null</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="nc">PersonDTO</span> <span class="n">personDTO</span> <span class="p">=</span> <span class="n">new</span> <span class="nc">PersonDTO</span><span class="p">();</span>
+
+        <span class="n">personDTO</span><span class="p">.</span><span class="nf">setId</span><span class="p">(</span> <span class="n">entity</span><span class="p">.</span><span class="nf">getId</span><span class="p">()</span> <span class="p">);</span>
+        <span class="n">personDTO</span><span class="p">.</span><span class="nf">setName</span><span class="p">(</span> <span class="n">entity</span><span class="p">.</span><span class="nf">getName</span><span class="p">()</span> <span class="p">);</span>
+        <span class="n">personDTO</span><span class="p">.</span><span class="nf">setAge</span><span class="p">(</span> <span class="n">entity</span><span class="p">.</span><span class="nf">getAge</span><span class="p">()</span> <span class="p">);</span>
+        <span class="n">personDTO</span><span class="p">.</span><span class="nf">setPhoneNumber</span><span class="p">(</span> <span class="n">entity</span><span class="p">.</span><span class="nf">getPhoneNumber</span><span class="p">()</span> <span class="p">);</span>
+        <span class="n">personDTO</span><span class="p">.</span><span class="nf">setBirth</span><span class="p">(</span> <span class="n">entity</span><span class="p">.</span><span class="nf">getBirth</span><span class="p">()</span> <span class="p">);</span>
+
+        <span class="k">return</span> <span class="n">personDTO</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="k">public</span> <span class="nc">List</span><span class="p">&lt;</span><span class="nc">Person</span><span class="p">&gt;</span> <span class="nf">toEntity</span><span class="p">(</span><span class="nc">List</span><span class="p">&lt;</span><span class="nc">PersonDTO</span><span class="p">&gt;</span> <span class="n">dtoList</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span> <span class="n">dtoList</span> <span class="p">==</span> <span class="k">null</span> <span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="k">null</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="nc">List</span><span class="p">&lt;</span><span class="nc">Person</span><span class="p">&gt;</span> <span class="n">list</span> <span class="p">=</span> <span class="n">new</span> <span class="nc">ArrayList</span><span class="p">&lt;</span><span class="nc">Person</span><span class="p">&gt;(</span> <span class="n">dtoList</span><span class="p">.</span><span class="nf">size</span><span class="p">()</span> <span class="p">);</span>
+        <span class="k">for</span> <span class="p">(</span> <span class="nc">PersonDTO</span> <span class="n">personDTO</span> <span class="p">:</span> <span class="n">dtoList</span> <span class="p">)</span> <span class="p">{</span>
+            <span class="n">list</span><span class="p">.</span><span class="nf">add</span><span class="p">(</span> <span class="nf">toEntity</span><span class="p">(</span> <span class="n">personDTO</span> <span class="p">)</span> <span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="k">return</span> <span class="n">list</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="k">public</span> <span class="nc">List</span><span class="p">&lt;</span><span class="nc">PersonDTO</span><span class="p">&gt;</span> <span class="nf">toDto</span><span class="p">(</span><span class="nc">List</span><span class="p">&lt;</span><span class="nc">Person</span><span class="p">&gt;</span> <span class="n">entityList</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span> <span class="n">entityList</span> <span class="p">==</span> <span class="k">null</span> <span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="k">null</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="nc">List</span><span class="p">&lt;</span><span class="nc">PersonDTO</span><span class="p">&gt;</span> <span class="n">list</span> <span class="p">=</span> <span class="n">new</span> <span class="nc">ArrayList</span><span class="p">&lt;</span><span class="nc">PersonDTO</span><span class="p">&gt;(</span> <span class="n">entityList</span><span class="p">.</span><span class="nf">size</span><span class="p">()</span> <span class="p">);</span>
+        <span class="k">for</span> <span class="p">(</span> <span class="nc">Person</span> <span class="n">person</span> <span class="p">:</span> <span class="n">entityList</span> <span class="p">)</span> <span class="p">{</span>
+            <span class="n">list</span><span class="p">.</span><span class="nf">add</span><span class="p">(</span> <span class="nf">toDto</span><span class="p">(</span> <span class="n">person</span> <span class="p">)</span> <span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="k">return</span> <span class="n">list</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Component</span>
+<span class="k">public</span> <span class="kd">class</span> <span class="nc">CarMapperImpl</span> <span class="n">implements</span> <span class="nc">CarMapper</span> <span class="p">{</span>
+
+    <span class="nd">@Override</span>
+    <span class="k">public</span> <span class="nc">Car</span> <span class="nf">toEntity</span><span class="p">(</span><span class="nc">CarDTO</span> <span class="n">dto</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span> <span class="n">dto</span> <span class="p">==</span> <span class="k">null</span> <span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="k">null</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="nc">Car</span> <span class="n">car</span> <span class="p">=</span> <span class="n">new</span> <span class="nc">Car</span><span class="p">();</span>
+
+        <span class="n">car</span><span class="p">.</span><span class="nf">setId</span><span class="p">(</span> <span class="n">dto</span><span class="p">.</span><span class="nf">getId</span><span class="p">()</span> <span class="p">);</span>
+        <span class="n">car</span><span class="p">.</span><span class="nf">setName</span><span class="p">(</span> <span class="n">dto</span><span class="p">.</span><span class="nf">getName</span><span class="p">()</span> <span class="p">);</span>
+        <span class="n">car</span><span class="p">.</span><span class="nf">setColor</span><span class="p">(</span> <span class="n">dto</span><span class="p">.</span><span class="nf">getColor</span><span class="p">()</span> <span class="p">);</span>
+
+        <span class="k">return</span> <span class="n">car</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="k">public</span> <span class="nc">CarDTO</span> <span class="nf">toDto</span><span class="p">(</span><span class="nc">Car</span> <span class="n">entity</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span> <span class="n">entity</span> <span class="p">==</span> <span class="k">null</span> <span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="k">null</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="nc">CarDTO</span> <span class="n">carDTO</span> <span class="p">=</span> <span class="n">new</span> <span class="nc">CarDTO</span><span class="p">();</span>
+
+        <span class="n">carDTO</span><span class="p">.</span><span class="nf">setId</span><span class="p">(</span> <span class="n">entity</span><span class="p">.</span><span class="nf">getId</span><span class="p">()</span> <span class="p">);</span>
+        <span class="n">carDTO</span><span class="p">.</span><span class="nf">setName</span><span class="p">(</span> <span class="n">entity</span><span class="p">.</span><span class="nf">getName</span><span class="p">()</span> <span class="p">);</span>
+        <span class="n">carDTO</span><span class="p">.</span><span class="nf">setColor</span><span class="p">(</span> <span class="n">entity</span><span class="p">.</span><span class="nf">getColor</span><span class="p">()</span> <span class="p">);</span>
+
+        <span class="k">return</span> <span class="n">carDTO</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="k">public</span> <span class="nc">List</span><span class="p">&lt;</span><span class="nc">Car</span><span class="p">&gt;</span> <span class="nf">toEntity</span><span class="p">(</span><span class="nc">List</span><span class="p">&lt;</span><span class="nc">CarDTO</span><span class="p">&gt;</span> <span class="n">dtoList</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span> <span class="n">dtoList</span> <span class="p">==</span> <span class="k">null</span> <span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="k">null</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="nc">List</span><span class="p">&lt;</span><span class="nc">Car</span><span class="p">&gt;</span> <span class="n">list</span> <span class="p">=</span> <span class="n">new</span> <span class="nc">ArrayList</span><span class="p">&lt;</span><span class="nc">Car</span><span class="p">&gt;(</span> <span class="n">dtoList</span><span class="p">.</span><span class="nf">size</span><span class="p">()</span> <span class="p">);</span>
+        <span class="k">for</span> <span class="p">(</span> <span class="nc">CarDTO</span> <span class="n">carDTO</span> <span class="p">:</span> <span class="n">dtoList</span> <span class="p">)</span> <span class="p">{</span>
+            <span class="n">list</span><span class="p">.</span><span class="nf">add</span><span class="p">(</span> <span class="nf">toEntity</span><span class="p">(</span> <span class="n">carDTO</span> <span class="p">)</span> <span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="k">return</span> <span class="n">list</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="k">public</span> <span class="nc">List</span><span class="p">&lt;</span><span class="nc">CarDTO</span><span class="p">&gt;</span> <span class="nf">toDto</span><span class="p">(</span><span class="nc">List</span><span class="p">&lt;</span><span class="nc">Car</span><span class="p">&gt;</span> <span class="n">entityList</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">if</span> <span class="p">(</span> <span class="n">entityList</span> <span class="p">==</span> <span class="k">null</span> <span class="p">)</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="k">null</span><span class="p">;</span>
+        <span class="p">}</span>
+
+        <span class="nc">List</span><span class="p">&lt;</span><span class="nc">CarDTO</span><span class="p">&gt;</span> <span class="n">list</span> <span class="p">=</span> <span class="n">new</span> <span class="nc">ArrayList</span><span class="p">&lt;</span><span class="nc">CarDTO</span><span class="p">&gt;(</span> <span class="n">entityList</span><span class="p">.</span><span class="nf">size</span><span class="p">()</span> <span class="p">);</span>
+        <span class="k">for</span> <span class="p">(</span> <span class="nc">Car</span> <span class="n">car</span> <span class="p">:</span> <span class="n">entityList</span> <span class="p">)</span> <span class="p">{</span>
+            <span class="n">list</span><span class="p">.</span><span class="nf">add</span><span class="p">(</span> <span class="nf">toDto</span><span class="p">(</span> <span class="n">car</span> <span class="p">)</span> <span class="p">);</span>
+        <span class="p">}</span>
+
+        <span class="k">return</span> <span class="n">list</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>아주 잘 생성이 됐다!</p>
+
+<hr>
+
+<p>위에서 설명한 예제들은 Entity와 DTO의 필드명과 타입이 다 같았다. 예외적인 상황에서는 어떻게 할까?</p>
+
+<h3 id="서로-필드명이-다를-때">서로 필드명이 다를 때</h3>
+<p>Person Entity의 phoneNumber 필드가 Person DTO에서는 call 필드로 받고 싶다. 그러면 아래처럼 <code class="language-plaintext highlighter-rouge">source</code>와 <code class="language-plaintext highlighter-rouge">target</code>을 <code class="language-plaintext highlighter-rouge">@Maaping</code> 어노테이션에 명시해주면 된다.</p>
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Mapping</span><span class="p">(</span><span class="n">source</span> <span class="p">=</span> <span class="s">"call"</span><span class="p">,</span> <span class="n">target</span> <span class="p">=</span> <span class="s">"phoneNumber"</span><span class="p">)</span>
+<span class="k">fun</span> <span class="nf">toPerson</span><span class="p">(</span><span class="n">dto</span><span class="p">:</span> <span class="nc">PersonDTO</span><span class="p">):</span> <span class="nc">Person</span>
+
+<span class="nd">@Mapping</span><span class="p">(</span><span class="n">source</span> <span class="p">=</span> <span class="s">"phoneNumber"</span><span class="p">,</span> <span class="n">target</span> <span class="p">=</span> <span class="s">"call"</span><span class="p">)</span>
+<span class="k">fun</span> <span class="nf">toPersonDTO</span><span class="p">(</span><span class="n">entity</span><span class="p">:</span> <span class="nc">Person</span><span class="p">):</span> <span class="nc">PersonDTO</span>
+</code></pre></div></div>
+<p>A를 B로 변환시켜야 한다고 했을 때 A의 필드는 <code class="language-plaintext highlighter-rouge">source</code>가 되고 B의 필드는 <code class="language-plaintext highlighter-rouge">target</code>이 된다.</p>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Override</span>
+<span class="k">public</span> <span class="nc">Person</span> <span class="nf">toPerson</span><span class="p">(</span><span class="nc">PersonDTO</span> <span class="n">dto</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span> <span class="n">dto</span> <span class="p">==</span> <span class="k">null</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="k">null</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="nc">Person</span> <span class="n">person</span> <span class="p">=</span> <span class="n">new</span> <span class="nc">Person</span><span class="p">();</span>
+
+    <span class="n">person</span><span class="p">.</span><span class="nf">setPhoneNumber</span><span class="p">(</span> <span class="n">dto</span><span class="p">.</span><span class="nf">getCall</span><span class="p">()</span> <span class="p">);</span>
+    <span class="n">person</span><span class="p">.</span><span class="nf">setId</span><span class="p">(</span> <span class="n">dto</span><span class="p">.</span><span class="nf">getId</span><span class="p">()</span> <span class="p">);</span>
+    <span class="n">person</span><span class="p">.</span><span class="nf">setName</span><span class="p">(</span> <span class="n">dto</span><span class="p">.</span><span class="nf">getName</span><span class="p">()</span> <span class="p">);</span>
+    <span class="n">person</span><span class="p">.</span><span class="nf">setAge</span><span class="p">(</span> <span class="n">dto</span><span class="p">.</span><span class="nf">getAge</span><span class="p">()</span> <span class="p">);</span>
+    <span class="n">person</span><span class="p">.</span><span class="nf">setBirth</span><span class="p">(</span> <span class="n">dto</span><span class="p">.</span><span class="nf">getBirth</span><span class="p">()</span> <span class="p">);</span>
+
+    <span class="k">return</span> <span class="n">person</span><span class="p">;</span>
+<span class="p">}</span>
+
+<span class="nd">@Override</span>
+<span class="k">public</span> <span class="nc">PersonDTO</span> <span class="nf">toPersonDTO</span><span class="p">(</span><span class="nc">Person</span> <span class="n">entity</span><span class="p">)</span> <span class="p">{</span>
+    <span class="k">if</span> <span class="p">(</span> <span class="n">entity</span> <span class="p">==</span> <span class="k">null</span> <span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="k">null</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="nc">PersonDTO</span> <span class="n">personDTO</span> <span class="p">=</span> <span class="n">new</span> <span class="nc">PersonDTO</span><span class="p">();</span>
+
+    <span class="n">personDTO</span><span class="p">.</span><span class="nf">setCall</span><span class="p">(</span> <span class="n">entity</span><span class="p">.</span><span class="nf">getPhoneNumber</span><span class="p">()</span> <span class="p">);</span>
+    <span class="n">personDTO</span><span class="p">.</span><span class="nf">setId</span><span class="p">(</span> <span class="n">entity</span><span class="p">.</span><span class="nf">getId</span><span class="p">()</span> <span class="p">);</span>
+    <span class="n">personDTO</span><span class="p">.</span><span class="nf">setName</span><span class="p">(</span> <span class="n">entity</span><span class="p">.</span><span class="nf">getName</span><span class="p">()</span> <span class="p">);</span>
+    <span class="n">personDTO</span><span class="p">.</span><span class="nf">setAge</span><span class="p">(</span> <span class="n">entity</span><span class="p">.</span><span class="nf">getAge</span><span class="p">()</span> <span class="p">);</span>
+    <span class="n">personDTO</span><span class="p">.</span><span class="nf">setBirth</span><span class="p">(</span> <span class="n">entity</span><span class="p">.</span><span class="nf">getBirth</span><span class="p">()</span> <span class="p">);</span>
+
+    <span class="k">return</span> <span class="n">personDTO</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p>구현체 코드를 보면 잘 매핑이 되는 것을 확인할 수 있다.</p>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">// then</span>
+<span class="nf">assertThat</span><span class="p">(</span><span class="n">person</span><span class="p">.</span><span class="n">phoneNumber</span><span class="p">).</span><span class="nf">isEqualTo</span><span class="p">(</span><span class="n">personDTO</span><span class="p">.</span><span class="n">call</span><span class="p">)</span>
+</code></pre></div></div>
+
+<p>아까 테스트 코드에서 phoneNumber 부분만 수정해서 테스트 해보면 성공이 뜬다.</p>
+
+<h3 id="매핑하려는-필드끼리-타입이-다를-때">매핑하려는 필드끼리 타입이 다를 때</h3>
+<p><code class="language-plaintext highlighter-rouge">Person</code>은 <code class="language-plaintext highlighter-rouge">job</code> 필드의 타입이 <code class="language-plaintext highlighter-rouge">String(json)</code>이고, <code class="language-plaintext highlighter-rouge">PersonDTO</code>는 <code class="language-plaintext highlighter-rouge">job</code> 필드의 타입이 <code class="language-plaintext highlighter-rouge">JobDTO</code>일 때 어떻게 해야 할까?</p>
+
+<h3 id="jobdto">JobDTO</h3>
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">data class</span> <span class="nc">JobDTO</span><span class="p">(</span>
+
+    <span class="kd">var</span> <span class="py">type</span><span class="p">:</span> <span class="nc">String</span><span class="p">?</span> <span class="p">=</span> <span class="k">null</span><span class="p">,</span>
+
+    <span class="kd">var</span> <span class="py">location</span><span class="p">:</span> <span class="nc">String</span><span class="p">?</span> <span class="p">=</span> <span class="k">null</span><span class="p">,</span>
+
+    <span class="kd">var</span> <span class="py">year</span><span class="p">:</span> <span class="nc">Int</span><span class="p">?</span> <span class="p">=</span> <span class="k">null</span>
+<span class="p">)</span>
+</code></pre></div></div>
+
+<h3 id="person에-추가-된-job-필드">Person에 추가 된 job 필드</h3>
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Entity</span>
+<span class="kd">class</span> <span class="nc">Person</span> <span class="p">(</span>
+
+    <span class="nd">@Id</span>
+    <span class="nd">@Column</span><span class="p">(</span><span class="n">name</span> <span class="p">=</span> <span class="s">"person_id"</span><span class="p">)</span>
+    <span class="kd">var</span> <span class="py">id</span><span class="p">:</span> <span class="nc">Long</span><span class="p">?</span> <span class="p">=</span> <span class="k">null</span><span class="p">,</span>
+
+    <span class="nd">@Column</span><span class="p">(</span><span class="n">name</span> <span class="p">=</span> <span class="s">"name"</span><span class="p">)</span>
+    <span class="kd">var</span> <span class="py">name</span><span class="p">:</span> <span class="nc">String</span><span class="p">?</span> <span class="p">=</span> <span class="k">null</span><span class="p">,</span>
+
+    <span class="nd">@Column</span><span class="p">(</span><span class="n">name</span> <span class="p">=</span> <span class="s">"age"</span><span class="p">)</span>
+    <span class="kd">var</span> <span class="py">age</span><span class="p">:</span> <span class="nc">Int</span><span class="p">?</span> <span class="p">=</span> <span class="k">null</span><span class="p">,</span>
+
+    <span class="nd">@Column</span><span class="p">(</span><span class="n">name</span> <span class="p">=</span> <span class="s">"phone_number"</span><span class="p">)</span>
+    <span class="kd">var</span> <span class="py">phoneNumber</span><span class="p">:</span> <span class="nc">String</span><span class="p">?</span> <span class="p">=</span> <span class="k">null</span><span class="p">,</span>
+
+    <span class="nd">@Column</span><span class="p">(</span><span class="n">name</span> <span class="p">=</span> <span class="s">"birth"</span><span class="p">)</span>
+    <span class="kd">var</span> <span class="py">birth</span><span class="p">:</span> <span class="nc">LocalDate</span><span class="p">?</span> <span class="p">=</span> <span class="k">null</span><span class="p">,</span>
+
+    <span class="nd">@Column</span><span class="p">(</span><span class="n">name</span> <span class="p">=</span> <span class="s">"job"</span><span class="p">)</span>
+    <span class="kd">var</span> <span class="py">job</span><span class="p">:</span> <span class="nc">String</span><span class="p">?</span> <span class="p">=</span> <span class="k">null</span>
+<span class="p">)</span>
+</code></pre></div></div>
+
+<h3 id="persondto에-추가-된-job-필드">PersonDTO에 추가 된 job 필드</h3>
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">data class</span> <span class="nc">PersonDTO</span><span class="p">(</span>
+
+    <span class="kd">var</span> <span class="py">id</span><span class="p">:</span> <span class="nc">Long</span><span class="p">?</span> <span class="p">=</span> <span class="k">null</span><span class="p">,</span>
+
+    <span class="kd">var</span> <span class="py">name</span><span class="p">:</span> <span class="nc">String</span><span class="p">?</span> <span class="p">=</span> <span class="k">null</span><span class="p">,</span>
+
+    <span class="kd">var</span> <span class="py">age</span><span class="p">:</span> <span class="nc">Int</span><span class="p">?</span> <span class="p">=</span> <span class="k">null</span><span class="p">,</span>
+
+    <span class="kd">var</span> <span class="py">phoneNumber</span><span class="p">:</span> <span class="nc">String</span><span class="p">?</span> <span class="p">=</span> <span class="k">null</span><span class="p">,</span>
+
+    <span class="kd">var</span> <span class="py">birth</span><span class="p">:</span> <span class="nc">LocalDate</span><span class="p">?</span> <span class="p">=</span> <span class="k">null</span><span class="p">,</span>
+
+    <span class="kd">var</span> <span class="py">job</span><span class="p">:</span> <span class="nc">JobDTO</span><span class="p">?</span> <span class="p">=</span> <span class="k">null</span>
+<span class="p">)</span>
+</code></pre></div></div>
+
+<p><code class="language-plaintext highlighter-rouge">PersonMapper</code>를 수정해야 할 부분이 있다.
+MapStruct가 자동으로 생성해주는 구현체는 따로 명시하지 않는 이상 같은 필드명, 같은 필드 타입으로 매핑한다. 구현체의 setter 부분에 우리가 커스텀한 함수를 사용해 타입을 변환해야 한다.</p>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Component</span>
+<span class="nd">@Mapper</span><span class="p">(</span><span class="n">componentModel</span> <span class="p">=</span> <span class="s">"spring"</span><span class="p">)</span>
+<span class="kd">interface</span> <span class="nc">PersonMapper</span><span class="p">:</span> <span class="nc">EntityMapper</span><span class="p">&lt;</span><span class="nc">PersonDTO</span><span class="p">,</span> <span class="nc">Person</span><span class="p">&gt;</span> <span class="p">{</span>
+
+    <span class="nd">@Mapping</span><span class="p">(</span><span class="n">source</span> <span class="p">=</span> <span class="s">"job"</span><span class="p">,</span> <span class="n">target</span> <span class="p">=</span> <span class="s">"job"</span><span class="p">,</span> <span class="n">qualifiedByName</span> <span class="p">=</span> <span class="p">[</span><span class="s">"jobDtoToJson"</span><span class="p">])</span>
+    <span class="k">override</span> <span class="k">fun</span> <span class="nf">toEntity</span><span class="p">(</span><span class="n">dto</span><span class="p">:</span> <span class="nc">PersonDTO</span><span class="p">):</span> <span class="nc">Person</span>
+
+    <span class="nd">@Mapping</span><span class="p">(</span><span class="n">source</span> <span class="p">=</span> <span class="s">"job"</span><span class="p">,</span> <span class="n">target</span> <span class="p">=</span> <span class="s">"job"</span><span class="p">,</span> <span class="n">qualifiedByName</span> <span class="p">=</span> <span class="p">[</span><span class="s">"jsonToJobDto"</span><span class="p">])</span>
+    <span class="k">override</span> <span class="k">fun</span> <span class="nf">toDto</span><span class="p">(</span><span class="n">entity</span><span class="p">:</span> <span class="nc">Person</span><span class="p">):</span> <span class="nc">PersonDTO</span>
+
+    <span class="nd">@Mapping</span><span class="p">(</span><span class="n">source</span> <span class="p">=</span> <span class="s">"job"</span><span class="p">,</span> <span class="n">target</span> <span class="p">=</span> <span class="s">"job"</span><span class="p">,</span> <span class="n">qualifiedByName</span> <span class="p">=</span> <span class="p">[</span><span class="s">"jobDtoToJson"</span><span class="p">])</span>
+    <span class="k">override</span> <span class="k">fun</span> <span class="nf">toEntity</span><span class="p">(</span><span class="n">dtoList</span><span class="p">:</span> <span class="nc">MutableList</span><span class="p">&lt;</span><span class="nc">PersonDTO</span><span class="p">&gt;):</span> <span class="nc">MutableList</span><span class="p">&lt;</span><span class="nc">Person</span><span class="p">&gt;</span>
+
+    <span class="nd">@Mapping</span><span class="p">(</span><span class="n">source</span> <span class="p">=</span> <span class="s">"job"</span><span class="p">,</span> <span class="n">target</span> <span class="p">=</span> <span class="s">"job"</span><span class="p">,</span> <span class="n">qualifiedByName</span> <span class="p">=</span> <span class="p">[</span><span class="s">"jsonToJobDto"</span><span class="p">])</span>
+    <span class="k">override</span> <span class="k">fun</span> <span class="nf">toDto</span><span class="p">(</span><span class="n">entityList</span><span class="p">:</span> <span class="nc">MutableList</span><span class="p">&lt;</span><span class="nc">Person</span><span class="p">&gt;):</span> <span class="nc">MutableList</span><span class="p">&lt;</span><span class="nc">PersonDTO</span><span class="p">&gt;</span>
+
+    <span class="k">companion</span> <span class="k">object</span> <span class="p">{</span>
+        <span class="nd">@Named</span><span class="p">(</span><span class="s">"jsonToJobDto"</span><span class="p">)</span>
+        <span class="nd">@JvmStatic</span>
+        <span class="k">fun</span> <span class="nf">jsonToJobDto</span><span class="p">(</span><span class="n">json</span><span class="p">:</span> <span class="nc">String</span><span class="p">?):</span> <span class="nc">JobDTO</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="n">json</span><span class="o">?.</span><span class="nf">let</span> <span class="p">{</span> <span class="nc">ObjectMapper</span><span class="p">().</span><span class="nf">readValue</span><span class="p">(</span><span class="n">it</span><span class="p">,</span> <span class="nc">JobDTO</span><span class="o">::</span><span class="k">class</span><span class="p">.</span><span class="n">java</span><span class="p">)</span> <span class="p">}</span> <span class="o">?:</span> <span class="nc">JobDTO</span><span class="p">()</span>
+        <span class="p">}</span>
+
+        <span class="nd">@Named</span><span class="p">(</span><span class="s">"jobDtoToJson"</span><span class="p">)</span>
+        <span class="nd">@JvmStatic</span>
+        <span class="k">fun</span> <span class="nf">jobDtoToJson</span><span class="p">(</span><span class="n">jobDTO</span><span class="p">:</span> <span class="nc">JobDTO</span><span class="p">?):</span> <span class="nc">String</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="n">jobDTO</span><span class="o">?.</span><span class="nf">let</span> <span class="p">{</span> <span class="nc">ObjectMapper</span><span class="p">().</span><span class="nf">writeValueAsString</span><span class="p">(</span><span class="n">it</span><span class="p">)</span> <span class="p">}</span> <span class="o">?:</span> <span class="s">""</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div></div>
+<p><code class="language-plaintext highlighter-rouge">EntityMapper&lt;DTO, Entity&gt;</code> 인터페이스를 상속 받았지만 이는 기본적인 <code class="language-plaintext highlighter-rouge">toDto()</code>, <code class="language-plaintext highlighter-rouge">toEntity()</code> 함수를 제공하므로 <code class="language-plaintext highlighter-rouge">job</code> 필드처럼 예외 케이스가 있는 경우에는 <code class="language-plaintext highlighter-rouge">toDto()</code>, <code class="language-plaintext highlighter-rouge">toEntity()</code> 함수를 <code class="language-plaintext highlighter-rouge">override</code> 해서 오버라이딩 한 함수에 대해 구현체를 만들게 한다.
+추가로 <code class="language-plaintext highlighter-rouge">@Named</code> 어노테이션과 <code class="language-plaintext highlighter-rouge">@Mapping</code> 어노테이션의 <code class="language-plaintext highlighter-rouge">qualifiedByName</code> 옵션을 사용한다.</p>
+
+<p><code class="language-plaintext highlighter-rouge">@Mapping</code>의 <code class="language-plaintext highlighter-rouge">source</code>와 <code class="language-plaintext highlighter-rouge">target</code>에 명시한 서로 매핑시킬 필드는 <code class="language-plaintext highlighter-rouge">@Named</code>로 지정한 함수를 통해 매핑시킨다. 이때 <code class="language-plaintext highlighter-rouge">@Named</code>에 쓰인 이름을 <code class="language-plaintext highlighter-rouge">@Mapping</code>의 <code class="language-plaintext highlighter-rouge">qualifiedByName</code> 옵션에 명시하면 된다.</p>
+
+<p>그리고 <code class="language-plaintext highlighter-rouge">@Named</code>로 지정한 함수는 <code class="language-plaintext highlighter-rouge">static</code>으로 선언해야 한다. 그렇지 않으면 MapStruct가 해당 함수도 구현체에 구현하려고 해서 컴파일 에러가 발생할 수도 있다. 컴파일 에러가 발생하지 않는다고 해도, 정상적으로 구현체가 생성되지 않을 것이다.</p>
+
+<p>아래 코드는 자동 생성 된 구현체다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Component</span>
+<span class="kd">public</span> <span class="kd">class</span> <span class="nc">PersonMapperImpl</span> <span class="kd">implements</span> <span class="nc">PersonMapper</span> <span class="o">{</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="nc">Person</span> <span class="nf">toEntity</span><span class="o">(</span><span class="nc">PersonDTO</span> <span class="n">dto</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span> <span class="n">dto</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">)</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
+        <span class="o">}</span>
+
+        <span class="nc">Person</span> <span class="n">person</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">Person</span><span class="o">();</span>
+
+        <span class="n">person</span><span class="o">.</span><span class="na">setJob</span><span class="o">(</span> <span class="nc">PersonMapper</span><span class="o">.</span><span class="na">jobDtoToJson</span><span class="o">(</span> <span class="n">dto</span><span class="o">.</span><span class="na">getJob</span><span class="o">()</span> <span class="o">)</span> <span class="o">);</span>
+        <span class="n">person</span><span class="o">.</span><span class="na">setId</span><span class="o">(</span> <span class="n">dto</span><span class="o">.</span><span class="na">getId</span><span class="o">()</span> <span class="o">);</span>
+        <span class="n">person</span><span class="o">.</span><span class="na">setName</span><span class="o">(</span> <span class="n">dto</span><span class="o">.</span><span class="na">getName</span><span class="o">()</span> <span class="o">);</span>
+        <span class="n">person</span><span class="o">.</span><span class="na">setAge</span><span class="o">(</span> <span class="n">dto</span><span class="o">.</span><span class="na">getAge</span><span class="o">()</span> <span class="o">);</span>
+        <span class="n">person</span><span class="o">.</span><span class="na">setPhoneNumber</span><span class="o">(</span> <span class="n">dto</span><span class="o">.</span><span class="na">getPhoneNumber</span><span class="o">()</span> <span class="o">);</span>
+        <span class="n">person</span><span class="o">.</span><span class="na">setBirth</span><span class="o">(</span> <span class="n">dto</span><span class="o">.</span><span class="na">getBirth</span><span class="o">()</span> <span class="o">);</span>
+
+        <span class="k">return</span> <span class="n">person</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="nc">PersonDTO</span> <span class="nf">toDto</span><span class="o">(</span><span class="nc">Person</span> <span class="n">entity</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span> <span class="n">entity</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">)</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
+        <span class="o">}</span>
+
+        <span class="nc">PersonDTO</span> <span class="n">personDTO</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">PersonDTO</span><span class="o">();</span>
+
+        <span class="n">personDTO</span><span class="o">.</span><span class="na">setJob</span><span class="o">(</span> <span class="nc">PersonMapper</span><span class="o">.</span><span class="na">jsonToJobDto</span><span class="o">(</span> <span class="n">entity</span><span class="o">.</span><span class="na">getJob</span><span class="o">()</span> <span class="o">)</span> <span class="o">);</span>
+        <span class="n">personDTO</span><span class="o">.</span><span class="na">setId</span><span class="o">(</span> <span class="n">entity</span><span class="o">.</span><span class="na">getId</span><span class="o">()</span> <span class="o">);</span>
+        <span class="n">personDTO</span><span class="o">.</span><span class="na">setName</span><span class="o">(</span> <span class="n">entity</span><span class="o">.</span><span class="na">getName</span><span class="o">()</span> <span class="o">);</span>
+        <span class="n">personDTO</span><span class="o">.</span><span class="na">setAge</span><span class="o">(</span> <span class="n">entity</span><span class="o">.</span><span class="na">getAge</span><span class="o">()</span> <span class="o">);</span>
+        <span class="n">personDTO</span><span class="o">.</span><span class="na">setPhoneNumber</span><span class="o">(</span> <span class="n">entity</span><span class="o">.</span><span class="na">getPhoneNumber</span><span class="o">()</span> <span class="o">);</span>
+        <span class="n">personDTO</span><span class="o">.</span><span class="na">setBirth</span><span class="o">(</span> <span class="n">entity</span><span class="o">.</span><span class="na">getBirth</span><span class="o">()</span> <span class="o">);</span>
+
+        <span class="k">return</span> <span class="n">personDTO</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Person</span><span class="o">&gt;</span> <span class="nf">toEntity</span><span class="o">(</span><span class="nc">List</span><span class="o">&lt;</span><span class="nc">PersonDTO</span><span class="o">&gt;</span> <span class="n">dtoList</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span> <span class="n">dtoList</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">)</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
+        <span class="o">}</span>
+
+        <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Person</span><span class="o">&gt;</span> <span class="n">list</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;</span><span class="nc">Person</span><span class="o">&gt;(</span> <span class="n">dtoList</span><span class="o">.</span><span class="na">size</span><span class="o">()</span> <span class="o">);</span>
+        <span class="k">for</span> <span class="o">(</span> <span class="nc">PersonDTO</span> <span class="n">personDTO</span> <span class="o">:</span> <span class="n">dtoList</span> <span class="o">)</span> <span class="o">{</span>
+            <span class="n">list</span><span class="o">.</span><span class="na">add</span><span class="o">(</span> <span class="n">toEntity</span><span class="o">(</span> <span class="n">personDTO</span> <span class="o">)</span> <span class="o">);</span>
+        <span class="o">}</span>
+
+        <span class="k">return</span> <span class="n">list</span><span class="o">;</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Override</span>
+    <span class="kd">public</span> <span class="nc">List</span><span class="o">&lt;</span><span class="nc">PersonDTO</span><span class="o">&gt;</span> <span class="nf">toDto</span><span class="o">(</span><span class="nc">List</span><span class="o">&lt;</span><span class="nc">Person</span><span class="o">&gt;</span> <span class="n">entityList</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">if</span> <span class="o">(</span> <span class="n">entityList</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">)</span> <span class="o">{</span>
+            <span class="k">return</span> <span class="kc">null</span><span class="o">;</span>
+        <span class="o">}</span>
+
+        <span class="nc">List</span><span class="o">&lt;</span><span class="nc">PersonDTO</span><span class="o">&gt;</span> <span class="n">list</span> <span class="o">=</span> <span class="k">new</span> <span class="nc">ArrayList</span><span class="o">&lt;</span><span class="nc">PersonDTO</span><span class="o">&gt;(</span> <span class="n">entityList</span><span class="o">.</span><span class="na">size</span><span class="o">()</span> <span class="o">);</span>
+        <span class="k">for</span> <span class="o">(</span> <span class="nc">Person</span> <span class="n">person</span> <span class="o">:</span> <span class="n">entityList</span> <span class="o">)</span> <span class="o">{</span>
+            <span class="n">list</span><span class="o">.</span><span class="na">add</span><span class="o">(</span> <span class="n">toDto</span><span class="o">(</span> <span class="n">person</span> <span class="o">)</span> <span class="o">);</span>
+        <span class="o">}</span>
+
+        <span class="k">return</span> <span class="n">list</span><span class="o">;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<p>구현체 코드에서</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">person</span><span class="o">.</span><span class="na">setJob</span><span class="o">(</span> <span class="nc">PersonMapper</span><span class="o">.</span><span class="na">jobDtoToJson</span><span class="o">(</span> <span class="n">dto</span><span class="o">.</span><span class="na">getJob</span><span class="o">()</span> <span class="o">)</span> <span class="o">);</span>
+</code></pre></div></div>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">personDTO</span><span class="o">.</span><span class="na">setJob</span><span class="o">(</span> <span class="nc">PersonMapper</span><span class="o">.</span><span class="na">jsonToJobDto</span><span class="o">(</span> <span class="n">entity</span><span class="o">.</span><span class="na">getJob</span><span class="o">()</span> <span class="o">)</span> <span class="o">);</span>
+</code></pre></div></div>
+
+<p>이 부분들을 보면 우리가 커스텀한 함수를 사용해 매핑하는 것을 확인할 수 있다.</p>
+
+<p>테스트까지 해보면</p>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Test</span>
+<span class="k">fun</span> <span class="nf">test2</span><span class="p">()</span> <span class="p">{</span>
+
+    <span class="c1">// given</span>
+    <span class="kd">val</span> <span class="py">person</span> <span class="p">=</span> <span class="nc">Person</span><span class="p">(</span>
+        <span class="n">job</span> <span class="p">=</span> <span class="s">"{\"type\":\"developer\",\"location\":\"Seoul\",\"year\":1}"</span>
+    <span class="p">)</span>
+    <span class="kd">val</span> <span class="py">jobDto</span> <span class="p">=</span> <span class="nc">JobDTO</span><span class="p">(</span><span class="n">type</span> <span class="p">=</span> <span class="s">"developer"</span><span class="p">,</span> <span class="n">location</span> <span class="p">=</span> <span class="s">"Seoul"</span><span class="p">,</span> <span class="n">year</span> <span class="p">=</span> <span class="mi">1</span><span class="p">)</span>
+
+    <span class="c1">// when</span>
+    <span class="kd">val</span> <span class="py">personDTO</span> <span class="p">=</span> <span class="n">personMapper</span><span class="p">.</span><span class="nf">toDto</span><span class="p">(</span><span class="n">person</span><span class="p">)</span>
+
+    <span class="c1">// then</span>
+    <span class="nf">assertThat</span><span class="p">(</span><span class="n">personDTO</span><span class="p">.</span><span class="n">job</span><span class="p">).</span><span class="nf">isEqualTo</span><span class="p">(</span><span class="n">jobDto</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<div class="language-kotlin highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Test</span>
+<span class="k">fun</span> <span class="nf">test3</span><span class="p">()</span> <span class="p">{</span>
+
+    <span class="c1">// given</span>
+    <span class="kd">val</span> <span class="py">personDto</span> <span class="p">=</span> <span class="nc">PersonDTO</span><span class="p">(</span>
+        <span class="n">job</span> <span class="p">=</span> <span class="nc">JobDTO</span><span class="p">(</span><span class="n">type</span> <span class="p">=</span> <span class="s">"developer"</span><span class="p">,</span> <span class="n">location</span> <span class="p">=</span> <span class="s">"Seoul"</span><span class="p">,</span> <span class="n">year</span> <span class="p">=</span> <span class="mi">1</span><span class="p">)</span>
+    <span class="p">)</span>
+    <span class="kd">val</span> <span class="py">jobJson</span> <span class="p">=</span> <span class="s">"{\"type\":\"developer\",\"location\":\"Seoul\",\"year\":1}"</span>
+
+    <span class="c1">// when</span>
+    <span class="kd">val</span> <span class="py">person</span> <span class="p">=</span> <span class="n">personMapper</span><span class="p">.</span><span class="nf">toEntity</span><span class="p">(</span><span class="n">personDto</span><span class="p">)</span>
+
+    <span class="c1">// then</span>
+    <span class="nf">assertThat</span><span class="p">(</span><span class="n">person</span><span class="p">.</span><span class="n">job</span><span class="p">).</span><span class="nf">isEqualTo</span><span class="p">(</span><span class="n">jobJson</span><span class="p">)</span>
+<span class="p">}</span>
+</code></pre></div></div>
+
+<p><img src="/assets/images/mapstruct/mapstruct3.png" alt="mapstruct3"></p>
+
+<p>성공!</p>
+
+<p>번외로 Kotlin에서는 <code class="language-plaintext highlighter-rouge">static</code>을 사용하려면 Java와 조금 다르게 해야 돼서 헷갈리는 분들을 위해 Java 코드도 준비했다.</p>
+
+<div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nd">@Component</span>
+<span class="nd">@Mapper</span><span class="o">(</span><span class="n">componentModel</span> <span class="o">=</span> <span class="s">"spring"</span><span class="o">)</span>
+<span class="kd">public</span> <span class="kd">interface</span> <span class="nc">PersonMapperJava</span> <span class="kd">extends</span> <span class="nc">EntityMapper</span><span class="o">&lt;</span><span class="nc">PersonDTO</span><span class="o">,</span> <span class="nc">Person</span><span class="o">&gt;</span> <span class="o">{</span>
+
+    <span class="nd">@Override</span>
+    <span class="nd">@Mapping</span><span class="o">(</span><span class="n">source</span> <span class="o">=</span> <span class="s">"job"</span><span class="o">,</span> <span class="n">target</span> <span class="o">=</span> <span class="s">"job"</span><span class="o">,</span> <span class="n">qualifiedByName</span> <span class="o">=</span> <span class="s">"jobDtoToJson"</span><span class="o">)</span>
+    <span class="nc">Person</span> <span class="nf">toEntity</span><span class="o">(</span><span class="nc">PersonDTO</span> <span class="n">dto</span><span class="o">);</span>
+
+    <span class="nd">@Override</span>
+    <span class="nd">@Mapping</span><span class="o">(</span><span class="n">source</span> <span class="o">=</span> <span class="s">"job"</span><span class="o">,</span> <span class="n">target</span> <span class="o">=</span> <span class="s">"job"</span><span class="o">,</span> <span class="n">qualifiedByName</span> <span class="o">=</span> <span class="s">"jsonToJobDto"</span><span class="o">)</span>
+    <span class="nc">PersonDTO</span> <span class="nf">toDto</span><span class="o">(</span><span class="nc">Person</span> <span class="n">entity</span><span class="o">);</span>
+
+    <span class="nd">@Override</span>
+    <span class="nd">@Mapping</span><span class="o">(</span><span class="n">source</span> <span class="o">=</span> <span class="s">"job"</span><span class="o">,</span> <span class="n">target</span> <span class="o">=</span> <span class="s">"job"</span><span class="o">,</span> <span class="n">qualifiedByName</span> <span class="o">=</span> <span class="s">"jobDtoToJson"</span><span class="o">)</span>
+    <span class="nc">List</span><span class="o">&lt;</span><span class="nc">Person</span><span class="o">&gt;</span> <span class="nf">toEntity</span><span class="o">(</span><span class="nc">List</span><span class="o">&lt;</span><span class="nc">PersonDTO</span><span class="o">&gt;</span> <span class="n">dtoList</span><span class="o">);</span>
+
+    <span class="nd">@Override</span>
+    <span class="nd">@Mapping</span><span class="o">(</span><span class="n">source</span> <span class="o">=</span> <span class="s">"job"</span><span class="o">,</span> <span class="n">target</span> <span class="o">=</span> <span class="s">"job"</span><span class="o">,</span> <span class="n">qualifiedByName</span> <span class="o">=</span> <span class="s">"jsonToJobDto"</span><span class="o">)</span>
+    <span class="nc">List</span><span class="o">&lt;</span><span class="nc">PersonDTO</span><span class="o">&gt;</span> <span class="nf">toDto</span><span class="o">(</span><span class="nc">List</span><span class="o">&lt;</span><span class="nc">Person</span><span class="o">&gt;</span> <span class="n">entityList</span><span class="o">);</span>
+
+    <span class="nd">@Named</span><span class="o">(</span><span class="s">"jsonToJobDto"</span><span class="o">)</span>
+    <span class="kd">static</span> <span class="nc">JobDTO</span> <span class="nf">jsonToJobDto</span><span class="o">(</span><span class="nc">String</span> <span class="n">json</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">JsonProcessingException</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">json</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">?</span> <span class="k">new</span> <span class="nc">JobDTO</span><span class="o">()</span> <span class="o">:</span> <span class="k">new</span> <span class="nc">ObjectMapper</span><span class="o">().</span><span class="na">readValue</span><span class="o">(</span><span class="n">json</span><span class="o">,</span> <span class="nc">JobDTO</span><span class="o">.</span><span class="na">class</span><span class="o">);</span>
+    <span class="o">}</span>
+
+    <span class="nd">@Named</span><span class="o">(</span><span class="s">"jobDtoToJson"</span><span class="o">)</span>
+    <span class="kd">static</span> <span class="nc">String</span> <span class="nf">jobDtoToJson</span><span class="o">(</span><span class="nc">JobDTO</span> <span class="n">jobDTO</span><span class="o">)</span> <span class="kd">throws</span> <span class="nc">JsonProcessingException</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">jobDTO</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">?</span> <span class="s">""</span> <span class="o">:</span> <span class="k">new</span> <span class="nc">ObjectMapper</span><span class="o">().</span><span class="na">writeValueAsString</span><span class="o">(</span><span class="n">jobDTO</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div></div>
+
+<hr>
+
+<p>MapStruct의 모든 기능들을 다룬 것은 아니다. 하지만 이 정도만 알아도 우리가 개발하는 데 있어서 충분히 이점을 가져갈 수 있을 것이라고 생각한다. 앞으로 MapStruct를 잘 활용해서 편하게 개발해보자!</p>
+
+<blockquote>
+  <p>위에서 설명한 코드 예제는 <a href="https://github.com/97kim/mapstruct_example">Github</a>에 있습니다.</p>
+</blockquote>
+
+
+    </div>
+
+</article>
+<div class="post-nav">
+<a class="previous" href="/jekyll-theme-yat/cron/2022/07/10/Cron-Expression.html" title="Cron Expression">Cron Expression</a><a class="next" href="/jekyll-theme-yat/dev/2022/08/28/Querydsl.html" title="Querydsl">Querydsl</a>
+</div>
+<div class="post-related">
+      <div>Related Articles</div>
+      <ul>
+        <li><a class="post-link" href="/jekyll-theme-yat/dev/2022/12/24/VPC.html" title="Querydsl">VPC</a></li>
+<li><a class="post-link" href="/jekyll-theme-yat/aws/2022/07/09/Amazon-SQS.html" title="Querydsl">Amazon SQS</a></li>
+<li><a class="post-link" href="/jekyll-theme-yat/cron/2022/07/10/Cron-Expression.html" title="Querydsl">Cron Expression</a></li>
+<li><a class="post-link" href="/jekyll-theme-yat/posts/review/codenbutter-auto-message" title="Querydsl">쇼핑몰 매출이 올라가는 자동메시지 팝업</a></li>
+</ul>
+    </div>
+<div class="post-comments">
+<script async crossorigin="anonymous" issue-term="title" label="comments" onload="initUtterancesTheme()" repo="97kim/blog-comments" src="https://utteranc.es/client.js" theme="github-light">
+</script><script>
+  const setUtterancesTheme = (dataTheme) => {
+    const iframe = document.querySelector('.utterances-frame');
+    if (iframe) {
+      const utterancesTheme = dataTheme === 'dark' ? 'github-dark' : 'github-light'
+      const message = {
+        type: 'set-theme',
+        theme: utterancesTheme
+      };
+      iframe.contentWindow.postMessage(message, 'https://utteranc.es');
+    }
+  }
+
+  // init theme
+  const initUtterancesTheme = () => {
+    const iframe = document.querySelector('.utterances-frame');
+    if (!iframe) return
+    iframe.onload = () => {
+      setUtterancesTheme(document.documentElement.getAttribute('data-theme'))
+    }
+  }
+
+  // dynamic change
+  const observer = new MutationObserver((mutationsList, observer) => {
+    for (let mutation of mutationsList) {
+      if (mutation.type === 'attributes' && mutation.attributeName === 'data-theme') {
+        setUtterancesTheme(document.documentElement.getAttribute('data-theme'))
+      }
+    }
+  });
+  observer.observe(document.documentElement, {attributes: true, childList: false, subtree: false});
+</script>
+</div></section>
+</div>
+
+
+  </section>
+  <section class="sidebar" style="margin-left: 15px;">
+    <!-- Get sidebar items --></section>
+</div>
+
+      </div>
+    </main><footer class="site-footer h-card">
+  <data class="u-url" href="/jekyll-theme-yat/"></data>
+
+  <div class="wrapper">
+    <div class="site-footer-inner">
+<div>Jung.log <span class="copyleft">©</span> 2022 97kim</div>
+      <div>Powered by <a title="Jekyll is a simple, blog-aware, static site
+      generator." href="https://jekyllrb.com/">Jekyll</a> &amp; <a title="Yat, yet
+      another theme." href="https://github.com/jeffreytse/jekyll-theme-yat">Yat Theme</a>.</div>
+      <div class="footer-col rss-subscribe">Subscribe <a href="/jekyll-theme-yat/feed.xml">via RSS</a>
+</div>
+    </div>
+  </div>
+</footer>
+</body>
+</html>
